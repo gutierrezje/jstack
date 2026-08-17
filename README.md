@@ -1,29 +1,26 @@
 # Jstack
 
-Jstack is a Codex-native agent workflow stack for rigorous software work. It combines cost-aware model routing with focused skills for planning, investigation, implementation, review, and verification.
+Jstack is a collection of Codex skills for software work. It handles model routing and includes workflows for planning, investigation, implementation, review, and verification.
 
-It is adapted from Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack), but its control plane is native to Codex: skills, collaboration agents, visible plans, and Codex authorization boundaries.
+The project started as a port of Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack). The workflows have since been rewritten around Codex skills, collaboration agents, plans, and permission rules.
 
-## What it includes
+## Skills
 
-- `$jstack` chooses the smallest useful agent topology.
-- `$poteto-mode` runs an evidence-driven engineering workflow.
-- `$how` and `$why` investigate mechanics and rationale.
-- `$architect`, `$arena`, `$swarm`, and `$interrogate` provide deliberate multi-agent patterns.
-- `$setup-pstack` changes the shared model and effort routes.
-- Supporting principle, verification, retrospective, teaching, and writing skills are packaged alongside them.
+`$jstack` is the main router. It picks a workflow and starts with as few agents as the task allows. `$poteto-mode` handles the full engineering loop, while `$how` and `$why` are for investigating how something works or why it ended up that way.
 
-The default routes use Sol for orchestration and judgment, Terra for investigation, and Luna for bounded execution. Edit [`skills/jstack/references/routes.md`](skills/jstack/references/routes.md) to change them.
+For work that benefits from multiple independent passes, the repo includes `$architect`, `$arena`, `$swarm`, and `$interrogate`. There are also smaller skills for verification, retrospectives, teaching, writing, and the engineering principles used by Poteto mode.
+
+By default, Sol handles orchestration and judgment, Terra investigates, and Luna executes bounded tasks. You can change the models, effort levels, and fan-out in [`skills/jstack/references/routes.md`](skills/jstack/references/routes.md), or use `$setup-pstack`.
 
 ## Install
 
-Clone the repository, then install it through Codex's plugin UI or add the local checkout as a plugin source. The repository is a complete plugin rooted at `.codex-plugin/plugin.json`; no build step or external service is required.
+Clone the repository and install it through Codex's plugin UI, or add the checkout as a local plugin source. The plugin manifest is at `.codex-plugin/plugin.json`. Jstack does not need a build step or an external service.
 
-For a manual skills-only installation, copy the directories under `skills/` into `~/.codex/skills/`. Keep the directory names unchanged so cross-skill references resolve.
+If you only want the skills, copy the directories under `skills/` into `~/.codex/skills/`. Do not rename them because some skills link to files in neighboring skill directories.
 
 ## Use
 
-Start with one of these prompts:
+Invoke the router for general work, or call a specific workflow directly:
 
 ```text
 Use $jstack to route this task with the smallest useful agent team.
@@ -31,13 +28,11 @@ Use $poteto-mode to diagnose and fix this bug with evidence.
 Use $arena to compare two implementation approaches and judge them.
 ```
 
-## Design constraints
+## How delegation works
 
-- The parent agent owns scope, integration, and final judgment.
-- Fan-out begins at zero or one child and expands only for independent evidence or disjoint work.
-- Model selections are explicit and must be supported by the active Codex runtime.
-- Internal agents share the local checkout; overlapping writers are serialized.
-- External and destructive actions still require the authority defined by Codex and the user's request.
+The parent agent owns the scope and reviews the final result. A workflow starts with zero or one child and adds another only when there is a separate question to investigate, a separate implementation to compare, or a disjoint chunk of work.
+
+Model names must exist in the active Codex runtime. Internal agents also share the same checkout, so Jstack does not run overlapping writers at the same time. Installing the plugin does not grant permission to publish, deploy, merge, delete files, or contact third parties.
 
 ## Validate
 
