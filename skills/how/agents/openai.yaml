@@ -1,0 +1,4 @@
+interface:
+  display_name: "How"
+  short_description: "Codex-native pstack workflow: how"
+  default_prompt: "Use $how for this task."

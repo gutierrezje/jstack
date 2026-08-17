@@ -1,0 +1,6 @@
+interface:
+  display_name: "Principle Boundary Discipline"
+  short_description: "Codex-native pstack workflow: principle-boundary-discipline"
+  default_prompt: "Use $principle-boundary-discipline for this task."
+policy:
+  allow_implicit_invocation: false

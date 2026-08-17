@@ -1,0 +1,4 @@
+interface:
+  display_name: "Setup Pstack"
+  short_description: "Codex-native pstack workflow: setup-pstack"
+  default_prompt: "Use $setup-pstack for this task."

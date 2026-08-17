@@ -1,0 +1,6 @@
+interface:
+  display_name: "Poteto Agent"
+  short_description: "Codex-native pstack agent: poteto-agent"
+  default_prompt: "Use $poteto-agent for this task."
+policy:
+  allow_implicit_invocation: false

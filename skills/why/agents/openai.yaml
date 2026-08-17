@@ -1,0 +1,4 @@
+interface:
+  display_name: "Why"
+  short_description: "Codex-native pstack workflow: why"
+  default_prompt: "Use $why for this task."

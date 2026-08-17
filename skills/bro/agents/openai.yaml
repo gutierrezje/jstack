@@ -1,0 +1,6 @@
+interface:
+  display_name: "Bro"
+  short_description: "Codex-native pstack workflow: bro"
+  default_prompt: "Use $bro for this task."
+policy:
+  allow_implicit_invocation: false

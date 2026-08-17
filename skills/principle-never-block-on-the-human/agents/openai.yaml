@@ -1,0 +1,6 @@
+interface:
+  display_name: "Principle Never Block On The Human"
+  short_description: "Codex-native pstack workflow: principle-never-block-on-the-human"
+  default_prompt: "Use $principle-never-block-on-the-human for this task."
+policy:
+  allow_implicit_invocation: false

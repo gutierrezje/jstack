@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jstack"
+  short_description: "Cost-aware Sol, Terra, and Luna routing"
+  default_prompt: "Use $jstack to route this task across the smallest useful Codex agent team."
