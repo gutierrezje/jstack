@@ -8,6 +8,7 @@ description: Route rigorous software work to the separate Codex-native jstack sk
 1. Read [routes.md](references/routes.md) and [codex-compatibility.md](references/codex-compatibility.md) completely.
 2. Route the request to one primary skill:
    - General rigorous task: `$poteto-mode`.
+   - Take a pull request to a current-head verdict: `$babysit-pr`.
    - Current mechanics: `$how`.
    - Historical rationale: `$why`.
    - Boundary design: `$architect`.

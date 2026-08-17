@@ -1,0 +1,4 @@
+interface:
+  display_name: "Babysit PR"
+  short_description: "Current-head PR review and readiness verdict"
+  default_prompt: "Use $babysit-pr to take this GitHub PR to a trustworthy current-head verdict."
