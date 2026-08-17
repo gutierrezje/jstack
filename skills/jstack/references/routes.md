@@ -38,7 +38,7 @@ This file is the single editable source for Codex Pstack model and effort choice
 | reflect tooling | Luna High |
 | reflect judgment and divergent | Terra High |
 | reflect synthesizer | Sol High |
-| arena runners | Luna Max and Terra High |
+| arena runners | Sol High and Terra High; add Luna Max when N=3 |
 | arena judge | Sol High advisor when the parent is not Sol |
 | swarm workers | Luna High, two by default and three maximum without explicit direction |
 | architect runners | Terra High and Sol High |
@@ -52,7 +52,7 @@ This file is the single editable source for Codex Pstack model and effort choice
 | Poteto bug fix | One Terra investigator, then one Luna executor only after the cause is established; parent reviews |
 | How | One Luna explorer; optional Terra explainer for a separate subsystem |
 | Why | Up to two Terra investigators on distinct hypotheses; parent synthesizes, consulting one Sol advisor if needed |
-| Arena | One Luna Max candidate and one Terra High candidate; parent judges, consulting one Sol advisor if needed |
+| Arena | One Sol High candidate and one Terra High candidate by default; add one Luna Max candidate when N=3; parent judges |
 | Architect | One Terra High candidate and one Sol High candidate; parent decides |
 | Swarm | Two Luna High workers by default; three maximum without explicit user direction |
 
