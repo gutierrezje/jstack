@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "description": "Codex-native agent routing and rigorous software workflows adapted from pstack.",
   "author": {
-    "name": "Jesus E. Gutierrez",
-    "email": "gutierrezje.work@gmail.com",
-    "url": "https://github.com/gutierrezje"
+    "name": "Jstack contributors"
   },
   "homepage": "https://github.com/gutierrezje/jstack",
   "repository": "https://github.com/gutierrezje/jstack",
@@ -16,7 +14,7 @@
     "displayName": "Jstack",
     "shortDescription": "Cost-aware multi-agent software workflows for Codex.",
     "longDescription": "Jstack packages rigorous planning, investigation, implementation, review, and verification workflows for Codex, with explicit Sol, Terra, and Luna routing.",
-    "developerName": "Jesus E. Gutierrez",
+    "developerName": "Jstack contributors",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write", "Multi-agent"],
     "defaultPrompt": [
