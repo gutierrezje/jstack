@@ -1,6 +1,6 @@
 {
   "name": "jstack",
-  "version": "0.1.0+codex.20260820201334",
+  "version": "0.1.0+codex.20260820202015",
   "description": "Codex-native agent routing and rigorous software workflows adapted from pstack.",
   "author": {
     "name": "Jstack contributors"

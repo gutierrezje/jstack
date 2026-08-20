@@ -34,6 +34,8 @@ separate user authorization.
    evidence, not from memory or the commit titles alone.
 7. Read the remote PR back. Confirm its head SHA matches the reviewed local head
    and its rendered title, body, links, and images are correct.
+8. Return the PR URL to the user. Begin `$babysit-pr` only when the user
+   explicitly asked to babysit, shepherd, or finish the PR.
 
 ## PR body contract
 
@@ -80,4 +82,5 @@ state exactly what is missing.
 
 Finish when the remote PR points to the reviewed head, the rendered body follows
 the contract, every material claim has direct evidence, all required checks
-reflect that head, and any remaining evidence gap is explicit in a draft PR.
+reflect that head, any remaining evidence gap is explicit in a draft PR, and the
+PR URL has been returned to the user.
