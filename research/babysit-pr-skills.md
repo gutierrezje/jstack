@@ -76,7 +76,7 @@ and [session-pickup.md](../skills/jesus-mode/playbooks/session-pickup.md).
 ## Keep out of the main path
 
 - PR creation and preflight belong to
-  [opening-a-pr.md](../skills/jesus-mode/playbooks/opening-a-pr.md)
+  [`$open-pr`](../skills/open-pr/SKILL.md)
   and `new-branch-and-pr`,
   not babysitting.
 - Merge, auto-merge, review replies, thread resolution, and force-push need their

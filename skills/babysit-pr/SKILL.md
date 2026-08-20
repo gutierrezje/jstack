@@ -1,6 +1,6 @@
 ---
 name: babysit-pr
-description: "Take a GitHub pull request to a trustworthy current-head verdict by reviewing and repairing the branch, running DiffOwl, checking repair deltas and hosted checks, and issuing READY, NOT READY, or INCONCLUSIVE. When explicitly invoked by the user to babysit, shepherd, or finish a PR, this includes committing and non-force pushing verified in-scope fixes to its existing branch."
+description: "Take a GitHub pull request to a trustworthy current-head verdict by reviewing and repairing the branch, running DiffOwl, checking repair deltas and hosted checks, and issuing READY, NOT READY, or INCONCLUSIVE. When explicitly invoked by the user to babysit, shepherd, or finish a PR, this includes committing and non-force pushing verified in-scope fixes to its existing branch, then marking a verified draft ready for review."
 ---
 
 # Babysit PR
@@ -15,14 +15,17 @@ babysit, shepherd, or finish a PR, authorizes the complete repair loop:
 
 - read the repository and live PR state;
 - make the smallest local changes needed to resolve substantiated blockers;
-- commit those verified, in-scope repairs; and
-- non-force push them to the PR's existing head branch, then monitor the new head.
+- commit those verified, in-scope repairs;
+- non-force push those repairs to the PR's existing head branch and monitor the
+  new head; and
+- mark that PR ready for review after its current head earns `READY`.
 
 Automatic model selection of this skill does not grant push authority. An
 explicit read-only or review-only request also narrows the authorization.
 Require separate approval for force pushes, rebases that rewrite the remote
 branch, retargeting or replacing the PR branch, materially broader changes,
-public replies, thread resolution, PR lifecycle changes, and merge.
+public replies, thread resolution, closing or reopening the PR, other lifecycle
+changes, and merge.
 
 ## The five layers
 
@@ -116,6 +119,15 @@ coverage, hosted results, and mergeability. Issue:
   the current head, checks are unsettled, or an infrastructure failure cannot yet
   be attributed or resolved.
 
+For a draft PR, treat `READY` as provisional until the PR is open for review.
+When the user explicitly invoked this skill or directly asked to babysit,
+shepherd, or finish the PR, run `gh pr ready <number>` only after every `READY`
+condition passes. Refresh the live PR immediately. Issue `READY` only when the
+head SHA is unchanged and the PR is no longer a draft. If the transition fails
+or the head changes, issue `INCONCLUSIVE`. If this skill lacks explicit user
+authorization, ask before changing the draft state. A PR already open for review
+needs no transition.
+
 Leave a compact evidence receipt:
 
 ```text
@@ -126,13 +138,16 @@ diffowl: <base...head, report path, result, and finding dispositions>
 hosted-checks: <coverage and result for all checks at head>
 feedback: <unresolved claims and dispositions, grouped>
 mergeability: <current state>
+review-state: <draft or ready; transition result when applicable>
 verdict: READY | NOT READY | INCONCLUSIVE
 ```
 
 An explicit user request to babysit, shepherd, or finish grants reads, local
 edits, commits, and non-force pushes of verified, in-scope repairs to the
-existing PR branch. Keep public replies, thread resolution, force pushes, branch
-replacement, other PR lifecycle changes, and merge as separate authorities.
-Completion requires a current-head DiffOwl report, every blocker and DiffOwl
-finding to have a disposition, and a verdict supported by evidence current for
-one exact head SHA.
+existing PR branch. It also grants moving that PR from draft to ready for review
+after the current head earns `READY`. Keep public replies, thread resolution,
+force pushes, branch replacement, closing or reopening the PR, other lifecycle
+changes, and merge as separate authorities. Completion requires a current-head
+DiffOwl report, every blocker and DiffOwl finding to have a disposition, a
+successful ready-for-review transition when applicable, and a verdict supported
+by evidence current for one exact head SHA.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Babysit PR"
-  short_description: "Review, repair, DiffOwl, and verify a PR"
-  default_prompt: "Use $babysit-pr to review and repair this GitHub PR, run DiffOwl, push verified in-scope fixes to its existing branch, and take the current head to a trustworthy verdict."
+  short_description: "Review, repair, and open a PR for review"
+  default_prompt: "Use $babysit-pr to review and repair this GitHub PR, run DiffOwl, push verified fixes, and mark a clean draft ready for review."

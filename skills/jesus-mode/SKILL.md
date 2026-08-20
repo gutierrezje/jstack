@@ -8,11 +8,12 @@ description: "Jstack's default rigorous workflow for concise, deliberate, verifi
 Stay active across turns in the current task until the user opts out. Apply rigor when the request is non-trivial; stay direct for tiny work.
 
 1. Read [the principles index](references/principles-index.md), [global routes](references/routes.md), and [Codex compatibility contract](references/codex-compatibility.md).
-2. Match exactly one primary playbook below. Read it completely and copy its steps into `update_plan`; retain skipped steps with a reason.
+2. Match exactly one primary implementation playbook below. Read it completely and copy its steps into `update_plan`; retain skipped steps with a reason.
 3. Read every triggered `principle-*` leaf skill before applying it. Name only principles that change a decision.
 4. Route specialized steps to the separate skills: `$how`, `$why`, `$architect`, `$arena`, `$swarm`, `$interrogate`, `$no-comments`, `$show-me-your-work`, and `$pstack-tdd`.
-5. Make reversible progress inside the active authorization boundary. Ask only for material product choices, ambiguous destructive targets, or new external authority.
-6. Verify the real artifact, review child work and diffs, and finish with outcome, evidence, risks, and intentionally omitted fan-out.
+5. Treat publishing as a closing stage, not a competing playbook. Before creating or updating any PR, read `$open-pr` completely, append its workflow to the active plan, and reach its completion criteria.
+6. Make reversible progress inside the active authorization boundary. Ask only for material product choices, ambiguous destructive targets, or new external authority.
+7. Verify the real artifact, review child work and diffs, and finish with outcome, evidence, risks, and intentionally omitted fan-out.
 
 ## Playbooks
 
@@ -38,8 +39,7 @@ Stay active across turns in the current task until the user opts out. Apply rigo
 - `pause-safely`: [playbooks/pause-safely.md](playbooks/pause-safely.md)
 - `multi-phase-plan`: [playbooks/multi-phase-plan.md](playbooks/multi-phase-plan.md)
 - `worktree-cleanup`: [playbooks/worktree-cleanup.md](playbooks/worktree-cleanup.md)
-- `opening-a-pr`: [playbooks/opening-a-pr.md](playbooks/opening-a-pr.md)
 
 ## Completion
 
-Finish when every playbook step is completed or explicitly disposed, the requested outcome is observed on the real surface, and no child result is accepted solely from self-report.
+Finish when every playbook step is completed or explicitly disposed, the requested outcome is observed on the real surface, and no child result is accepted solely from self-report. A task that creates or updates a PR remains incomplete until `$open-pr` reaches its completion criteria.

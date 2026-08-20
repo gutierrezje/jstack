@@ -12,7 +12,9 @@ workflows use Codex skills, collaboration agents, plans, and permission rules.
 
 Jstack is the name of the plugin. `$jesus-mode` is its general-purpose workflow.
 `$babysit-pr` stays with a PR through review and repair. It runs DiffOwl, waits
-for CI, and tells you whether the latest commit is ready. Use `$how` to learn how
+for CI, and tells you whether the latest commit is ready. `$open-pr` reviews a
+branch and writes the PR around What, How, Why, and Evidence. UI changes need
+screenshots; performance changes need measurements. Use `$how` to learn how
 something works and `$why` to find out why it ended up that way.
 
 `$architect`, `$arena`, `$swarm`, and `$interrogate` handle work that needs more
@@ -42,6 +44,7 @@ Use `$jesus-mode` for general work, or invoke a specialist directly:
 ```text
 Use $jesus-mode to diagnose and fix this bug with evidence.
 Use $arena to compare two implementation approaches and judge them.
+Use $open-pr to review this branch, gather evidence, and open its pull request.
 Use $babysit-pr to review this PR and keep working on it until DiffOwl and CI are clean.
 ```
 
