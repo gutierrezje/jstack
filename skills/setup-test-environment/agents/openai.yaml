@@ -1,0 +1,4 @@
+interface:
+  display_name: "Set Up App Test Environment"
+  short_description: "Launch a visible, verified app QA workspace"
+  default_prompt: "Use $setup-test-environment to prepare this app checkout for hands-on testing and give me one command to attach to every visible process."
