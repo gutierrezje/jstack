@@ -5,7 +5,7 @@ description: "Fan out N parallel workers, drain them, and return one report. Use
 
 # Swarm
 
-Read [the global routing table](../jstack/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
 
 1. Define a matrix with every independent slice or race arm, scope, write boundary, output, and verification.
 2. Use the user's worker count when safe. Otherwise start with two and cap at three. Respect the current agent-slot limit.

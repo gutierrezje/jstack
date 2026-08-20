@@ -7,7 +7,7 @@ description: "Sketch types, signatures, and module structure before code, then s
 
 Settle types, signatures, ownership, and module shape before implementation crosses a durable boundary.
 
-Read [the global routing table](../jstack/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
 
 1. Read callers, callees, types, tests, and nearby conventions. Name the boundary and constraints.
 2. Freeze a runner brief using `references/runner-prompt.md` and the red flags in `references/design-red-flags.md`.

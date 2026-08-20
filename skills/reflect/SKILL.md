@@ -7,7 +7,7 @@ description: "Spawn three parallel review subagents over the active transcript, 
 
 Extract durable lessons from the current completed task and route each accepted lesson to structure.
 
-Read [the global routing table](../jstack/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
 
 1. Establish the evidence set: current task, plan, diffs, test output, decision log, and linked artifacts. Do not scan guessed transcript paths.
 2. Spawn a Luna High tooling reviewer and a Terra High judgment reviewer in read-only posture. Add a divergent reviewer only for long or high-stakes work.

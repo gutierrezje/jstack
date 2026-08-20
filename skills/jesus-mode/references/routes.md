@@ -1,6 +1,7 @@
-# Routing table
+# Jstack routing table
 
-This file is the single editable source for Codex Pstack model and effort choices.
+This file is the single editable source for Jstack's Codex model, effort, and
+fan-out choices.
 
 ## Roles
 
@@ -48,8 +49,8 @@ This file is the single editable source for Codex Pstack model and effort choice
 
 | Mode | Dispatch |
 | --- | --- |
-| Poteto feature/refactor | One Luna executor; parent reviews |
-| Poteto bug fix | One Terra investigator, then one Luna executor only after the cause is established; parent reviews |
+| Jesus mode feature/refactor | One Luna executor; parent reviews |
+| Jesus mode bug fix | One Terra investigator, then one Luna executor only after the cause is established; parent reviews |
 | How | One Luna explorer; optional Terra explainer for a separate subsystem |
 | Why | Up to two Terra investigators on distinct hypotheses; parent synthesizes, consulting one Sol advisor if needed |
 | Arena | One Sol High candidate and one Terra High candidate by default; add one Luna Max candidate when N=3; parent judges |

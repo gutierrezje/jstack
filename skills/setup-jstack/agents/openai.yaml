@@ -1,0 +1,4 @@
+interface:
+  display_name: "Setup Jstack"
+  short_description: "Configure Jstack model routing"
+  default_prompt: "Use $setup-jstack to configure Jstack's model routing."

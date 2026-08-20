@@ -5,7 +5,7 @@ description: "Design an auditable playbook when no narrower one fits: a large mi
 
 # Figure it out
 
-Design a rigorous playbook when no bundled Poteto playbook fits.
+Design a rigorous playbook when no bundled Jesus mode playbook fits.
 
 1. Define the observable end state, constraints, authorization boundary, and evidence required for trust.
 2. Inventory the work, dependencies, destructive edges, and unknowns before sequencing.

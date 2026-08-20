@@ -7,7 +7,7 @@ description: "Use for 'why does X work this way', 'why we picked Y', design rati
 
 Recover design rationale and historical forcing functions across available evidence lanes.
 
-Read [the global routing table](../jstack/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
 
 1. Define the target and decision window. Use `$how` instead when the question is runtime behavior rather than rationale.
 2. Inventory actually available sources: git/GitHub, issue tracker, long-form docs, team chat, observability, error tracking, analytics, and incident records.

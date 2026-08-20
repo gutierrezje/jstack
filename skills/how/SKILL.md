@@ -7,7 +7,7 @@ description: "Use for \"how does X work\", code walkthroughs before changing som
 
 Explain how a subsystem works from code and runtime evidence.
 
-Read [the global routing table](../jstack/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
 
 1. Define the entry point, user-visible behavior, and questions to answer.
 2. Spawn one Luna High read-only explorer using `references/explorer-prompt.md`. Add a Terra High explorer only for a separate subsystem or runtime lane.

@@ -7,8 +7,8 @@ Jstack is a Codex plugin containing portable agent skills. Keep changes small, i
 - `.codex-plugin/plugin.json`: plugin metadata.
 - `skills/<name>/SKILL.md`: one skill per directory.
 - `skills/<name>/agents/openai.yaml`: user-facing metadata for each skill.
-- `skills/jstack/references/routes.md`: the single source of truth for model, effort, and fan-out defaults.
-- `skills/jstack/references/codex-compatibility.md`: mappings from upstream Cursor concepts to Codex behavior.
+- `skills/jesus-mode/references/routes.md`: the single source of truth for model, effort, and fan-out defaults.
+- `skills/jesus-mode/references/codex-compatibility.md`: mappings from upstream Cursor concepts to Codex behavior.
 - `scripts/validate.mjs`: repository-level structural and link checks.
 
 ## Rules

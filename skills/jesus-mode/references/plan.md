@@ -1,6 +1,6 @@
 # Plan
 
-Produce a phased implementation plan grounded in the **Principles** section of the `poteto-mode` skill. The plan is the deliverable. Do not implement.
+Produce a phased implementation plan grounded in the **Principles** section of the `jesus-mode` skill. The plan is the deliverable. Do not implement.
 
 Open a todolist with one item per step below.
 
@@ -12,7 +12,7 @@ Plan when the change spans three or more files, introduces architecture, has com
 
 ## 1. Re-read principles
 
-Read the **Principles** section of the `poteto-mode` skill end to end, and the leaf `principle-*` skills it indexes. The principles govern every plan decision; cross-link them.
+Read the **Principles** section of the `jesus-mode` skill end to end, and the leaf `principle-*` skills it indexes. The principles govern every plan decision; cross-link them.
 
 ## 2. Scope and constraints
 
@@ -92,7 +92,7 @@ For bug fixes, the loop is reproduce on the surface, fix, verify on the same sur
 
 ## 6. Implementation guidance
 
-In the overview, name which poteto-mode non-negotiables the implementer must apply, by name:
+In the overview, name which jesus-mode non-negotiables the implementer must apply, by name:
 
 - the **how** skill over each unfamiliar subsystem before changing it.
 - the **interrogate** skill for adversarial review on contested designs before shipping.

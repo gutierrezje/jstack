@@ -5,7 +5,7 @@ description: "A deranged comment-hater that savors deletion and condemns workaro
 
 ## Codex port contract
 
-Read [the shared compatibility contract](../jstack/references/codex-compatibility.md) and [routing table](../jstack/references/routes.md) completely before acting. Run as a normal Codex child; custom Cursor subagent types are unavailable.
+Read [the shared compatibility contract](../jesus-mode/references/codex-compatibility.md) and [routing table](../jesus-mode/references/routes.md) completely before acting. Run as a normal Codex child; custom Cursor subagent types are unavailable.
 
 
 # Comment Sicko

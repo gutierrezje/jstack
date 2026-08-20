@@ -6,11 +6,19 @@ The project started as a port of Lauren Tan's [pstack](https://github.com/cursor
 
 ## Skills
 
-`$jstack` is the main router. It picks a workflow and starts with as few agents as the task allows. `$poteto-mode` handles the full engineering loop, `$babysit-pr` takes a GitHub PR to a trustworthy current-head verdict, and `$how` and `$why` are for investigating how something works or why it ended up that way.
+Jstack is the plugin and package name. `$jesus-mode` is its default end-to-end
+workflow for rigorous software work. `$babysit-pr` takes a GitHub PR to a
+trustworthy current-head verdict, while `$how` and `$why` investigate how
+something works or why it ended up that way.
 
-For work that benefits from multiple independent passes, the repo includes `$architect`, `$arena`, `$swarm`, and `$interrogate`. There are also smaller skills for verification, retrospectives, teaching, writing, and the engineering principles used by Poteto mode.
+For work that benefits from multiple independent passes, the repo includes
+`$architect`, `$arena`, `$swarm`, and `$interrogate`. There are also smaller
+skills for verification, retrospectives, teaching, writing, and the engineering
+principles used by Jesus mode.
 
-By default, Sol handles orchestration and judgment, Terra investigates, and Luna executes bounded tasks. You can change the models, effort levels, and fan-out in [`skills/jstack/references/routes.md`](skills/jstack/references/routes.md), or use `$setup-pstack`.
+By default, Sol handles orchestration and judgment, Terra investigates, and
+Luna executes bounded tasks. You can change the models, effort levels, and
+fan-out in [`skills/jesus-mode/references/routes.md`](skills/jesus-mode/references/routes.md), or use `$setup-jstack`.
 
 ## Install
 
@@ -20,11 +28,10 @@ If you only want the skills, copy the directories under `skills/` into `~/.codex
 
 ## Use
 
-Invoke the router for general work, or call a specific workflow directly:
+Invoke the default workflow for general work, or call a specific specialist directly:
 
 ```text
-Use $jstack to route this task with the smallest useful agent team.
-Use $poteto-mode to diagnose and fix this bug with evidence.
+Use $jesus-mode to diagnose and fix this bug with evidence.
 Use $arena to compare two implementation approaches and judge them.
 Use $babysit-pr to shepherd this GitHub PR through review, repair, hosted checks, and acceptance.
 ```

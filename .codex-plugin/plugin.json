@@ -1,6 +1,6 @@
 {
   "name": "jstack",
-  "version": "0.1.0",
+  "version": "0.1.0+codex.20260820050548",
   "description": "Codex-native agent routing and rigorous software workflows adapted from pstack.",
   "author": {
     "name": "Jstack contributors"
@@ -8,7 +8,13 @@
   "homepage": "https://github.com/gutierrezje/jstack",
   "repository": "https://github.com/gutierrezje/jstack",
   "license": "MIT",
-  "keywords": ["codex", "skills", "agents", "routing", "software-engineering"],
+  "keywords": [
+    "codex",
+    "skills",
+    "agents",
+    "routing",
+    "software-engineering"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Jstack",
@@ -16,10 +22,13 @@
     "longDescription": "Jstack packages rigorous planning, investigation, implementation, review, and verification workflows for Codex, with explicit Sol, Terra, and Luna routing.",
     "developerName": "Jstack contributors",
     "category": "Developer Tools",
-    "capabilities": ["Read", "Write", "Multi-agent"],
+    "capabilities": [
+      "Read",
+      "Write",
+      "Multi-agent"
+    ],
     "defaultPrompt": [
-      "Use $jstack to route this software task.",
-      "Use $poteto-mode for a rigorous implementation workflow.",
+      "Use $jesus-mode for a rigorous Jstack software workflow.",
       "Use $arena to compare two independent solutions."
     ]
   }

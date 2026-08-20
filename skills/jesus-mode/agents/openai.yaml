@@ -1,0 +1,6 @@
+interface:
+  display_name: "Jesus Mode"
+  short_description: "Jstack's default rigorous software workflow"
+  default_prompt: "Use $jesus-mode for this task."
+policy:
+  allow_implicit_invocation: false

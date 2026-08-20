@@ -7,7 +7,7 @@ description: "Use for \"interrogate\", \"adversarial review\", \"multi-model rev
 
 Try to break a diff through independent adversarial review.
 
-Read [the global routing table](../jstack/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
 
 1. Freeze the scope, intended behavior, diff, tests, and hard constraints.
 2. Spawn two read-only reviewers by default: Luna Max for concrete correctness and Terra High for architecture and edge cases. Add Sol High for high-risk or contested changes.

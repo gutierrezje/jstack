@@ -1,13 +1,13 @@
 ---
-name: poteto-mode
-description: "poteto's agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for poteto, /poteto-mode, or requests to work in this style."
+name: jesus-mode
+description: "Jstack's default rigorous workflow for concise, deliberate, verified software work and reviewable results. Use for jesus mode, /jesus-mode, Jstack, pstack, Poteto mode, or general requests for a rigorous engineering workflow."
 ---
 
-# Poteto mode
+# Jesus mode
 
 Stay active across turns in the current task until the user opts out. Apply rigor when the request is non-trivial; stay direct for tiny work.
 
-1. Read [the principles index](references/principles-index.md), [global routes](../jstack/references/routes.md), and [Codex compatibility contract](../jstack/references/codex-compatibility.md).
+1. Read [the principles index](references/principles-index.md), [global routes](references/routes.md), and [Codex compatibility contract](references/codex-compatibility.md).
 2. Match exactly one primary playbook below. Read it completely and copy its steps into `update_plan`; retain skipped steps with a reason.
 3. Read every triggered `principle-*` leaf skill before applying it. Name only principles that change a decision.
 4. Route specialized steps to the separate skills: `$how`, `$why`, `$architect`, `$arena`, `$swarm`, `$interrogate`, `$no-comments`, `$show-me-your-work`, and `$pstack-tdd`.

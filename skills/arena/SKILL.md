@@ -7,7 +7,7 @@ description: "Spawn N parallel candidates at the same task, pick a base, graft t
 
 Produce competing attempts, choose a base, and graft only proven improvements.
 
-Read [the global routing table](../jstack/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
 
 1. Freeze one shared brief, grounding files, output contract, and judging rubric.
 2. Use the user's N or default to two candidates: Sol High and Terra High. When N=3, add Luna Max as the third candidate. Keep candidate work isolated or read-only.
