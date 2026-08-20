@@ -1,0 +1,6 @@
+interface:
+  display_name: "Sync pstack"
+  short_description: "Compare pstack changes and port them to Codex"
+  default_prompt: "Use $sync-pstack to analyze upstream pstack changes and port compatible updates into Jstack."
+policy:
+  allow_implicit_invocation: false
