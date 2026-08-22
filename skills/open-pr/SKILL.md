@@ -7,35 +7,52 @@ description: "Open or update a GitHub pull request with a reviewed diff, verifie
 
 Create a PR that a reviewer can understand and verify without reconstructing the work from the branch.
 
+Read and follow the [GitHub transport contract](../jesus-mode/references/codex-compatibility.md#github-transport) for every PR operation.
+For executable code changes, also read and follow the [DiffOwl coverage contract](../jesus-mode/references/diffowl.md).
+
 ## Authorization
 
 An explicit invocation of `$open-pr`, or a direct request to make, create, open,
 update, or prepare a PR, authorizes commits, a non-force push to the intended
-branch, and creating or updating that PR. Automatic model selection does not
-grant publishing authority. Keep force pushes, remote history rewrites,
-retargeting, public comments, review-thread actions, closing, and merging behind
-separate user authorization.
+branch, creating or updating that PR, and marking it ready when this workflow
+used draft state only to assemble evidence. Preserve a user-requested draft or a
+draft that predated this workflow unless the user also asked to finish, publish,
+or open it for review. Automatic model selection does not grant publishing
+authority. Keep force pushes, remote history rewrites, retargeting, public
+comments, review-thread actions, closing, and merging behind separate user
+authorization.
 
 ## Workflow
 
 1. Resolve the repository, base branch, head branch, linked issue, worktree
    state, and any existing PR. Preserve unrelated work.
-2. Review the complete intended diff against the base, including staged and
-   unstaged work, and inspect its surrounding code. Remove accidental churn and
-   use available cleanup skills where they help.
+2. Inspect the complete intended diff against the base, including staged and
+   unstaged work, and its surrounding code. Remove accidental churn and use
+   available cleanup skills where they help.
 3. Run the checks required by the change and repository. Verify the behavior on
    the most faithful practical surface.
 4. Gather direct evidence for every material claim in the PR. Use the evidence
    rules below. A claim without evidence is either measured before publishing,
    removed, or called out as an evidence gap.
-5. Commit coherent units using repository conventions. Push non-destructively
-   to the intended head branch.
-6. Create or update the PR. Write the body from the reviewed diff and collected
+5. Commit coherent implementation and evidence units using repository
+   conventions. For executable code, establish or extend the DiffOwl coverage
+   chain for the exact local head. Reuse a matching report or automatic review;
+   run one manual fallback only for missing, failed, or stale coverage. Resolve
+   findings before publishing.
+6. Push non-destructively to the intended head branch. Confirm the remote OID
+   matches the reviewed local OID.
+7. Create or update the PR. Write the body from the reviewed diff and collected
    evidence, not from memory or the commit titles alone.
-7. Read the remote PR back. Confirm its head SHA matches the reviewed local head
-   and its rendered title, body, links, and images are correct.
-8. Return the PR URL to the user. Begin `$babysit-pr` only when the user
-   explicitly asked to babysit, shepherd, or finish the PR.
+8. Read the remote PR back through the CLI or GitHub plugin. Confirm its head SHA
+   matches the reviewed local head and its title, body, links, and image targets
+   are correct.
+9. If this workflow used draft state only while assembling evidence, or the user
+   asked to finish, publish, or open a preexisting draft, run `gh pr ready` or
+   the GitHub plugin equivalent after every evidence gap is closed. Read the PR
+   back and confirm the same head is now open for review.
+10. Return the PR URL and the DiffOwl coverage receipt to the user. Begin
+    `$babysit-pr` only when the user explicitly asked to babysit, shepherd, or
+    finish the PR. If Babysit is already active, return to that run.
 
 ## PR body contract
 
@@ -62,10 +79,12 @@ core sections even when the PR is small.
 
 - List the exact tests, checks, or manual flows run and their results. Link
   durable logs or artifacts when a summary is not enough.
+- For executable code, include the DiffOwl full-review scope, repair coverage,
+  result, and any accepted findings. Keep local report paths out of the body.
 - For UI changes, include screenshots of every affected state needed to review
-  the change. Use before-and-after images when the old behavior matters. Attach
-  images to the PR through an authenticated GitHub UI or use durable artifact
-  links. Local file paths are not review evidence.
+  the change. Use before-and-after images when the old behavior matters. Capture
+  them from the product under test, then make them durable through the GitHub
+  transport contract. Local file paths are not review evidence.
 - For performance changes, report a like-for-like baseline and result. Include
   the command or workload, environment, units, sample count, summary statistic,
   and variance when it matters. Measure the resource named by the change, such
@@ -80,7 +99,8 @@ state exactly what is missing.
 
 ## Completion
 
-Finish when the remote PR points to the reviewed head, the rendered body follows
+Finish when the remote PR points to the reviewed head, the remote body follows
 the contract, every material claim has direct evidence, all required checks
-reflect that head, any remaining evidence gap is explicit in a draft PR, and the
-PR URL has been returned to the user.
+reflect that head, DiffOwl coverage is current for executable code or its exact
+gap is explicit in a draft PR, any temporary draft has been opened for review,
+and the PR URL and coverage receipt have been returned to the user.

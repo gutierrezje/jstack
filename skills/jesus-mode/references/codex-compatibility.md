@@ -27,6 +27,13 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 - Use available Codex GitHub, CI, UI-control, CLI-control, deslop, humanizer, and verification skills instead of assuming Cursor built-ins or Bugbot.
 - Treat retained references to pstack's `bootstrap.ts`, `orch`, `watch-pr`, and `worktree-audit.sh` as design context only. Those Cursor/Bun/Graphite executables are intentionally not installed in this Codex port; use native Codex task, GitHub, CI, and filesystem tools instead.
 
+## GitHub transport
+
+- Use the GitHub CLI or an installed GitHub/Codex plugin for every pull-request and issue read or write. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
+- Use UI control against the product under test and to capture screenshots. Keep GitHub PR creation, editing, readback, checks, review state, and lifecycle changes in the CLI or plugin.
+- Make screenshot evidence durable without a GitHub web editor. Prefer a GitHub plugin or API that returns a durable artifact URL. Otherwise commit the image to the PR branch and reference it from the PR body as `../blob/<head-ref-or-sha>/<path>?raw=true`, then update and read back the body with the CLI or plugin.
+- Treat a missing GitHub browser session as irrelevant to PR completion. Exhaust the authenticated CLI and plugin paths before reporting an external blocker.
+
 ## State and history
 
 - Do not scan or invent Cursor transcript paths. Reconstruct from the current task, its summary, git and PR evidence, explicit resume artifacts, and Codex task-history tools when actually available.

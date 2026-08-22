@@ -5,6 +5,9 @@ description: "Use only when the user explicitly asks for TDD, a failing test, or
 
 # Pstack TDD
 
+Read the [DiffOwl coverage contract](../jesus-mode/references/diffowl.md) and
+complete its checkpoint after the green implementation forms a coherent unit.
+
 1. Find the cheapest test surface that reproduces the requested behavior.
 2. Write one focused test and run it red. If a reliable red test would cost more than the fix or cannot express the failure, state why and use the nearest runtime proof.
 3. Implement the smallest root-cause change that makes the test green.

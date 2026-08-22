@@ -1,8 +1,8 @@
 # Shipping
 
 1. Confirm the user explicitly authorized landing and resolve the exact PR set and order.
-2. Freeze each head SHA and independently verify required checks, live behavior, review state, and mergeability.
-3. Invalidate a verdict whenever its SHA or effective diff changes; reverify moved heads.
+2. Freeze each head SHA and verify required checks, live behavior, review state, mergeability, and the existing DiffOwl coverage receipt. Reuse coverage tied to the same effective diff.
+3. Invalidate a verdict whenever its SHA or effective diff changes. Fill only the missing review ranges unless the DiffOwl contract requires a new full checkpoint.
 4. Use ordinary GitHub merge flow by default. Use Graphite only when installed, configured, and requested.
 5. Land only the contiguous verified run, stop on the first failed gate, and observe each resulting base/head transition.
 6. Report merged PRs and SHAs, stopped items, and final trunk state.

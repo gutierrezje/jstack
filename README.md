@@ -11,11 +11,14 @@ workflows use Codex skills, collaboration agents, plans, and permission rules.
 ## Skills
 
 Jstack is the name of the plugin. `$jesus-mode` is its general-purpose workflow.
-`$babysit-pr` stays with a PR through review and repair. It runs DiffOwl, waits
-for CI, and tells you whether the latest commit is ready. `$open-pr` reviews a
-branch and writes the PR around What, How, Why, and Evidence. UI changes need
-screenshots; performance changes need measurements. Use `$how` to learn how
-something works and `$why` to find out why it ended up that way.
+It uses [DiffOwl coverage](skills/jesus-mode/references/diffowl.md) as the record
+of model review, reusing one full review and exact repair ranges across
+implementation, PR creation, babysitting, and shipping. `$babysit-pr` stays with
+a PR through review and repair, waits for CI, and tells you whether the latest
+commit is ready. `$open-pr` writes the PR around
+What, How, Why, and Evidence. UI changes need screenshots; performance changes
+need measurements. Use `$how` to learn how something works and `$why` to find
+out why it ended up that way.
 
 `$architect`, `$arena`, `$swarm`, and `$interrogate` handle work that needs more
 than one independent pass. Other skills cover verification, retrospectives,
