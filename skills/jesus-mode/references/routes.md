@@ -41,7 +41,7 @@ fan-out choices.
 | reflect synthesizer | Sol High |
 | arena runners | Sol High and Terra High; add Luna Max when N=3 |
 | arena judge | Sol High advisor when the parent is not Sol |
-| swarm workers | Luna High, two by default and three maximum without explicit direction |
+| swarm workers | Luna High for exploration, research, and verification; Luna Max for bounded implementation or exhaustive execution; two by default and three maximum without explicit direction |
 | architect runners | Terra High and Sol High |
 | interrogate reviewers | Luna Max, Terra High, and Sol High; reduce to two for ordinary diffs |
 
@@ -55,7 +55,7 @@ fan-out choices.
 | Why | Up to two Terra investigators on distinct hypotheses; parent synthesizes, consulting one Sol advisor if needed |
 | Arena | One Sol High candidate and one Terra High candidate by default; add one Luna Max candidate when N=3; parent judges |
 | Architect | One Terra High candidate and one Sol High candidate; parent decides |
-| Swarm | Two Luna High workers by default; three maximum without explicit user direction |
+| Swarm | Classify each arm by work: Luna High for exploration, research, and verification; Luna Max for bounded implementation or exhaustive execution. Use two workers by default and three maximum without explicit user direction |
 
 ## Effort adjustments
 
