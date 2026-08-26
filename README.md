@@ -7,6 +7,10 @@ verification.
 The project began as a port of Lauren Tan's
 [pstack](https://github.com/cursor/plugins/tree/main/pstack). The current
 workflows use Codex skills, collaboration agents, plans, and permission rules.
+Jstack integrates with [DiffOwl](https://github.com/gutierrezje/diffowl),
+uses a silly `jesus-mode`, and will try its best to sync with pstack.
+
+All credit goes to @poteto :)
 
 ## Skills
 
