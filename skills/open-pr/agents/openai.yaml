@@ -1,4 +1,4 @@
 interface:
   display_name: "Open PR"
-  short_description: "Open reviewable PRs with concrete evidence"
-  default_prompt: "Use $open-pr to review this branch, gather evidence, and open or update its pull request."
+  short_description: "Prepare evidence-rich, review-ready PRs"
+  default_prompt: "Use $open-pr to prepare this branch, gather durable evidence and screenshots, and open or update its review-ready pull request."

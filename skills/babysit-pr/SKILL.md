@@ -8,6 +8,10 @@ description: "Take a GitHub pull request to a trustworthy current-head verdict b
 Treat a pull request as moving evidence attached to one exact head SHA. Keep the
 four review layers separate and refresh the live state before accepting it.
 
+A PR prepared by `$open-pr` is ready for a reviewer to start. That status is an
+input, not an acceptance verdict. Babysit owns the full review and repair cycle,
+current feedback, hosted-check convergence, and the verdict for the latest head.
+
 Read and follow the [GitHub transport contract](../jesus-mode/references/codex-compatibility.md#github-transport) for every PR operation.
 Read and follow the [DiffOwl coverage contract](../jesus-mode/references/diffowl.md) for review execution and reuse.
 

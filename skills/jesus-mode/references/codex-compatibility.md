@@ -31,7 +31,18 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 
 - Use the GitHub CLI or an installed GitHub/Codex plugin for every pull-request and issue read or write. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
 - Use UI control against the product under test and to capture screenshots. Keep GitHub PR creation, editing, readback, checks, review state, and lifecycle changes in the CLI or plugin.
-- Make screenshot evidence durable without a GitHub web editor. Prefer a GitHub plugin or API that returns a durable artifact URL. Otherwise commit the image to the PR branch and reference it from the PR body as `../blob/<head-ref-or-sha>/<path>?raw=true`, then update and read back the body with the CLI or plugin.
+- Make screenshot evidence durable without a GitHub web editor. Prefer a GitHub
+  plugin or API that returns an absolute durable attachment URL. Otherwise
+  commit the image to the PR branch and reference it with plain Markdown using
+  an absolute, commit-pinned URL:
+  `https://github.com/<owner>/<repo>/blob/<40-character-commit-sha>/<path>?raw=true`.
+  GitHub Mobile can leave relative image sources unresolved, and branch-based
+  URLs can drift or disappear.
+- After updating the PR, read back its raw body and rendered `body_html` through
+  the authenticated API. Every image source must use absolute HTTPS. For a
+  repository-backed image, confirm the URL contains the intended commit SHA and
+  that the path exists at that SHA through the contents API. Prefer one plain
+  Markdown image per block over raw HTML tables for review evidence.
 - Treat a missing GitHub browser session as irrelevant to PR completion. Exhaust the authenticated CLI and plugin paths before reporting an external blocker.
 
 ## State and history
