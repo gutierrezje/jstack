@@ -8,7 +8,7 @@ description: "Use for \"automate me\", \"create/update/refresh my -mode skill\",
 Turn repeated working preferences into one concise personal mode skill.
 
 1. Find an existing matching `*-mode` skill under project `.agents/skills` or global `~/.codex/skills`.
-2. Use `$codex-team-kit:workflow-from-chats` when task-history evidence is available. Otherwise mine only the current task and user-provided examples; do not infer unseen history.
+2. Use `$cursor-team-kit:workflow-from-chats` when task-history evidence is available. Otherwise mine only the current task and user-provided examples; do not infer unseen history.
 3. Confirm weak or conflicting preferences with the user. Promote only repeated, behavior-changing signals.
 4. Cluster rules by response style, autonomy, investigation, delegation, verification, code/prose discipline, and process. Omit empty categories.
 5. Use `$skill-creator` and `$writing-for-agents` to create or update the mode globally unless the user requests project-local scope.

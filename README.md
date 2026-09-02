@@ -75,4 +75,4 @@ node scripts/validate.mjs
 
 ## Provenance
 
-Jstack is based on pstack `0.14.1` at commit `2a8044425c7bddf429c3bdedf3ab61e791d34d65`. See [`NOTICE.md`](NOTICE.md) and [`LICENSE`](LICENSE).
+Jstack is based on pstack `0.14.5` at commit `fdf357fae76feff7e5f2e5aaff57f99f644b55f8`. See [`NOTICE.md`](NOTICE.md) and [`LICENSE`](LICENSE).

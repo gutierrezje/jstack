@@ -1,14 +1,27 @@
 ---
 name: maintain-verification-skill
-description: "Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for /maintain-verification-skill or \"audit the verify skill\"."
+description: "Audit and repair a project's verification skills, executable adapters, feature coverage, and receipts against current source and live behavior. Use for /maintain-verification-skill or \"audit the verify skill\"."
 ---
 
 # Maintain verification skill
 
-1. Locate the project `.agents/skills/verify-*` skill and read its feature map.
-2. Compare routes, commands, menus, docs, and current behavior against every mapped feature. Use read-only workers only for disjoint source areas.
-3. Run one live verification path before editing so drift is observed, not inferred.
-4. Correct only proven drift in instructions, selectors, commands, evidence, or feature coverage. Keep the change to one reviewable unit.
-5. Rerun affected paths and validate the skill package.
+Read and follow the [project verification contract](../jesus-mode/references/verification.md).
 
-Completion means every changed map entry has source and live evidence, and unsupported speculative edits are absent.
+1. Locate every project `.agents/skills/verify-*` skill, its feature map, and its
+   executable adapter or adopted project-native controller.
+2. Inventory current routes, commands, menus, shortcuts, deep links, and docs.
+   Compare them with the coverage index. Mark each entry point mapped, excluded
+   with a current reason, or missing. Use read-only workers only for disjoint
+   source areas.
+3. Run adapter help, structured capability discovery, `doctor`, and one live
+   baseline before editing. Check that errors give a next action, structured
+   output parses, dry runs preserve state, and cleanup owns only the current run.
+4. Compare every affected mapped recipe with current behavior. Correct only
+   proven drift in the adapter, instructions, commands, evidence, or coverage.
+   Keep the change to one reviewable unit.
+5. Rerun the changed adapter commands and feature paths. Inspect their receipts,
+   confirm cleanup, and validate every affected skill package.
+
+Completion means no discovered entry point is unaccounted for, every correction
+has source and live evidence, the adapter contract passes, and unsupported
+speculative edits are absent.

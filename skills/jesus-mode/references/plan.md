@@ -1,105 +1,118 @@
-# Plan
+# Verified plan contract
 
-Produce a phased implementation plan grounded in the **Principles** section of the `jesus-mode` skill. The plan is the deliverable. Do not implement.
+Use this contract for the `multi-phase-plan` playbook. The plan is the deliverable. Do not implement it in the planning run.
 
-Open a todolist with one item per step below.
+## Decide before writing
 
-## 0. Triage
+- Ground the plan in the [principles index](principles-index.md). Read each linked `$principle-*` skill whose trigger applies.
+- Preserve the user's scope, repository conventions, and authorization boundary.
+- Resolve empirical questions with a prototype or focused investigation. Put the evidence in Appendix A.
+- Use Codex children only for independent evidence lanes. Give each child a bounded question and require file pointers, conventions, entry points, and verification commands.
+- Keep model and fan-out choices in [routes.md](routes.md). Do not pin them in the plan.
 
-Skip the plan when the change is one or two files with an obvious approach. Say so and stop.
+## Evidence rule
 
-Plan when the change spans three or more files, introduces architecture, has competing approaches or unclear scope, or the user asked for one.
+Tests alone are not sufficient for executable changes. A phase is verified when its required static and live checks pass, plus performance checks when the phase changes or risks performance.
 
-## 1. Re-read principles
+- Use the matching control skill for live checks. Use `$cursor-team-kit:control-ui` for browser, Electron, and web interfaces and `$cursor-team-kit:control-cli` for CLIs and TUIs. Use the repository's simulator workflow for native mobile.
+- Size verification lanes from the risk and the [routing table](routes.md). Do not hard-code a model or worker count in the plan.
+- Every live scenario names the action, evidence artifact, and binary pass condition.
+- Use `None. <reason>` only when a verification, review, or authority block truly does not apply.
+- Add a review gate when the user must approve a visual result, behavior choice, or other product judgment before the phase can continue.
+- Add an authority gate before publishing, deployment, merge, destructive work, or any other external action not already authorized.
 
-Read the **Principles** section of the `jesus-mode` skill end to end, and the leaf `principle-*` skills it indexes. The principles govern every plan decision; cross-link them.
+## Plan template
 
-## 2. Scope and constraints
+Copy this skeleton into the user-selected plan path. Fill every placeholder and keep the headings and bold sub-blocks in order.
 
-State your read of scope and constraints in one paragraph. Use `request_user_input` when available only for genuinely ambiguous intent (the **never-block-on-the-human** principle skill); give concrete options with each open question.
+````markdown
+# <Program> plan
 
-Resolve what is in scope vs explicitly out, technical or platform constraints, patterns to preserve, and the definition of done.
+<Under ten lines. State the outcome, user, governing rule, and ordered phase or PR identifiers.>
 
-## 3. Explore in subagents
+## How to read this
 
-Delegate codebase exploration (the **guard-the-context-window** principle skill).
+One box is one unit of work. Check it only when the named evidence exists. A nested box is a sub-step of its parent. The body tells an owner what to do; the appendices record why.
 
-- Use a normal Codex child and tell it to read `$poteto-agent` completely before planning. The parent owns integration and final judgment.
-- Pass `model:` explicitly per the configured roles (defaults `gpt-5.6-luna` for code, `gpt-5.6-sol` for judgment).
+The program runs `skills/jesus-mode/playbooks/<execution-playbook>.md`. <State who may publish or merge and which items stop for the user.>
 
-Each explorer returns file pointers, conventions, dependencies, test infrastructure, and entry points. No inlined dumps.
+## Program checklist
 
-## 4. Write the plan
+### Start program
 
-The user specifies where the plan lives.
+- [ ] Confirm the scope, ordered phases, execution playbook, and done condition.
+- [ ] Read the execution playbook and every named leaf skill from the current trunk when available.
+- [ ] Start only after the user's explicit go.
 
-Single file `NN-slug.md` for small plans. For three or more phases, a directory with `overview.md` plus phase files:
+### Coordinate phases
 
-```
-NN-slug/
-├── overview.md
-├── phase-1-scaffold.md
-├── phase-2-...md
-└── testing.md
-```
+- [ ] Follow this dependency graph. <Name independent and dependent phases.>
+- [ ] Hold these file boundaries. <Map each phase or owner to paths or globs.>
+- [ ] At each audit, compare the live operation with this plan and the execution playbook. Count observable state changes, not activity reports.
+- [ ] Interrupt and replace a stuck lane only after inspecting its state and preserving useful evidence.
 
-### Phase sizing
+### Verify and publish
 
-- One function or type plus tests, or one bug fix. Not "one file".
-- Two to three files touched, max.
-- Prefer eight to ten small phases over three to four large ones to preserve option value (the **foundational-thinking** principle skill).
-- Split if a phase has more than five test cases or three functions.
+- [ ] Invalidate a verdict when its head or effective diff changes.
+- [ ] Keep publishing, deployment, merge, destructive actions, and external messages behind the authority named in each phase.
+- [ ] Close the program only after every phase has its named evidence.
 
-### Overview file
+## <Task as a verb phrase> (<phase or PR id>)
 
-- **Context.** Problem and why now.
-- **Scope.** Included; explicitly excluded.
-- **Constraints.** Technical, platform, dependency, pattern.
-- **Alternatives.** Two or three approaches sketched, choice and rationale (the **exhaust-the-design-space** principle skill). Skip when constraints dictate one.
-- **Applicable skills.** Domain skills the implementer should invoke, by name.
-- **Phases.** Ordered standard-markdown links to phase files.
-- **Verification.** Project-level commands.
-- **Implementation guidance.** Per section 6.
+**Depends on.** <Another phase or None.>
 
-### Phase files
+**Files.**
 
-- Back-link to overview.
-- **Goal.** What the phase accomplishes.
-- **Changes.** Files affected and the change at a high level. What and why, not how. No code snippets.
-- **Data structures.** Name the key types or schemas. One-line sketch only (the **foundational-thinking** principle skill).
-- **Verification.** Per section 6.
+- [ ] Edit `<path>`.
 
-Order phases so infrastructure and shared types land first (the **foundational-thinking** principle skill). Each phase should be independently shippable.
+**Build.**
 
-For changes touching existing code, apply the **redesign-from-first-principles** principle skill: if we'd built this with the new requirement on day one, what would it look like? Redesign holistically; deliver incrementally.
+- [ ] <One coherent change. Name the symbol and file.>
 
-If a phase creates or edits a skill, the phase instructs the implementer to use the **create-skill** skill (Codex's available for authoring SKILL.md files).
+**You see.**
 
-## 5. Verification per phase
+- [ ] <One observable result with the exact screen state, output, or persisted fact.>
 
-Each phase needs both:
+**Verify, static.**
 
-**Static.** Type check, lint, project tests pass.
+- [ ] Run `<command>`. Evidence is <result or artifact>.
 
-**Runtime.** Exercise the feature on the matching surface via the relevant control skill:
+**Verify, live.**
 
-- Browser / Electron / Web UIs: the `control-ui` skill from the `cursor-team-kit` plugin.
-- CLIs and TUIs: the `control-cli` skill from the `cursor-team-kit` plugin.
-- Native mobile: whatever simulator-driving skill your team has.
-- No control skill for the touched surface: flag it in the plan.
+- [ ] Scenario. <Drive the real behavior.> Save <artifact>. Pass when <binary predicate>.
 
-For bug fixes, the loop is reproduce on the surface, fix, verify on the same surface. Unit tests show a branch behaves a certain way; they do not prove the bug is gone (the **prove-it-works** principle skill).
+**Verify, performance.** None. <Explain why performance evidence does not apply.>
 
-## 6. Implementation guidance
+**Review gate.** None. <Explain why user review does not apply.>
 
-In the overview, name which jesus-mode non-negotiables the implementer must apply, by name:
+**Authority.** None. <Explain why no new external or destructive authority is needed.>
 
-- the **how** skill over each unfamiliar subsystem before changing it.
-- the **interrogate** skill for adversarial review on contested designs before shipping.
-- `$codex-team-kit:deslop` over each diff before commit. the **unslop** skill over any prose surface.
-- the **show-me-your-work** skill to keep a decision trail when the plan is large enough to need an auditable record.
-- the available Codex CI-monitoring workflow after opening the PR.
+**Complete.**
 
-## 7. Hand back
+- [ ] Record the exact head, checks, live evidence, and any accepted risk.
 
-Summarize phases, scope boundaries, applicable skills, and verification. Stop. The user decides when implementation starts.
+## Close the program
+
+- [ ] Every phase is complete or stopped at a named gate.
+- [ ] Report completed phases, evidence, stopped items, and the final repository or PR state.
+
+## Appendix A. Prototype evidence
+
+<Each question tested, method, result, and artifact.>
+
+## Appendix B. Alternatives rejected
+
+<Each serious alternative and the evidence or constraint that ruled it out.>
+
+## Appendix C. Risks
+
+<Each residual risk, its phase, owner, and observation or rollback rule.>
+
+## Appendix D. Links and reading list
+
+<Source files, docs, skills, and durable decision trails owners must read.>
+````
+
+## Hand back
+
+Return the plan path, ordered phases and dependencies, review-gated items, authority-gated items, prototype results, and the exact output from `check-plan.mjs`. Stop before implementation.

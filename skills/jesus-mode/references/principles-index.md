@@ -2,8 +2,8 @@
 
 Read a leaf skill only when its trigger applies; report only principles that changed a concrete choice.
 
-- Core: laziness protocol, foundational thinking, redesign from first principles, subtract before adding, minimize reader load, outcome-oriented execution, experience first, exhaust the design space, build the lever.
-- Architecture: model the domain, boundary discipline, type-system discipline, idempotence, migrate callers then delete legacy APIs, separate before serializing shared state.
-- Verification: prove it works, fix root causes, sequence verifiable units.
-- Delegation: guard the context window, never block on the human within the active authorization boundary.
-- Meta: encode lessons in structure.
+- Core: [$principle-laziness-protocol](../../principle-laziness-protocol/SKILL.md), [$principle-foundational-thinking](../../principle-foundational-thinking/SKILL.md), [$principle-redesign-from-first-principles](../../principle-redesign-from-first-principles/SKILL.md), [$principle-subtract-before-you-add](../../principle-subtract-before-you-add/SKILL.md), [$principle-minimize-reader-load](../../principle-minimize-reader-load/SKILL.md), [$principle-outcome-oriented-execution](../../principle-outcome-oriented-execution/SKILL.md), [$principle-experience-first](../../principle-experience-first/SKILL.md), [$principle-exhaust-the-design-space](../../principle-exhaust-the-design-space/SKILL.md), [$principle-build-the-lever](../../principle-build-the-lever/SKILL.md).
+- Architecture: [$principle-model-the-domain](../../principle-model-the-domain/SKILL.md), [$principle-boundary-discipline](../../principle-boundary-discipline/SKILL.md), [$principle-type-system-discipline](../../principle-type-system-discipline/SKILL.md), [$principle-make-operations-idempotent](../../principle-make-operations-idempotent/SKILL.md), [$principle-migrate-callers-then-delete-legacy-apis](../../principle-migrate-callers-then-delete-legacy-apis/SKILL.md), [$principle-separate-before-serializing-shared-state](../../principle-separate-before-serializing-shared-state/SKILL.md).
+- Verification: [$principle-prove-it-works](../../principle-prove-it-works/SKILL.md), [$principle-fix-root-causes](../../principle-fix-root-causes/SKILL.md), [$principle-sequence-verifiable-units](../../principle-sequence-verifiable-units/SKILL.md).
+- Delegation: [$principle-guard-the-context-window](../../principle-guard-the-context-window/SKILL.md), [$principle-never-block-on-the-human](../../principle-never-block-on-the-human/SKILL.md) within the active authorization boundary.
+- Meta: [$principle-encode-lessons-in-structure](../../principle-encode-lessons-in-structure/SKILL.md).

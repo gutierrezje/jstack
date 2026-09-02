@@ -6,10 +6,31 @@ This directory is the maintained source for verifying the user-facing behavior o
 
 - Launch Notes at `http://127.0.0.1:4173` with a disposable data directory.
 - Set `NOTES_DATA_DIR=/tmp/notes-verify-$RUN_ID` so concurrent runs do not share state.
+- Set `CONTROL_NOTES_RUN_ID=$RUN_ID` so every command updates one run manifest.
 - Seed notes titled `Quarterly plan` and `Grocery list`.
 - Put `control-notes` and the `notes` CLI on `PATH`.
-- Run `control-notes doctor` and require the expected URL, data directory, and build revision.
+- Run `control-notes capabilities --json`, then `control-notes doctor --json` and
+  require the expected URL, data directory, and build revision.
 - Never drive an instance that was not started by this verification run.
+
+## Controller interface
+
+`control-notes` hides server startup, browser attachment, fixture ownership, and
+artifact paths behind a small interface. Every command documents its side
+effects in `--help` and supports `--json` unless its stdout contract is one path.
+
+- `doctor`, `info`, and `capabilities` inspect the effective target.
+- `browser snapshot`, `browser screenshot`, and `browser components` observe the UI.
+- `browser click`, `browser fill`, `browser press`, and `browser scroll` drive it
+  through semantic handles.
+- `cli -- <command>` captures terminal behavior.
+- `wait-settle` waits for observable idle conditions.
+- `receipt --run <run-id>` returns the machine-readable feature receipt.
+- `cleanup --run <run-id>` removes only resources recorded by that run.
+
+State-changing commands support `--dry-run`. Applying one requires the run ID
+and named disposable data target. Failures return the observed mismatch and the
+next command to run.
 
 ## Driving conventions
 
@@ -45,3 +66,14 @@ Keep implementation details out of the map. Name only user paths, stable handles
 
 - [Create a note](./create-note.md) covers browser and CLI creation, cancellation, persistence, and cleanup.
 - [Search notes](./search.md) covers toolbar, keyboard, and CLI search with matching, empty, and clear states.
+
+## Entry-point coverage
+
+| Entry point | Feature ID | Status |
+|---|---|---|
+| `New note` toolbar button | `create-open` | mapped |
+| `n` browser shortcut | `create-open` | mapped |
+| `notes create` | `create-cli` | mapped |
+| `Search` toolbar button | `search-toolbar` | mapped |
+| `/` browser shortcut | `search-keyboard` | mapped |
+| `notes search` | `search-cli` | mapped |

@@ -23,7 +23,7 @@ Preconditions:
 
 - Notes is healthy at `http://127.0.0.1:4173`.
 - The disposable data directory contains `Quarterly plan` with body text `Draft budget`.
-- `control-notes doctor` reports the expected URL and data directory.
+- `control-notes doctor --json` reports the expected URL and data directory.
 
 - **Toolbar entry.** Choose the `Search` button. Run `control-notes browser click --role button --name "Search"`. A dialog named `Search notes` appears with focus in its searchbox.
 - **Keyboard entry.** Close the dialog, focus the page, and press `/`. Run `control-notes browser press --key "/"`. The same dialog appears and the page does not insert a slash.
@@ -35,6 +35,7 @@ Preconditions:
 - **CLI match.** Search from the terminal. Run `control-notes cli -- notes search "quarterly" --format json`. Exit code `0` and stdout contain one object whose title is `Quarterly plan`.
 - **CLI miss.** Search for an absent value. Run `control-notes cli -- notes search "volcano" --format json`. Exit code `0` and stdout are `[]`.
 - **Proof.** Capture the populated result state. Run `control-notes browser snapshot --aria --path artifacts/search/results.aria.txt` and `control-notes browser screenshot --path artifacts/search/results.png`. Both artifacts identify Notes, the query, and `Quarterly plan`.
+- **Cleanup and receipt.** Run `control-notes cleanup --run "$RUN_ID" --json`, then `control-notes receipt --run "$RUN_ID" --json`. The seeded data is restored, proof remains, and the receipt records the `search-notes` feature, target identity, actions, artifacts, and cleanup.
 
 ## Gotchas
 
