@@ -8,12 +8,13 @@ description: "Jstack's default rigorous workflow for concise, deliberate, verifi
 Stay active across turns in the current task until the user opts out. Apply rigor when the request is non-trivial; stay direct for tiny work.
 
 1. Read [the principles index](references/principles-index.md), [global routes](references/routes.md), and [Codex compatibility contract](references/codex-compatibility.md). For executable code changes or PR work, also read the [DiffOwl coverage contract](references/diffowl.md).
-2. Match exactly one primary implementation playbook below. Read it completely and copy its steps into `update_plan`; retain skipped steps with a reason. For executable code changes, append one DiffOwl checkpoint from the shared coverage contract.
-3. Read every triggered `principle-*` leaf skill before applying it. Name only principles that change a decision.
-4. Route specialized steps to the separate skills: `$how`, `$why`, `$architect`, `$arena`, `$swarm`, `$interrogate`, `$no-comments`, `$show-me-your-work`, and `$pstack-tdd`.
-5. Treat publishing as a closing stage, not a competing playbook. Before creating a PR or changing its title, body, or evidence, read `$open-pr` completely, append its workflow to the active plan, and reach its completion criteria. During Babysit, return to the active babysit loop after any Open PR work instead of starting another run.
-6. Make reversible progress inside the active authorization boundary. Ask only for material product choices, ambiguous destructive targets, or new external authority.
-7. Verify the real artifact, review child work and diffs, and finish with outcome, evidence, risks, and intentionally omitted fan-out. After a human correction or review finding, apply the correction loop from the DiffOwl contract when that contract is active.
+2. On the first non-trivial turn in a new task, run the [related task context](references/codex-compatibility.md#related-task-context) process before choosing a playbook. Carry forward only context that bears on the current request.
+3. Match exactly one primary implementation playbook below. Read it completely and copy its steps into `update_plan`; retain skipped steps with a reason. For executable code changes, append one DiffOwl checkpoint from the shared coverage contract.
+4. Read every triggered `principle-*` leaf skill before applying it. Name only principles that change a decision.
+5. Route specialized steps to the separate skills: `$how`, `$why`, `$architect`, `$arena`, `$swarm`, `$interrogate`, `$no-comments`, `$show-me-your-work`, and `$pstack-tdd`.
+6. Treat publishing as a closing stage, not a competing playbook. Before creating a PR or changing its title, body, or evidence, read `$open-pr` completely, append its workflow to the active plan, and reach its completion criteria. During Babysit, return to the active babysit loop after any Open PR work instead of starting another run.
+7. Make reversible progress inside the active authorization boundary. Ask only for material product choices, ambiguous destructive targets, or new external authority.
+8. Verify the real artifact, review child work and diffs, and finish with outcome, evidence, risks, and intentionally omitted fan-out. After a human correction or review finding, apply the correction loop from the DiffOwl contract when that contract is active.
 
 ## Playbooks
 
