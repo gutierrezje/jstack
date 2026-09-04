@@ -6,7 +6,8 @@ description: "Open or update a review-ready GitHub pull request with an accurate
 # Open PR
 
 Create a PR that a reviewer can understand and start reviewing without
-reconstructing the work from the branch.
+reconstructing the work from the branch. Finish with the PR open for review by
+default.
 
 Review-ready means the PR's scope, presentation, verification evidence, and
 review artifacts are complete. It does not mean every hosted check has settled
@@ -20,13 +21,13 @@ Read and follow the [GitHub transport contract](../jesus-mode/references/codex-c
 
 An explicit invocation of `$open-pr`, or a direct request to make, create, open,
 update, or prepare a PR, authorizes commits, a non-force push to the intended
-branch, creating or updating that PR, and marking it ready when this workflow
-used draft state only to assemble evidence. Preserve a user-requested draft or a
-draft that predated this workflow unless the user also asked to finish, publish,
-or open it for review. Automatic model selection does not grant publishing
-authority. Keep force pushes, remote history rewrites, retargeting, public
-comments, review-thread actions, closing, and merging behind separate user
-authorization.
+branch, creating or updating that PR, and marking it ready for review, including
+a draft from an earlier workflow. Honor an explicit request to keep the PR in
+draft or limit the task to a narrower edit. Existing draft state alone does not
+require another user prompt to open it for review. Automatic model selection
+does not grant publishing authority. Keep force pushes, remote history rewrites,
+retargeting, public comments, review-thread actions, closing, and merging behind
+separate user authorization.
 
 ## Workflow
 
@@ -47,18 +48,18 @@ authorization.
 6. Push non-destructively to the intended head branch. Confirm the remote OID
    matches the prepared local OID.
 7. Create or update the PR. Write the body from the prepared diff and collected
-   evidence, not from memory or the commit titles alone.
+   evidence, not from memory or the commit titles alone. Create new PRs ready
+   for review unless the user requested a draft or a review blocker remains.
 8. Read the remote PR back through the CLI or GitHub plugin. Confirm its head SHA
    matches the prepared local head and its title, body, and links are correct.
    Retrieve the rendered body through the authenticated API. Reject relative
    image sources, branch-based repository image URLs, and missing targets before
    calling the PR review-ready.
-9. If this workflow used draft state only while assembling evidence, or the user
-   asked to finish, publish, or open a preexisting draft, run `gh pr ready` or
-   the GitHub plugin equivalent after every review-blocking evidence gap is
-   closed. Pending hosted checks do not block this transition, but a known
-   required-check failure on the current head does. Read the PR back and confirm
-   the same head is now open for review.
+9. For any remaining draft, run `gh pr ready` or the GitHub plugin equivalent
+   after every review-blocking evidence gap is closed, unless the user requested
+   draft state or a narrower edit. Pending hosted checks do not block this
+   transition, but a known required-check failure on the current head does. Read
+   the PR back and confirm the same head is now open for review.
 10. Return the PR URL, head SHA, verification and artifact summary, current check
     state, and any evidence gaps. Begin `$babysit-pr` only when the user
     explicitly asked to babysit, shepherd, or finish the PR. If Babysit is
@@ -124,8 +125,9 @@ state exactly what is missing.
 Finish when the remote PR points to the prepared head, the remote body follows
 the contract, every material claim has direct evidence, reviewer-relevant UI
 states have durable, mobile-safe screenshots with verified targets, and risks or
-evidence gaps are explicit. Any temporary draft is open for review, unless a
-known failure or missing artifact prevents meaningful review. Report pending
-hosted checks accurately. Open PR completion does not require a full model
+evidence gaps are explicit. Confirm the PR is open for review. If it remains a
+draft, report the explicit user constraint or the known failure or missing
+artifact that prevents meaningful review. Report pending hosted checks
+accurately. Open PR completion does not require a full model
 review, disposition of review feedback, settled hosted checks, or a current-head
 acceptance verdict.
