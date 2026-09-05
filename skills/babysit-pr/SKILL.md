@@ -1,6 +1,6 @@
 ---
 name: babysit-pr
-description: "Take a GitHub pull request to a trustworthy current-head verdict by reviewing and repairing the branch, running DiffOwl, checking repair deltas and hosted checks, and issuing READY, NOT READY, or INCONCLUSIVE. When explicitly invoked by the user to babysit, shepherd, or finish a PR, this includes committing and non-force pushing verified in-scope fixes to its existing branch, then marking a verified draft ready for review."
+description: "Use when asked to babysit, shepherd, or finish a PR through review, repairs, hosted checks, and a current-head verdict."
 ---
 
 # Babysit PR

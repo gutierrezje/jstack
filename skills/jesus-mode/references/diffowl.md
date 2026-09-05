@@ -40,10 +40,15 @@ work forms a coherent, verified unit. Let its automatic review finish before
 starting a manual review for the same commit. Keep follow-up fixes local until
 they form the next coherent repair unit.
 
-When commits are not authorized, run one full staged or working-tree review at
-the coherent checkpoint. Batch its repairs and inspect the focused repair delta
-directly. Run a second full snapshot only when the repair broadly invalidated the
-first review. Never label a repeated full snapshot as repair-delta coverage.
+For a read-only PR review, review its committed `base...head` range and report
+findings without making repairs. Lack of commit authority does not change the
+review target.
+
+For uncommitted implementation when commits are not authorized, run one full
+staged or working-tree review at the coherent checkpoint. Batch authorized local
+repairs and inspect the focused repair delta directly. Run a second full snapshot
+only when the repair broadly invalidated the first review. Never label a repeated
+full snapshot as repair-delta coverage.
 
 If automatic coverage is missing, failed, or stale, run one manual fallback with
 the same exact scope. If the available DiffOwl interface cannot prove coverage,

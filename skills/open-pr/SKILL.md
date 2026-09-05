@@ -1,6 +1,6 @@
 ---
 name: open-pr
-description: "Open or update a review-ready GitHub pull request with an accurate description, direct verification evidence, and durable screenshots or artifacts. Use when the user asks to make, create, open, update, or prepare a PR, including as the publishing stage after another implementation workflow. Leave full review and repair cycles to babysit-pr."
+description: "Use when asked to create, prepare, or update a PR and its review evidence. Full review and repair loops belong to babysit-pr."
 ---
 
 # Open PR

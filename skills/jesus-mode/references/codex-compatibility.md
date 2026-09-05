@@ -53,7 +53,7 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 
 ## Related task context
 
-Run this once on the first non-trivial turn of a new task. The goal is to recover useful decisions and evidence without importing unrelated conversation history.
+Use this when the user refers to prior work or a missing earlier decision affects the current task. Recover useful decisions and evidence without importing unrelated conversation history.
 
 1. Extract anchors from the request and current checkout: issue or PR numbers, task IDs, branches, commits, quoted errors, file paths, components, and distinctive feature terms. The shared project alone is not a match.
 2. If the user names a task, read it directly. Otherwise list one page of recent tasks and compare their titles and summaries against the anchors. Filter to the current project or checkout when either is identifiable. Check archived tasks only when the recent list has no match and an exact identifier or unusually distinctive phrase makes a match plausible.

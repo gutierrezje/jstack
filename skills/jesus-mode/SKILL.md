@@ -1,20 +1,25 @@
 ---
 name: jesus-mode
-description: "Jstack's default rigorous workflow for concise, deliberate, verified software work and reviewable results. Use for jesus mode, /jesus-mode, Jstack, pstack, Poteto mode, or general requests for a rigorous engineering workflow."
+description: "Use for Jesus mode, pstack, or Poteto mode requests to carry software work through implementation, verification, and review."
 ---
 
 # Jesus mode
 
 Stay active across turns in the current task until the user opts out. Apply rigor when the request is non-trivial; stay direct for tiny work.
 
-1. Read [the principles index](references/principles-index.md), [global routes](references/routes.md), and [Codex compatibility contract](references/codex-compatibility.md). For executable code changes or PR work, also read the [DiffOwl coverage contract](references/diffowl.md).
-2. On the first non-trivial turn in a new task, run the [related task context](references/codex-compatibility.md#related-task-context) process before choosing a playbook. Carry forward only context that bears on the current request.
-3. Match exactly one primary implementation playbook below. Read it completely and copy its steps into `update_plan`; retain skipped steps with a reason. For executable code changes, append one DiffOwl checkpoint from the shared coverage contract.
-4. Read every triggered `principle-*` leaf skill before applying it. Name only principles that change a decision.
-5. Route specialized steps to the separate skills: `$how`, `$why`, `$architect`, `$arena`, `$swarm`, `$interrogate`, `$no-comments`, `$show-me-your-work`, and `$pstack-tdd`.
-6. Treat publishing as a closing stage, not a competing playbook. Before creating a PR or changing its title, body, or evidence, read `$open-pr` completely, append its workflow to the active plan, and reach its completion criteria. During Babysit, return to the active babysit loop after any Open PR work instead of starting another run.
-7. Make reversible progress inside the active authorization boundary. Ask only for material product choices, ambiguous destructive targets, or new external authority.
-8. Verify the real artifact, review child work and diffs, and finish with outcome, evidence, risks, and intentionally omitted fan-out. After a human correction or review finding, apply the correction loop from the DiffOwl contract when that contract is active.
+Complete the requested outcome through implementation, relevant verification, and repair. Continue while safe, in-scope work remains. Ask only for material product choices, ambiguous destructive targets, or new external authority.
+
+Choose the approach from the task and repository evidence. Use a plan when it helps manage dependencies or uncertainty. The playbooks below are optional guidance for the matching work; adapt their sequence to the task. A user-requested planning deliverable remains planning-only.
+
+## Load when needed
+
+- For executable code changes or PR work, read and follow the [DiffOwl coverage contract](references/diffowl.md). Preserve cumulative review coverage and avoid duplicate reviews.
+- For PR creation or presentation updates, use [$open-pr](../open-pr/SKILL.md). Use [$babysit-pr](../babysit-pr/SKILL.md) when the user asks to babysit, shepherd, or finish a PR. Those skills retain their authorization and completion requirements.
+- Before delegating, read [global routes](references/routes.md) and the delegation sections of the [Codex compatibility contract](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it.
+- Read the relevant compatibility section when using ported Cursor mechanics, GitHub operations, or task history.
+- Use [related task context](references/codex-compatibility.md#related-task-context) when the user refers to prior work or a missing earlier decision affects the task.
+- Consult the [principles index](references/principles-index.md) when a concrete design or verification decision needs guidance. Read the relevant leaf, rather than loading the catalog.
+- Write plainly: lead with the result, use concrete verbs, and omit filler. Use [$unslop](../unslop/SKILL.md) for a prose-editing pass.
 
 ## Playbooks
 
@@ -43,4 +48,4 @@ Stay active across turns in the current task until the user opts out. Apply rigo
 
 ## Completion
 
-Finish when every playbook step is completed or explicitly disposed, the requested outcome is observed on the real surface, and no child result is accepted solely from self-report. For code-changing work, finish the required DiffOwl checkpoint or report its exact coverage gap. A task that creates or updates a PR remains incomplete until `$open-pr` reaches its completion criteria.
+Finish when the requested outcome works on the relevant surface, required checks and reviews cover the final change, and no known in-scope repair remains. Verify child results against their artifacts. Report the outcome, evidence, and material gaps or risks. For code-changing work, finish the required DiffOwl checkpoint or report its exact coverage gap. PR work must meet the selected PR skill's completion criteria.

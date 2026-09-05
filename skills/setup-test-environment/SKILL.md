@@ -1,6 +1,6 @@
 ---
 name: setup-test-environment
-description: "Prepare an application checkout or PR for hands-on testing by discovering its required services, launching them in a visible multiplexer workspace, verifying the real client and every process, and handing the user one attach command. Use when asked to set up an app test or QA environment, open a mobile build in a simulator or device, run a web app locally, launch an Electron-style desktop app, or arrange the required app, backend, and logs in tmux, Zellij, or Herdr."
+description: "Use when asked to launch an application checkout or PR for hands-on testing, including its services, client, and visible logs."
 ---
 
 # Set up an app test environment

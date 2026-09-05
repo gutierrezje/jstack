@@ -1,6 +1,6 @@
 ---
 name: create-verification-skill
-description: "Generate project-local verification skills, executable control adapters, feature coverage, and evidence receipts for real UI, CLI, mobile, or service behavior. Use for /create-verification-skill, \"make a control skill for this repo\", or when a project has no scripted way to prove behavior."
+description: "Create project-local behavior verification skills and adapters when asked to build repeatable UI, CLI, mobile, or service checks."
 ---
 
 # Create verification skill
