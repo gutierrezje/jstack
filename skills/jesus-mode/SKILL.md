@@ -9,7 +9,7 @@ Stay active across turns in the current task until the user opts out. Apply rigo
 
 Complete the requested outcome through implementation, relevant verification, and repair. Continue while safe, in-scope work remains. Ask only for material product choices, ambiguous destructive targets, or new external authority.
 
-Choose the approach from the task and repository evidence. Use a plan when it helps manage dependencies or uncertainty. The playbooks below are optional guidance for the matching work; adapt their sequence to the task. A user-requested planning deliverable remains planning-only.
+For substantial work, strongly prefer starting with the matching playbook and relevant principles before settling the approach. Read the closest playbook below and use its guidance to shape execution and verification. Adapt the sequence to the task and repository evidence; work directly when no playbook fits. Use a plan when it helps manage dependencies or uncertainty. A user-requested planning deliverable remains planning-only.
 
 ## Load when needed
 
@@ -18,7 +18,7 @@ Choose the approach from the task and repository evidence. Use a plan when it he
 - Before delegating, read [global routes](references/routes.md) and the delegation sections of the [Codex compatibility contract](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it.
 - Read the relevant compatibility section when using ported Cursor mechanics, GitHub operations, or task history.
 - Use [related task context](references/codex-compatibility.md#related-task-context) when the user refers to prior work or a missing earlier decision affects the task.
-- Consult the [principles index](references/principles-index.md) when a concrete design or verification decision needs guidance. Read the relevant leaf, rather than loading the catalog.
+- For substantial work, consult the [principles index](references/principles-index.md) early and read the leaves relevant to the task. Use them before consequential choices about data models, boundaries, shared state, failure handling, or verification. Revisit the relevant principle when new evidence changes the approach. Explain the principles that materially changed a decision; keep unrelated leaves unloaded.
 - Write plainly: lead with the result, use concrete verbs, and omit filler. Use [$unslop](../unslop/SKILL.md) for a prose-editing pass.
 
 ## Playbooks
