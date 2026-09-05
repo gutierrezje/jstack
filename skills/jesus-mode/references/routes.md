@@ -3,6 +3,12 @@
 This file is the single editable source for Jstack's Codex model, effort, and
 fan-out choices.
 
+Use these routes after deciding that delegation benefits the task. They select
+children; they do not require a planner/executor split or replace the active
+agent's model. The active agent may investigate, implement, and verify directly.
+Honor an explicitly requested specialist or multi-agent workflow. The topologies
+below are defaults when that delegated workflow is selected.
+
 ## Roles
 
 | Work | Model | Effort | Default fan-out |
