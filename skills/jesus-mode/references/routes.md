@@ -11,13 +11,19 @@ below are defaults when that delegated workflow is selected.
 
 ## Named-agent dispatch
 
-For every Luna High route below, prefer the registered `luna-high-fast` custom
-agent when the current spawn tool exposes that name and its declared model and
-effort match the route. Select it through `agent_type` or the tool's equivalent
-named-agent selector, with fresh context and a bounded assignment. This preference
-also covers Luna High roles in Pstack, panels, and swarms.
+Prefer the matching registered custom agent for every Luna route below, including
+Pstack roles, panels, and swarms:
 
-The custom agent is installed separately from Jstack and requests Fast processing.
+| Route | Preferred custom agent | Requested service tier |
+| --- | --- | --- |
+| Luna High | `luna-high-fast` | Fast |
+| Luna Max | `luna-max-fast` | Fast |
+
+Use the named agent when the current spawn tool exposes that name and its declared
+model and effort match the route. Select it through `agent_type` or the tool's
+equivalent named-agent selector, with fresh context and a bounded assignment.
+
+These custom agents are installed separately from Jstack and request Fast processing.
 A configuration file alone does not establish availability: inspect the current
 tool interface. Existing conversations may need a fresh task or fork to expose a
 new agent; create those only when the user requests them.
@@ -27,9 +33,9 @@ through supported overrides. Report the fallback once and treat Fast as unverifi
 unless the runtime exposes the active tier. A successful named-agent invocation
 proves selection and execution, not the service tier actually delivered.
 
-Keep Luna Max routes at Max. For an explicit effort adjustment, use a matching
-named agent or supported direct overrides; a role pinned to High cannot satisfy
-a Max request.
+For an explicit effort adjustment, use a matching named agent or supported direct
+overrides. Preserve the requested effort when falling back; an available High
+agent cannot substitute for an unavailable Max agent.
 
 ## Roles
 
