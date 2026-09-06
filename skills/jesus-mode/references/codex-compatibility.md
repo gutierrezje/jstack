@@ -5,8 +5,8 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 ## Delegation
 
 - Replace Cursor `Task` calls with Codex internal subagents.
-- Inspect the current subagent tool's model overrides before pinning a model or effort. Never silently inherit the parent after a rejected override.
-- Replace `subagent_type` with a bounded prompt that tells the child which skill file to read.
+- Inspect the current subagent tool's named-agent selector and model, effort, and service-tier overrides before dispatching. Follow the named-agent preferences and fallback in [routes.md](routes.md). Never silently inherit the parent after a rejected override.
+- Map Cursor `subagent_type` to a bounded prompt naming the relevant skill. A registered Codex custom agent may additionally be selected through `agent_type` or an equivalent exposed selector; a Cursor role name alone does not establish that registration.
 - Treat internal children as asynchronous after spawn; use the available agent lifecycle tools to message, follow up, interrupt, list, and wait.
 - Internal children share the workspace. Give write-capable children disjoint files, run overlapping writers sequentially, or create explicit worktrees when justified.
 - Codex internal delegation has no `environment: cloud`, `cloud_base_branch`, or custom background-agent guarantee. Create a separate user-visible task only when the user explicitly requests one.

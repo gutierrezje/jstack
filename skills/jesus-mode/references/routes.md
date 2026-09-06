@@ -1,13 +1,35 @@
 # Jstack routing table
 
-This file is the single editable source for Jstack's Codex model, effort, and
-fan-out choices.
+This file is the single editable source for Jstack's Codex model, effort,
+service-tier, named-agent, and fan-out choices.
 
 Use these routes after deciding that delegation benefits the task. They select
 children; they do not require a planner/executor split or replace the active
 agent's model. The active agent may investigate, implement, and verify directly.
 Honor an explicitly requested specialist or multi-agent workflow. The topologies
 below are defaults when that delegated workflow is selected.
+
+## Named-agent dispatch
+
+For every Luna High route below, prefer the registered `luna-high-fast` custom
+agent when the current spawn tool exposes that name and its declared model and
+effort match the route. Select it through `agent_type` or the tool's equivalent
+named-agent selector, with fresh context and a bounded assignment. This preference
+also covers Luna High roles in Pstack, panels, and swarms.
+
+The custom agent is installed separately from Jstack and requests Fast processing.
+A configuration file alone does not establish availability: inspect the current
+tool interface. Existing conversations may need a fresh task or fork to expose a
+new agent; create those only when the user requests them.
+
+If the named agent is unavailable, dispatch the route's explicit model and effort
+through supported overrides. Report the fallback once and treat Fast as unverified
+unless the runtime exposes the active tier. A successful named-agent invocation
+proves selection and execution, not the service tier actually delivered.
+
+Keep Luna Max routes at Max. For an explicit effort adjustment, use a matching
+named agent or supported direct overrides; a role pinned to High cannot satisfy
+a Max request.
 
 ## Roles
 
