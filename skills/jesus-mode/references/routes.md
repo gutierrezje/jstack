@@ -9,6 +9,15 @@ agent's model. The active agent may investigate, implement, and verify directly.
 Honor an explicitly requested specialist or multi-agent workflow. The topologies
 below are defaults when that delegated workflow is selected.
 
+## Reasoning hierarchy
+
+Use Astra Medium for architecture, difficult synthesis, and the hardest unresolved
+work. Sol Low is the next tier for routine planning, prose, and judgment; escalate
+to Astra Medium when that work remains unresolved or needs the highest reasoning
+tier. Terra retains investigation roles and Luna retains bounded execution.
+These choices do not change the active parent's model or require an extra advisor
+when the parent can complete the work directly.
+
 ## Named-agent dispatch
 
 Prefer the matching registered custom agent for every Luna route below, including
@@ -41,7 +50,7 @@ agent cannot substitute for an unavailable Max agent.
 
 | Work | Model | Effort | Default fan-out |
 | --- | --- | --- | ---: |
-| Planning and orchestration | `gpt-5.6-sol` | `high` | 0 |
+| Planning and orchestration | `gpt-5.6-sol` | `low` | 0 |
 | Feature implementation | `gpt-5.6-luna` | `max` | 1 |
 | Refactoring and mechanical edits | `gpt-5.6-luna` | `high` | 1 |
 | Focused bug fix after cause is known | `gpt-5.6-luna` | `max` | 1 |
@@ -50,9 +59,9 @@ agent cannot substitute for an unavailable Max agent.
 | Repository exploration | `gpt-5.6-luna` | `high` | 1 |
 | Ambiguous research or cross-check | `gpt-5.6-terra` | `high` | 1 |
 | Test discovery and verification | `gpt-5.6-luna` | `high` | 1 |
-| Prose and product judgment | `gpt-5.6-sol` | `high` | 0 |
-| Architecture and synthesis | `gpt-5.6-sol` | `xhigh` | 0 |
-| Hardest unresolved work | `gpt-5.6-sol` | `max` | 0 |
+| Prose and product judgment | `gpt-5.6-sol` | `low` | 0 |
+| Architecture and difficult synthesis | `gpt-6-astra` | `medium` | 0 |
+| Hardest unresolved work | `gpt-6-astra` | `medium` | 0 |
 
 ## Pstack roles
 
@@ -63,21 +72,21 @@ agent cannot substitute for an unavailable Max agent.
 | bug-fix | Terra High investigator, then Luna Max executor |
 | perf-issue | Terra High investigator; Luna Max executor after measurement identifies the change |
 | hillclimb | Luna Max experiment worker; parent accepts measured wins |
-| judgment and prose | Sol High |
-| hardest tasks | Sol XHigh; Max only after XHigh remains inconclusive |
+| judgment and prose | Sol Low |
+| hardest tasks | Astra Medium |
 | how explorer | Luna High |
 | how explainer | Terra High |
 | how critics | Luna High and Terra High, two maximum |
 | why investigators | Terra High, one per available evidence lane and three maximum by default |
-| why synthesizer | Sol High |
+| why synthesizer | Sol Low |
 | reflect tooling | Luna High |
 | reflect judgment and divergent | Terra High |
-| reflect synthesizer | Sol High |
-| arena runners | Sol High and Terra High; add Luna Max when N=3 |
-| arena judge | Sol High advisor when the parent is not Sol |
+| reflect synthesizer | Sol Low |
+| arena runners | Sol Low and Terra High; add Luna Max when N=3 |
+| arena judge | Parent judges; Sol Low advisor if needed when the parent is neither Sol nor Astra; Astra Medium for unresolved highest-level judgment |
 | swarm workers | Luna High for exploration, research, and verification; Luna Max for bounded implementation or exhaustive execution; two by default and three maximum without explicit direction |
-| architect runners | Terra High and Sol High |
-| interrogate reviewers | Luna Max, Terra High, and Sol High; reduce to two for ordinary diffs |
+| architect runners | Sol Low and Astra Medium |
+| interrogate reviewers | Luna Max, Terra High, and Sol Low; reduce to two for ordinary diffs |
 
 ## Topologies
 
@@ -87,12 +96,13 @@ agent cannot substitute for an unavailable Max agent.
 | Jesus mode bug fix | One Terra investigator, then one Luna executor only after the cause is established; parent reviews |
 | How | One Luna explorer; optional Terra explainer for a separate subsystem |
 | Why | Up to two Terra investigators on distinct hypotheses; parent synthesizes, consulting one Sol advisor if needed |
-| Arena | One Sol High candidate and one Terra High candidate by default; add one Luna Max candidate when N=3; parent judges |
-| Architect | One Terra High candidate and one Sol High candidate; parent decides |
+| Arena | One Sol Low candidate and one Terra High candidate by default; add one Luna Max candidate when N=3; parent judges |
+| Architect | One Sol Low candidate and one Astra Medium candidate; parent decides |
 | Swarm | Classify each arm by work: Luna High for exploration, research, and verification; Luna Max for bounded implementation or exhaustive execution. Use two workers by default and three maximum without explicit user direction |
 
 ## Effort adjustments
 
+- Keep Astra at `medium` and Sol at `low` for their configured routes unless the user requests a different effort. The adjustments below apply to other routes; effort labels do not rank capability across models.
 - Use `medium` for cheap, reversible exploration where mistakes are easy to detect.
 - Use `high` for normal investigation and review.
 - Use `xhigh` when ambiguity or cross-file reasoning is the bottleneck.

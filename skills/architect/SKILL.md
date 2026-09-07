@@ -11,7 +11,7 @@ Read [the global routing table](../jesus-mode/references/routes.md) before dispa
 
 1. Read callers, callees, types, tests, and nearby conventions. Name the boundary and constraints.
 2. Freeze a runner brief using `references/runner-prompt.md` and the red flags in `references/design-red-flags.md`.
-3. Spawn two read-only candidates: Terra High and Sol High. Require concrete types, signatures, module ownership, migration shape, risks, and rejected alternatives.
+3. Spawn two read-only candidates using the Architect routes. Require concrete types, signatures, module ownership, migration shape, risks, and rejected alternatives.
 4. Compare candidates against current call sites and invariants. Choose one design or synthesize explicitly.
 5. Write the decision using `references/rationale-template.md` and stay available while implementation tests the design.
 

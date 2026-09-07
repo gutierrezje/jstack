@@ -1,6 +1,6 @@
 {
   "name": "jstack",
-  "version": "0.1.0+codex.20260906195314",
+  "version": "0.1.0+codex.20260907042649",
   "description": "Codex-native agent routing and rigorous software workflows adapted from pstack.",
   "author": {
     "name": "Jstack contributors"
@@ -19,7 +19,7 @@
   "interface": {
     "displayName": "Jstack",
     "shortDescription": "Cost-aware multi-agent software workflows for Codex.",
-    "longDescription": "Jstack packages rigorous planning, investigation, implementation, review, and verification workflows for Codex, with explicit Sol, Terra, and Luna routing.",
+    "longDescription": "Jstack packages rigorous planning, investigation, implementation, review, and verification workflows for Codex, with explicit Astra, Sol, Terra, and Luna routing.",
     "developerName": "Jstack contributors",
     "category": "Developer Tools",
     "capabilities": [

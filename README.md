@@ -28,8 +28,9 @@ how something works and `$why` to find out why it ended up that way.
 than one independent pass. Other skills cover verification, retrospectives,
 teaching, writing, and the engineering principles behind Jesus mode.
 
-Sol normally handles orchestration and judgment, Terra investigates, and Luna
-executes bounded tasks. Change the models, effort levels, and fan-out in
+Astra handles the highest-level reasoning, with Sol next for routine orchestration
+and judgment. Terra investigates, and Luna executes bounded tasks. Change the
+models, effort levels, and fan-out in
 [`skills/jesus-mode/references/routes.md`](skills/jesus-mode/references/routes.md),
 or use `$setup-jstack`.
 

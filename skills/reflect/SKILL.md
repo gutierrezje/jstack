@@ -12,7 +12,7 @@ Read [the global routing table](../jesus-mode/references/routes.md) before dispa
 1. Establish the evidence set: current task, plan, diffs, test output, decision log, and linked artifacts. Do not scan guessed transcript paths.
 2. Spawn a Luna High tooling reviewer and a Terra High judgment reviewer in read-only posture. Add a divergent reviewer only for long or high-stakes work.
 3. Ask each reviewer for evidence-backed Keep, Change, and Backlog findings with exact destinations.
-4. Have the parent synthesize duplicates and reject findings unsupported by task evidence. Use one Sol High advisor only when the parent needs stronger judgment.
+4. Have the parent synthesize duplicates and reject findings unsupported by task evidence. Use the Reflect synthesizer route for one advisor only when the parent needs stronger judgment.
 5. Present Accepted, Rejected, and Backlog items. Obtain approval before editing global skills or instructions.
 6. Route approved edits through `$skill-creator` and `$writing-for-agents`; route recurring tooling gaps into checks, scripts, or tracked backlog.
 7. Validate every edited skill and report applied, rejected, and deferred lessons.
