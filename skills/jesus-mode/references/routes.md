@@ -79,7 +79,7 @@ agent cannot substitute for an unavailable Max agent.
 | how explorer | Luna High |
 | how explainer | Luna Max |
 | how critics | Luna High and Luna Max, two maximum |
-| why investigators | Luna High, one per available evidence lane and three maximum by default |
+| why investigators | Luna High, two by default and three maximum on independent evidence lanes |
 | why synthesizer | Sol Low |
 | reflect tooling | Luna High |
 | reflect judgment and divergent | Luna Max |
@@ -98,8 +98,8 @@ agent cannot substitute for an unavailable Max agent.
 | --- | --- |
 | Jesus mode feature/refactor | One Luna executor; parent reviews |
 | Jesus mode bug fix | One Luna Max investigator; reuse for execution after the cause is established; parent reviews |
-| How | One Luna High explorer; optional Luna Max explainer for a separate subsystem or synthesis |
-| Why | Up to two Luna High investigators on distinct hypotheses; parent synthesizes, consulting one Sol Low advisor if needed |
+| How | One Luna High explorer; a second for an independent subsystem or runtime lane; Luna Max explainer only when synthesis needs it |
+| Why | Two Luna High investigators by default; a third only for an independent evidence lane; parent synthesizes, consulting one Sol Low advisor if needed |
 | Arena | Use the design or implementation runner routes above; two candidates by default and the configured third when N=3; parent judges |
 | Architect | One Sol Low candidate and one Astra Medium candidate; parent decides |
 | Swarm | Classify each arm by work: Luna High for exploration, research, and verification; Luna Max for bounded implementation or exhaustive execution. Use two workers by default and three maximum without explicit user direction |
