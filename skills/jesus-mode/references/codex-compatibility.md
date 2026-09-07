@@ -15,7 +15,7 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 
 - Read [routes.md](routes.md) before dispatching.
 - Start with one child. Add a child only for an independent evidence lane, disjoint work unit, or genuinely useful competing candidate.
-- Respect the current agent-slot limit. Default panels to two candidates and swarms to two workers; require explicit user direction to exceed three workers.
+- Respect the current agent-slot limit. Follow the selected topology's candidate count; use two for unspecified panels and swarms. Require explicit user direction to exceed three workers.
 - Keep integration and final judgment in the parent. If a requested reasoning route is unavailable, report the mismatch and use the best available advisor or remain in the parent; identify a fallback as such.
 
 ## Codex tools
