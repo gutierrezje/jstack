@@ -31,10 +31,16 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 
 - Use the GitHub CLI or an installed GitHub/Codex plugin for every pull-request and issue read or write. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
 - Use UI control against the product under test and to capture screenshots. Keep GitHub PR creation, editing, readback, checks, review state, and lifecycle changes in the CLI or plugin.
-- Make screenshot evidence durable without a GitHub web editor. Prefer a GitHub
-  plugin or API that returns an absolute durable attachment URL. Otherwise
-  commit the image to the PR branch and reference it with plain Markdown using
-  an absolute, commit-pinned URL:
+- Make screenshot evidence durable through an available, supported GitHub
+  attachment tool or an authorized artifact service returning an absolute HTTPS
+  URL. Verify reviewer access and embed the URL in the PR description. Discover
+  supported upload capabilities; do not invent an upload endpoint or assume
+  `gh` can upload PR attachments. If no authorized attachment route is available,
+  preserve the local capture and report the publishing dependency. Missing upload
+  support does not justify committing one-off images as a fallback. Follow the
+  [evidence storage rules](../../open-pr/SKILL.md#evidence-storage-and-cleanup).
+- For images already maintained in the repository, or explicitly authorized for
+  versioning, use plain Markdown with an absolute, commit-pinned URL:
   `https://github.com/<owner>/<repo>/blob/<40-character-commit-sha>/<path>?raw=true`.
   GitHub Mobile can leave relative image sources unresolved, and branch-based
   URLs can drift or disappear.

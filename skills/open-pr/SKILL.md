@@ -40,10 +40,15 @@ separate user authorization.
 3. Run the checks required by the change and repository. Verify the behavior on
    the most faithful practical surface.
 4. Gather direct evidence for every material claim in the PR. Use the evidence
-   rules below. A claim without evidence is either measured before publishing,
-   removed, or called out as an evidence gap.
-5. Commit coherent implementation and evidence units using repository
-   conventions. Reuse current review results when they already exist, but do not
+   rules below. Reuse evidence collected during implementation after confirming
+   it still covers the prepared change. Collect missing or stale captures on the
+   relevant runtime before deciding draft state. If a before image is needed,
+   reproduce the base in an isolated checkout when practical. A claim without
+   evidence is either measured before publishing, removed, or called out as an
+   evidence gap.
+5. Commit coherent implementation units using repository conventions. Apply
+   the evidence storage rules below before staging artifacts. Reuse current
+   review results when they already exist, but do not
    start or extend a model-review coverage chain solely to open the PR.
 6. Push non-destructively to the intended head branch. Confirm the remote OID
    matches the prepared local OID.
@@ -117,8 +122,39 @@ core sections even when the PR is small.
   practical.
 
 Keep large raw output out of the body. Summarize it and link the full artifact.
-If required evidence cannot be collected or attached, keep the PR in draft and
-state exactly what is missing.
+Missing earlier captures are unfinished preparation: collect them within the
+authorized workflow. If required evidence still cannot be collected or attached,
+keep the PR in draft and state exactly what is missing, what recovery was
+attempted, and the dependency preventing completion.
+
+## Evidence storage and cleanup
+
+The PR description is the primary home for reviewer-facing evidence. Put concise
+test results, relevant measurements, reproduction steps, and selected captioned
+screenshots in its Evidence section. Choose the smallest set that supports the
+material claims and affected states. Update that section as results change;
+keep intermediate captures, repeated logs, and working notes out of it.
+
+Keep working evidence in a task-owned scratch directory outside tracked source
+or an existing ignored artifact directory. Publish selected images through the
+GitHub transport contract and embed their durable URLs in the description.
+Link larger logs or recordings only when they help review, using an authorized
+artifact service; record any expiry that limits their usefulness.
+
+Keep one-off screenshots, logs, receipts, and evidence summaries out of Git by
+default. Commit artifacts when they serve a maintained repository purpose, such
+as regression fixtures, visual-test baselines, or documentation assets, or when
+the user explicitly requests a versioned audit trail. Large or complex work
+alone does not justify committing its evidence archive. Inspect staged files
+before committing; deleting an artifact in a later commit still leaves its
+contents in history.
+
+After verifying the published evidence and finishing dependent checks, remove
+task-owned disposable captures and logs that are no longer needed. Retain files
+needed for unresolved failures, review coverage, or an active handoff until that
+work closes. If publication is blocked, preserve the selected evidence and report
+its location. Cleanup covers only this task's disposable files; leave maintained
+assets and unrelated files intact.
 
 ## Completion
 

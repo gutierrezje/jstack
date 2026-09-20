@@ -11,6 +11,34 @@ Complete the requested outcome through implementation, relevant verification, an
 
 For substantial work, strongly prefer starting with the matching playbook and relevant principles before settling the approach. Read the closest playbook below and use its guidance to shape execution and verification. Adapt the sequence to the task and repository evidence; work directly when no playbook fits. Use a plan when it helps manage dependencies or uncertainty. A user-requested planning deliverable remains planning-only.
 
+## Prepare evidence before implementation
+
+At the start of implementation work, identify the affected journeys and the
+evidence needed to review them. Apply the [PR evidence rules](../open-pr/SKILL.md#evidence-rules)
+now, even when the user has not yet requested a PR. This prepares local evidence;
+publishing still requires the authority defined by the PR workflow.
+
+For UI work, establish a working screenshot path before changing the affected
+behavior: identify the target checkout and runtime, use the project's verifier
+or available UI-control tools, open the relevant journey, and save and inspect
+a baseline capture. Use [$setup-test-environment](../setup-test-environment/SKILL.md)
+when launch setup is needed. Record the viewport, theme, account label, and
+fixture needed to reproduce the state. Capture the existing state when it is
+useful for comparison; new UI needs captures of its implemented states.
+
+Save screenshots in a task-owned scratch directory outside tracked source as
+each affected state is exercised during implementation and verification. Follow
+the [evidence storage and cleanup rules](../open-pr/SKILL.md#evidence-storage-and-cleanup).
+Keep a compact record of artifact paths, journeys, observed
+results, and the revision or dirty checkout that produced them. Refresh affected
+captures after repairs and retain the record through handoffs or compaction so
+PR preparation can reuse valid evidence. Use tests, logs, or measurements for
+changes without a visible UI effect.
+
+Resolve capture setup problems early within existing authority. If access or
+another dependency prevents capture, report the exact gap when discovered and
+continue independent work; keep it visible until resolved.
+
 ## Load when needed
 
 - For executable code changes or PR work, read and follow the [DiffOwl coverage contract](references/diffowl.md). Preserve cumulative review coverage and avoid duplicate reviews.
