@@ -29,26 +29,55 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 
 ## GitHub transport
 
-- Use the GitHub CLI or an installed GitHub/Codex plugin for every pull-request and issue read or write. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
-- Use UI control against the product under test and to capture screenshots. Keep GitHub PR creation, editing, readback, checks, review state, and lifecycle changes in the CLI or plugin.
-- Make screenshot evidence durable through an available, supported GitHub
-  attachment tool or an authorized artifact service returning an absolute HTTPS
-  URL. Verify reviewer access and embed the URL in the PR description. Discover
-  supported upload capabilities; do not invent an upload endpoint or assume
-  `gh` can upload PR attachments. If no authorized attachment route is available,
-  preserve the local capture and report the publishing dependency. Missing upload
-  support does not justify committing one-off images as a fallback. Follow the
-  [evidence storage rules](../../open-pr/SKILL.md#evidence-storage-and-cleanup).
-- For images already maintained in the repository, or explicitly authorized for
-  versioning, use plain Markdown with an absolute, commit-pinned URL:
-  `https://github.com/<owner>/<repo>/blob/<40-character-commit-sha>/<path>?raw=true`.
-  GitHub Mobile can leave relative image sources unresolved, and branch-based
-  URLs can drift or disappear.
+- Use the GitHub CLI or an installed GitHub/Codex plugin for PR and issue operations, with the native browser attachment-upload exception below. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
+- Use UI control against the product under test and to capture screenshots. The signed-in GitHub attachment picker may also upload evidence; keep PR creation, body updates, readback, checks, review state, and lifecycle changes in the CLI or plugin.
+- Publish PR screenshots as native GitHub attachments and embed the returned
+  URLs in the description with captioned Markdown images, one image per block:
+  `![State being demonstrated](https://github.com/user-attachments/assets/<asset-id>)`.
+  Essential evidence must be visible inline; a bare URL or clickable file link
+  does not replace an embedded screenshot. Links may supplement the inline set.
+- Prefer native `gh pr create/edit --attach` (GitHub CLI 2.99 or newer). Check
+  command help for support early. Put local image references in a temporary body
+  file and pass each matching image with `--attach`; GitHub CLI uploads the files
+  and rewrites those references in place. For an existing PR, preserve its body
+  and captions while replacing the old image targets, then run
+  `gh pr edit <pr> --body-file <body-file> --attach <image-path>` with repeated
+  attachment flags as needed. Re-read the PR after a partial failure before
+  retrying, because successful uploads may already have updated the body.
+  See [GitHub's attachment guide](https://docs.github.com/en/github-cli/github-cli/attaching-files-with-github-cli).
+- When CLI attachment support is unavailable, use GitHub's signed-in native
+  **Attach files** picker through supported browser controls. Use an empty,
+  unsent comment draft on the target PR as upload scratch space, preserving any
+  existing user draft. Upload the selected files, wait for every upload to finish,
+  and record each filename's returned attachment URL. No comment needs to be
+  submitted. Clear only the upload scratch text after preserving the mapping,
+  then update the freshly fetched PR body through the CLI or plugin. Replace
+  targets in place so captions, order, inline embeds, and supplemental links
+  survive. Verify the expected counts and mappings before publishing the body.
+- Use the existing supported CLI authentication and repository access. If the
+  installed CLI lacks attachment support, use the native browser picker, an
+  available supported GitHub attachment tool, or an authorized CLI update path.
+  Preserve captures and name the exact dependency if none is available. Use the
+  browser's existing signed-in session in place; do not extract its credentials,
+  invent upload endpoints, or commit images to bypass an upload problem.
+- Keep the canonical URL returned by GitHub in the raw Markdown. Private
+  repository raw/blob URLs, including commit-pinned `?raw=true` links, are not
+  the delivery path for PR screenshot evidence. Copying a rendered signed media
+  URL into Markdown can leave an expiring reference. Maintained repository assets
+  may remain versioned, but upload a copy when they serve as PR screenshots.
+  Follow the [evidence storage rules](../../open-pr/SKILL.md#evidence-storage-and-cleanup).
 - After updating the PR, read back its raw body and rendered `body_html` through
-  the authenticated API. Every image source must use absolute HTTPS. For a
-  repository-backed image, confirm the URL contains the intended commit SHA and
-  that the path exists at that SHA through the contents API. Prefer one plain
-  Markdown image per block over raw HTML tables for review evidence.
+  the authenticated API. Confirm selected screenshots use returned attachment
+  URLs in the body and render as image elements, with no leftover local or
+  repository-image targets. In the signed-in rendered PR, wait for each required
+  image to load and check `complete && naturalWidth > 0`, or equivalent image-load
+  evidence from the available browser tool. Visually inspect inline placement
+  and captions; image elements alone or a separate image tab are insufficient.
+  This completes screenshot-publication acceptance. GitHub Mobile rendering is
+  not an acceptance check: do not request device confirmation, list its absence
+  as an evidence gap, or use it to keep a PR draft, withhold readiness, issue
+  `INCONCLUSIVE`, or block an otherwise authorized merge. Diagnose a separately
+  reported GitHub client defect as its own task.
 - Treat a missing GitHub browser session as irrelevant to PR completion. Exhaust the authenticated CLI and plugin paths before reporting an external blocker.
 
 ## State and history

@@ -57,9 +57,10 @@ separate user authorization.
    for review unless the user requested a draft or a review blocker remains.
 8. Read the remote PR back through the CLI or GitHub plugin. Confirm its head SHA
    matches the prepared local head and its title, body, and links are correct.
-   Retrieve the rendered body through the authenticated API. Reject relative
-   image sources, branch-based repository image URLs, and missing targets before
-   calling the PR review-ready.
+   Verify native screenshot attachments and inline image rendering through the
+   GitHub transport contract. Fix leftover local paths, repository-image targets,
+   and link-only substitutes for required screenshots before calling the PR
+   review-ready.
 9. For any remaining draft, run `gh pr ready` or the GitHub plugin equivalent
    after every review-blocking evidence gap is closed, unless the user requested
    draft state or a narrower edit. Pending hosted checks do not block this
@@ -107,12 +108,10 @@ core sections even when the PR is small.
   the change. Use before-and-after images when the old behavior matters. Keep the
   viewport, theme, account, and fixture consistent when comparing states. Remove
   sensitive data, add captions that identify the journey and state, and make the
-  images durable through the GitHub transport contract. Use plain Markdown with
-  one image per block. Repository-backed images need an absolute URL pinned to a
-  40-character commit SHA. After publishing, inspect the rendered PR body and
-  confirm every image source is absolute and every target exists. A desktop web
-  render alone does not prove GitHub Mobile compatibility. Local file paths are
-  not review evidence.
+  images native GitHub attachments through the GitHub transport contract. Embed
+  the reviewer-relevant set directly in the Evidence section with captions;
+  supplemental links may accompany it. Complete screenshot-publication acceptance
+  using the GitHub transport contract.
 - For performance changes, report a like-for-like baseline and result. Include
   the command or workload, environment, units, sample count, summary statistic,
   and variance when it matters. Measure the resource named by the change, such
@@ -147,7 +146,12 @@ as regression fixtures, visual-test baselines, or documentation assets, or when
 the user explicitly requests a versioned audit trail. Large or complex work
 alone does not justify committing its evidence archive. Inspect staged files
 before committing; deleting an artifact in a later commit still leaves its
-contents in history.
+contents in history. When repairing a PR that added one-off screenshots, first
+publish and verify their embedded attachments, then remove the authorized
+screenshot files from the proposed source diff. Update references in retained
+evidence documents to use the attachment URLs. Screenshot cleanup alone does not
+authorize deleting those documents; remove them only when that cleanup is also
+in scope. Rewriting existing history still requires separate authorization.
 
 After verifying the published evidence and finishing dependent checks, remove
 task-owned disposable captures and logs that are no longer needed. Retain files
@@ -160,8 +164,8 @@ assets and unrelated files intact.
 
 Finish when the remote PR points to the prepared head, the remote body follows
 the contract, every material claim has direct evidence, reviewer-relevant UI
-states have durable, mobile-safe screenshots with verified targets, and risks or
-evidence gaps are explicit. Confirm the PR is open for review. If it remains a
+states have native attachments embedded inline with verified GitHub web rendering,
+and risks or evidence gaps are explicit. Confirm the PR is open for review. If it remains a
 draft, report the explicit user constraint or the known failure or missing
 artifact that prevents meaningful review. Report pending hosted checks
 accurately. Open PR completion does not require a full model
