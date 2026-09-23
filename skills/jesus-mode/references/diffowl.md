@@ -80,6 +80,24 @@ architectural risk. Run it while DiffOwl or hosted reviewers are already working
 when that saves time. Pin it to the same exact scope and keep one successful
 record per scope.
 
+Prefer a native Codex subagent with fresh context for the independent review.
+Use the existing reviewer route in [routes.md](routes.md). Give it the exact
+checkout, base/head OIDs or frozen uncommitted snapshot, review question, and
+relevant repository instructions. Request findings with file/line evidence;
+keep the assignment read-only and exclude implementation conclusions that could
+bias it. Wait for its result and verify and dispose findings in the parent.
+Record the reviewer identity and covered scope; a parent's self-review does not
+count as an independent result. The reviewer must not edit, launch DiffOwl, or
+publish.
+
+Use a separate CLI reviewer only when native delegation is unavailable or the
+user specifically requests it. Before launching, follow the
+[review authorization checks](codex-compatibility.md#review-authorization).
+Use a clean checkout and read-only sandbox: `codex review --base <base-ref>` for
+an initial branch review or `codex review --commit <head-sha>` for a material
+repair, with `-c 'sandbox_mode="read-only"'`. Reuse applicable user authorization
+instead of asking again for the same data, destination, and purpose.
+
 An independent Codex review is not a default requirement for every repair
 commit. When a repair warrants an independent review, scope that review to the
 commit. Let DiffOwl provide the ordinary coverage chain.

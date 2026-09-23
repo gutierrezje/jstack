@@ -27,6 +27,35 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 - Use available Codex GitHub, CI, UI-control, CLI-control, deslop, humanizer, and verification skills instead of assuming Cursor built-ins or Bugbot.
 - Treat retained references to pstack's `bootstrap.ts`, `orch`, `watch-pr`, and `worktree-audit.sh` as design context only. Those Cursor/Bun/Graphite executables are intentionally not installed in this Codex port; use native Codex task, GitHub, CI, and filesystem tools instead.
 
+## Review authorization
+
+Native Codex delegation and a separately launched reviewer are different
+execution paths. Describe the actual path; a subprocess is not evidence of an
+unknown provider, and native delegation is not proof that processing is offline.
+
+For a CLI fallback, establish the effective provider and endpoint from non-secret
+configuration, including command overrides and applicable profiles. Use
+`codex login status` for authentication mode; never inspect credential files.
+If the configured destination is OpenAI Codex through the user's existing
+ChatGPT account, name that destination. A custom endpoint or unresolved provider
+needs its own assessment; the executable name alone does not establish trust.
+
+Carry applicable user-granted review authority into the request: repository,
+diff/source scope, provider/account, and read-only review purpose. Honor standing
+authorization in the user's instructions when it covers those facts. This
+portable skill grants no transmission authority of its own. Keep secrets,
+credentials, unrelated files, screenshots, and production/user data outside a
+source-review authorization unless separately approved.
+
+When approval fails, distinguish an actual tool denial from the agent's own
+uncertainty. Report the rejected action, established destination, stated reason,
+and specific missing authority or evidence. Reserve "unknown destination" for
+a destination that could not be established. Continue independent work and keep
+one precise review gap rather than requesting the same permission repeatedly.
+Resolve an explicit denial through the supported approval path; switching
+runners, endpoints, or wrappers is not a way to evade it. These instructions do
+not change sandbox, network, managed-policy, or approval requirements.
+
 ## GitHub transport
 
 - Use the GitHub CLI or an installed GitHub/Codex plugin for PR and issue operations, with the native browser attachment-upload exception below. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
