@@ -109,6 +109,26 @@ not change sandbox, network, managed-policy, or approval requirements.
   reported GitHub client defect as its own task.
 - Treat a missing GitHub browser session as irrelevant to PR completion. Exhaust the authenticated CLI and plugin paths before reporting an external blocker.
 
+For selected video evidence, check `gh pr create/edit --help` for video
+attachment support and use `--attach` within the authorized PR operation.
+Preserve the body and place each clip beside a caption naming its journey,
+result, and source identity. Video renders as a player rather than an image;
+use the canonical returned URL and verify the actual body after CLI rewriting.
+Check the host's current format and size limits before upload. Prefer H.264 MP4
+when conversion is needed for playback compatibility, preserving the original
+capture. Follow [GitHub's attachment guidance](https://docs.github.com/en/github-cli/github-cli/attaching-files)
+and [media limits](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files).
+Use the same supported attachment-picker fallback and partial-failure readback
+rules as images; publishing a comment solely to upload a clip is unnecessary.
+
+Verify the selected video loads and plays in the rendered PR with the expected
+caption and interval. Image-load checks do not establish video playback. If
+required video cannot be delivered, preserve the local clip and report the
+specific gap under [video evidence](video-evidence.md). Omit an optional clip
+that cannot be delivered when the remaining evidence fully supports the claim.
+For a dry run, prepare the body locally and stop before uploading or editing the
+PR; mark remote delivery and playback as untested.
+
 ## State and history
 
 - Do not scan or invent Cursor transcript paths. Reconstruct from the current task, its summary, git and PR evidence, explicit resume artifacts, and Codex task-history tools when actually available.

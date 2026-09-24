@@ -27,6 +27,10 @@ Read and follow the [project verification contract](../jesus-mode/references/ver
 6. Include exact target identity, setup, launch, a deterministic read-only or
    disposable happy path, evidence capture, mutation authority, cleanup, failure
    interpretation, and a feature map under `features/`.
+   For requested video or temporal behavior, follow the
+   [video evidence contract](../jesus-mode/references/video-evidence.md); document
+   recorder capabilities, finalization, receipt coverage, and the recipe's
+   required versus optional video proof.
 7. Seed the top three to five user-facing features in each skill using
    `references/feature-map-example/`. Inventory every discovered entry point in
    the map as covered or explicitly excluded, and name feature IDs so a PR

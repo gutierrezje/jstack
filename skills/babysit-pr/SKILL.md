@@ -55,6 +55,10 @@ scope that already has an adequate completed or running review.
    mergeability, and required real-surface QA, then issues `READY`, `NOT READY`,
    or `INCONCLUSIVE`.
 
+When selected QA requires video, follow the
+[video evidence contract](../jesus-mode/references/video-evidence.md). Keep
+optional demonstration clips separate from required acceptance evidence.
+
 ## Workflow
 
 ### 1. Establish one authoritative snapshot

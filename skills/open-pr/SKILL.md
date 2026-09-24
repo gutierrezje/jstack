@@ -112,6 +112,10 @@ core sections even when the PR is small.
   the reviewer-relevant set directly in the Evidence section with captions;
   supplemental links may accompany it. Complete screenshot-publication acceptance
   using the GitHub transport contract.
+- For requested video or claims about interaction over time, follow the
+  [video evidence contract](../jesus-mode/references/video-evidence.md). Reuse
+  finalized clips whose receipts cover the prepared change, present them beside
+  relevant screenshots, and verify playback through the GitHub transport contract.
 - For performance changes, report a like-for-like baseline and result. Include
   the command or workload, environment, units, sample count, summary statistic,
   and variance when it matters. Measure the resource named by the change, such

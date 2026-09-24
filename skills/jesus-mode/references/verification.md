@@ -38,11 +38,14 @@ Every non-trivial adapter provides:
 Add capability groups only when they hide repeated project-specific work:
 
 - Inspection: `info`, `snapshot`, `screenshot`, `components`.
+- Video: recording around a feature run, with start/stop controls only when
+  interactive exploration needs them. Follow [video evidence](video-evidence.md)
+  when recording is requested or needed to prove a temporal claim.
 - Navigation: `home`, `new-session`, `select-project`, `select-runtime`,
   `scroll`.
 - Interaction: `send`, semantic `click` or `aria-click`, `type`, `press`,
   `upload-image`, `add-context`, session-scoped `feature-flag`.
-- Performance: `trace`, `profile`, `record`, `perf-metrics`, `wait-settle`.
+- Performance: `trace`, `profile`, `perf-metrics`, `wait-settle`.
 - Streaming: `console`, `network-log`, `network-summary`.
 - Lifecycle: `start`, `watch --restart`, `cleanup`.
 

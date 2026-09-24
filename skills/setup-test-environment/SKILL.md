@@ -102,6 +102,10 @@ at the current commit.
 Complete this step when every component is ready with fresh evidence, or the
 environment has one explicit blocker with its failing pane and output.
 
+When the test scope includes video, check capture prerequisites and target
+selection through the [video evidence contract](../jesus-mode/references/video-evidence.md).
+Leave recording duration and journey proof to the project verifier.
+
 ### 6. Hand the workspace to the user
 
 Lead with the exact attach command. Then report the workspace map, code identity,

@@ -18,6 +18,11 @@ evidence needed to review them. Apply the [PR evidence rules](../open-pr/SKILL.m
 now, even when the user has not yet requested a PR. This prepares local evidence;
 publishing still requires the authority defined by the PR workflow.
 
+When the user requests video or the claim depends on interaction over time,
+follow the [video evidence contract](references/video-evidence.md) alongside the
+screenshot path below. Establish the selected recorder before exercising the
+affected journey.
+
 For UI work, establish a working screenshot path before changing the affected
 behavior: identify the target checkout and runtime, use the project's verifier
 or available UI-control tools, open the relevant journey, and save and inspect

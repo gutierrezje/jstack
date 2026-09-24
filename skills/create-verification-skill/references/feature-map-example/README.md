@@ -48,6 +48,10 @@ next command to run.
 - CLI proof includes the command, stdout, stderr, and exit code.
 - Mutation proof includes a read-only second view of the stored value.
 - Record the feature ID and entry point used with every artifact.
+- For requested video or temporal claims, follow the
+  [video evidence contract](../../../jesus-mode/references/video-evidence.md).
+  Add the adapter's supported capture commands to the selected recipe and bind
+  the clip to the same receipt. The example commands here do not implement a recorder.
 - Report an unreachable path with the attempted command and the unmet precondition.
 - Do not report a skipped entry point as verified through a different path.
 
