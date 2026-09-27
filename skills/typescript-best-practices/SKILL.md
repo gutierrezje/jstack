@@ -1,11 +1,14 @@
 ---
 name: typescript-best-practices
-description: "TypeScript best practices. Use when reading or editing any .ts or .tsx file."
+description: "Apply TypeScript conventions when implementing or reviewing types, validation boundaries, or API signatures."
 ---
 
 # TypeScript best practices
 
-Apply [$principle-type-system-discipline](../principle-type-system-discipline/SKILL.md) first; this skill grounds it in TypeScript syntax.
+Use the conventions below for the code being changed or reviewed. Consult
+[$principle-type-system-discipline](../principle-type-system-discipline/SKILL.md)
+when choosing how to represent domain invariants or separate validated data from
+external input. Simple lookups and mechanical edits need no additional reference.
 
 | Rule | Summary |
 |------|---------|

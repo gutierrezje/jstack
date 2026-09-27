@@ -66,8 +66,9 @@ implementation.
 
 Model names must exist in the active Codex runtime. Internal agents share the
 same checkout, so Jstack gives overlapping files to one writer at a time. You
-still need explicit permission to publish, deploy, merge, delete files, or
-contact third parties.
+reuse the authority granted by the user's request for routine edits and cleanup.
+Publishing, deployment, merging, contacting third parties, and destructive actions
+require authorization covering that action and target; ask when it is missing.
 
 ## Validate
 

@@ -7,12 +7,14 @@ description: "Use when asked to design module boundaries, types, or interfaces b
 
 Settle types, signatures, ownership, and module shape before implementation crosses a durable boundary.
 
-Read [the global routing table](../jesus-mode/references/routes.md) before dispatching. Inspect the current subagent tool's supported model and effort overrides; never silently inherit the parent after a pinned-model rejection.
+Design directly when callers and invariants establish a clear boundary. Use
+independent candidates when competing designs could materially change the
+decision or the user requests a comparison. Before dispatching, follow
+[the global routing table](../jesus-mode/references/routes.md).
 
 1. Read callers, callees, types, tests, and nearby conventions. Name the boundary and constraints.
-2. Freeze a runner brief using `references/runner-prompt.md` and the red flags in `references/design-red-flags.md`.
-3. Spawn two read-only candidates using the Architect routes. Require concrete types, signatures, module ownership, migration shape, risks, and rejected alternatives.
-4. Compare candidates against current call sites and invariants. Choose one design or synthesize explicitly.
-5. Write the decision using `references/rationale-template.md` and stay available while implementation tests the design.
+2. Specify types, signatures, module ownership, migration shape, and risks. Consult `references/design-red-flags.md` when evaluating a new boundary.
+3. When comparing independent candidates, give read-only agents the same brief using `references/runner-prompt.md` and the Architect routes. Compare their designs against current call sites and invariants; choose one or explain the synthesis.
+4. Record the decision at the level needed by the implementer. Use `references/rationale-template.md` when a durable rationale is useful or requested.
 
 Completion means the implementer can write code without inventing a new boundary decision, and every affected caller has a migration path.

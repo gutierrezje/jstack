@@ -1,9 +1,9 @@
 # Feature
 
 1. Name the user outcome, core data shape, invariants, and boundaries before code.
-2. Use $how for unfamiliar ownership and $architect for a new durable boundary.
+2. Trace ownership and choose boundaries from callers and nearby conventions. Use $how when ownership remains unclear or $architect when a new boundary needs explicit design.
 3. Build one vertical tracer slice that reaches the real surface.
-4. Establish a throughput checkpoint: list remaining units, verification per unit, and whether delegation helps.
+4. For multi-part work, track remaining units and their verification; delegate when a disjoint unit benefits from it.
 5. Implement in small verifiable units, keeping compatibility work only when it belongs in the final design.
 6. Prove the feature on the real surface and run repository checks.
 
