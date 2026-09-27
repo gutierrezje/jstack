@@ -36,30 +36,45 @@ work; a tool listing or a command's successful start is not a working capture.
 
 ## Record and finalize
 
+Deliver the shortest clip that proves the claim. For a simple interaction, aim
+for 5–10 seconds or less: begin the triggering action within the first second
+and end about one second after the result is readable. Keep longer footage when
+the behavior itself requires it, such as a loading delay or a multi-step flow;
+identify what the additional time proves.
+
 1. State the feature, entry point, triggering action, expected result, and
-   whether video is required. Record baseline and treatment under comparable
-   conditions when the old behavior matters.
-2. Start capture before the trigger and confirm it is active. Exercise the
-   actual journey with semantic actions and observable waits. Keep action
-   timestamps so the clip can be matched to the receipt. Allow a brief lead-in
-   for recorder startup and readable initial state when needed; inspect the
-   opening frames to confirm the trigger was captured.
-3. Stop after the resulting state is visible. Finalize in cleanup on success,
+   whether video is required. Finish app startup, navigation to the initial
+   state, fixture setup, and action planning before recording unless one of
+   those steps is the behavior under test. Record baseline and treatment under
+   comparable conditions when the old behavior matters.
+2. Start capture immediately before the trigger and confirm it is active. Keep
+   recorder start, the prepared interaction, and stop in one short execution
+   when the driver supports it; retain fresh observations needed to act safely.
+   Use semantic actions and observable waits, recording action timestamps.
+   Keep only the lead-in needed for recorder startup and a readable initial state.
+3. Stop promptly once the result is readable. Finalize in cleanup on success,
    assertion failure, timeout, and recoverable runner interruption such as
    cancellation or a handled termination signal. Stop only the
    recorder and resources owned by this run; bound finalization so a stuck
    recorder cannot hang verification indefinitely.
-4. Decode or play the completed file and inspect the relevant interval. Confirm
-   the correct target, readable dimensions, nonzero duration, and coverage from
-   trigger to result. Inspect still frames when needed, but do not describe a
-   slideshow assembled from screenshots as continuous interaction footage.
-5. Preserve the original behavior result and any capture failure separately.
+4. Trim unrelated leading and trailing time from recorders that capture the
+   whole session, including setup and agent/tool idle time. Keep the continuous
+   trigger-to-result interval at its original speed, including waits that bear
+   on the claim. Save a separate delivery clip and retain the original under
+   the evidence storage rules; record the source clip and trim offsets.
+5. Play or decode the delivery clip from its beginning, not just a selected
+   interval. Confirm the trigger appears promptly, the result remains readable,
+   and every retained interval supports the claim. Check target, dimensions,
+   duration, and trigger-to-result coverage. If the action appears only near
+   the end of an otherwise idle clip, trim or recapture before sharing it.
+   Inspect still frames when needed, but do not describe a slideshow assembled
+   from screenshots as continuous interaction footage.
+6. Preserve the original behavior result and any capture failure separately.
    Keep failed or incomplete recordings for diagnosis, marked with their actual
    coverage. Add the artifact to the feature receipt before handing it off.
 
-Use short recordings around meaningful journeys. Avoid recording unrelated setup
-or idle time. For performance measurements, separate demonstration capture from
-measurement or hold recording overhead constant and disclose it.
+For performance measurements, separate demonstration capture from measurement
+or hold recording overhead constant and disclose it.
 
 ## Receipt and result
 
