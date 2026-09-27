@@ -9,10 +9,11 @@ Create a PR that a reviewer can understand and start reviewing without
 reconstructing the work from the branch. Finish with the PR open for review by
 default.
 
-Review-ready means the PR's scope, presentation, verification evidence, and
-review artifacts are complete. It does not mean every hosted check has settled
-or the branch has earned a current-head acceptance verdict. `$babysit-pr` owns
-full-branch review, repeated repair coverage, review feedback, hosted-check
+Review-ready means the PR's scope and evidence support meaningful review, with
+remaining limitations explicit and no review blockers. It does not mean every
+hosted check has settled or the branch has earned a current-head acceptance
+verdict. `$babysit-pr` owns full-branch review, repeated repair coverage,
+review feedback, hosted-check
 convergence, and the final `READY`, `NOT READY`, or `INCONCLUSIVE` verdict.
 
 Read and follow the [GitHub transport contract](../jesus-mode/references/codex-compatibility.md#github-transport) for every PR operation.
@@ -29,6 +30,21 @@ does not grant publishing authority. Keep force pushes, remote history rewrites,
 retargeting, public comments, review-thread actions, closing, and merging behind
 separate user authorization.
 
+## Review blockers
+
+Keep the PR in draft for a known required-check failure, an unmet explicit
+verification requirement, or an evidence gap that prevents assessing a material
+behavior or usability claim. Name the requirement or claim each blocker affects.
+A missing screenshot blocks only when explicitly required or needed to
+substantiate a material claim. If an optional capture or upload fails, omit the
+image and disclose the limitation when the remaining evidence suffices.
+Additional captures and presentation polish do not block meaningful review.
+
+Repository and linked-issue acceptance requirements remain binding, including
+specified native journeys. Record any user-approved alternative evidence or
+scope change in the PR. Reporting a required journey as unverified does not
+waive it, and this skill's evidence flexibility does not authorize that change.
+
 ## Workflow
 
 1. Resolve the repository, base branch, head branch, linked issue, worktree
@@ -37,15 +53,15 @@ separate user authorization.
    preflight. Include staged and unstaged work plus enough surrounding code to
    confirm the scope, describe it accurately, remove accidental churn, and fix
    clear in-scope problems. This is preparation, not an exhaustive review loop.
-3. Run the checks required by the change and repository. Verify the behavior on
-   the most faithful practical surface.
+3. Run the checks required by the change, repository, and linked issue. Verify
+   the behavior on the most faithful practical surface.
 4. Gather direct evidence for every material claim in the PR. Use the evidence
    rules below. Reuse evidence collected during implementation after confirming
-   it still covers the prepared change. Collect missing or stale captures on the
-   relevant runtime before deciding draft state. If a before image is needed,
-   reproduce the base in an isolated checkout when practical. A claim without
-   evidence is either measured before publishing, removed, or called out as an
-   evidence gap.
+   it still covers the prepared change. Collect missing or stale evidence needed
+   to close a review blocker. If a before image is needed, reproduce the base in
+   an isolated checkout when practical or use the labeled historical baseline
+   described below. Narrow or remove unsupported claims and disclose remaining
+   gaps; apply the review-blocker criteria before deciding draft state.
 5. Commit coherent implementation units using repository conventions. Apply
    the evidence storage rules below before staging artifacts. Reuse current
    review results when they already exist, but do not
@@ -100,25 +116,37 @@ core sections even when the PR is small.
 ## Evidence rules
 
 - List the exact tests, checks, or manual flows run and their results. Link
-  durable logs or artifacts when a summary is not enough.
+  durable logs or artifacts when a summary is not enough. State what each kind
+  of evidence proves: focused tests can establish recovery logic, while native
+  layout or screen-reader behavior needs observation on that surface.
+- When a native failure path cannot be reproduced safely and reliably, report
+  the device gap and use focused tests for the behavior they cover. Do not add
+  artificial failure hooks solely to obtain screenshots. Apply the acceptance
+  requirements above when deciding whether alternative evidence is sufficient.
 - Include current model-review results when they already provide useful evidence.
   Keep local report paths out of the body. Open PR does not require new model
   review coverage.
-- For UI changes, include screenshots of every affected state needed to review
-  the change. Use before-and-after images when the old behavior matters. Keep the
-  viewport, theme, account, and fixture consistent when comparing states. Remove
-  sensitive data, add captions that identify the journey and state, and make the
+- For UI changes, select screenshots that substantiate material visual claims
+  and help reviewers understand the affected states. Use before-and-after images
+  when the old behavior matters. Prefer consistent viewport, theme, account,
+  and fixture. If an exact match is impractical, use a relevant historical
+  baseline labeled with its source revision or date, known configuration
+  differences, and comparison limits. Claim only differences the images support;
+  an exact match is not required merely for presentation polish. Remove sensitive
+  data, add captions that identify the journey and state, and make the
   images native GitHub attachments through the GitHub transport contract. Embed
   the reviewer-relevant set directly in the Evidence section with captions;
   supplemental links may accompany it. Complete screenshot-publication acceptance
   using the GitHub transport contract.
-- Present before-and-after captures in a two-column table, with each matched
-  state on the same row. Crop review copies to the changed area while retaining
-  enough surrounding UI to orient the reviewer; use the same crop and scale for
-  each pair. For phone captures, aim for 300–360 displayed pixels per image and
-  about twice that width in the uploaded file. Link each displayed image to its
-  attachment so the reviewer can open it at full resolution. Use a wider crop or
-  larger display size when the relevant text would otherwise be hard to read.
+- Present comparable before-and-after captures in a two-column table, with each
+  state on the same row and any historical baseline labeled. Use separately
+  captioned images when pairing would imply an unsupported comparison. Crop
+  review copies to the changed area while retaining enough surrounding UI to
+  orient the reviewer; use the same crop and scale when practical. For phone
+  captures, aim for 300–360 displayed pixels per image and about twice that width
+  in the uploaded file. Link each displayed image to its attachment so the
+  reviewer can open it at full resolution. Use a wider crop or larger display
+  size when the relevant text would otherwise be hard to read.
   Check the rendered table on GitHub before treating the evidence as complete.
 - For requested video or claims about interaction over time, follow the
   [video evidence contract](../jesus-mode/references/video-evidence.md). Reuse
@@ -133,10 +161,10 @@ core sections even when the PR is small.
   practical.
 
 Keep large raw output out of the body. Summarize it and link the full artifact.
-Missing earlier captures are unfinished preparation: collect them within the
-authorized workflow. If required evidence still cannot be collected or attached,
-keep the PR in draft and state exactly what is missing, what recovery was
-attempted, and the dependency preventing completion.
+For remaining gaps, state what is missing, what collection or recovery was
+attempted, and the effect on review. Keep the PR in draft only when a
+review blocker remains or the user requested it; disclose nonblocking gaps
+without presenting them as completed checks.
 
 ## Evidence storage and cleanup
 
@@ -175,11 +203,11 @@ assets and unrelated files intact.
 ## Completion
 
 Finish when the remote PR points to the prepared head, the remote body follows
-the contract, every material claim has direct evidence, reviewer-relevant UI
-states have native attachments embedded inline with verified GitHub web rendering,
-and risks or evidence gaps are explicit. Confirm the PR is open for review. If it remains a
-draft, report the explicit user constraint or the known failure or missing
-artifact that prevents meaningful review. Report pending hosted checks
-accurately. Open PR completion does not require a full model
-review, disposition of review feedback, settled hosted checks, or a current-head
+the contract, claims match the collected evidence, selected screenshots have
+native attachments embedded inline with verified GitHub web rendering, and
+risks or evidence gaps are explicit. Confirm the PR is open for review once
+the review-blocker criteria are satisfied. If it remains a draft, report the
+explicit user constraint or the specific review blocker. Report pending hosted
+checks accurately. Open PR completion does not require a full model review,
+disposition of review feedback, settled hosted checks, or a current-head
 acceptance verdict.
