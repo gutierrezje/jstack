@@ -61,15 +61,20 @@ not change sandbox, network, managed-policy, or approval requirements.
 - Use the GitHub CLI or an installed GitHub/Codex plugin for PR and issue operations, with the native browser attachment-upload exception below. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
 - Use UI control against the product under test and to capture screenshots. The signed-in GitHub attachment picker may also upload evidence; keep PR creation, body updates, readback, checks, review state, and lifecycle changes in the CLI or plugin.
 - Publish PR screenshots as native GitHub attachments and embed the returned
-  URLs in the description with captioned Markdown images, one image per block:
+  URLs in the description with captioned images, one image per block or table cell:
   `![State being demonstrated](https://github.com/user-attachments/assets/<asset-id>)`.
   Essential evidence must be visible inline; a bare URL or clickable file link
   does not replace an embedded screenshot. Links may supplement the inline set.
+  For a before-and-after table, use the same canonical attachment URL in the
+  linked image and its target, for example
+  `<a href="<attachment-url>"><img src="<attachment-url>" alt="Before" width="320"></a>`.
 - Prefer native `gh pr create/edit --attach` (GitHub CLI 2.99 or newer). Check
   command help for support early. Put local image references in a temporary body
   file and pass each matching image with `--attach`; GitHub CLI uploads the files
-  and rewrites those references in place. For an existing PR, preserve its body
-  and captions while replacing the old image targets, then run
+  and rewrites those references in place. Use Markdown image references for the
+  upload, then place the returned attachment URLs in any width-limited HTML table.
+  For an existing PR, preserve its body and captions while replacing the old
+  image targets, then run
   `gh pr edit <pr> --body-file <body-file> --attach <image-path>` with repeated
   attachment flags as needed. Re-read the PR after a partial failure before
   retrying, because successful uploads may already have updated the body.
@@ -101,7 +106,8 @@ not change sandbox, network, managed-policy, or approval requirements.
   repository-image targets. In the signed-in rendered PR, wait for each required
   image to load and check `complete && naturalWidth > 0`, or equivalent image-load
   evidence from the available browser tool. Visually inspect inline placement
-  and captions; image elements alone or a separate image tab are insufficient.
+  and captions. For a comparison table, check the Before/After pairing, displayed
+  size, and full-size link; image elements alone or a separate image tab are insufficient.
   This completes screenshot-publication acceptance. GitHub Mobile rendering is
   not an acceptance check: do not request device confirmation, list its absence
   as an evidence gap, or use it to keep a PR draft, withhold readiness, issue

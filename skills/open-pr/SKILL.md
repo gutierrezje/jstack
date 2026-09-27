@@ -112,6 +112,14 @@ core sections even when the PR is small.
   the reviewer-relevant set directly in the Evidence section with captions;
   supplemental links may accompany it. Complete screenshot-publication acceptance
   using the GitHub transport contract.
+- Present before-and-after captures in a two-column table, with each matched
+  state on the same row. Crop review copies to the changed area while retaining
+  enough surrounding UI to orient the reviewer; use the same crop and scale for
+  each pair. For phone captures, aim for 300–360 displayed pixels per image and
+  about twice that width in the uploaded file. Link each displayed image to its
+  attachment so the reviewer can open it at full resolution. Use a wider crop or
+  larger display size when the relevant text would otherwise be hard to read.
+  Check the rendered table on GitHub before treating the evidence as complete.
 - For requested video or claims about interaction over time, follow the
   [video evidence contract](../jesus-mode/references/video-evidence.md). Reuse
   finalized clips whose receipts cover the prepared change, present them beside
