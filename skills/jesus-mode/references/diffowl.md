@@ -54,6 +54,12 @@ If automatic coverage is missing, failed, or stale, run one manual fallback with
 the same exact scope. If the available DiffOwl interface cannot prove coverage,
 record the gap and keep any readiness verdict `INCONCLUSIVE`.
 
+For a missing full PR checkpoint, use `$run-diffowl-review` when available.
+Otherwise run `diffowl review --base <base-oid>` from a checkout whose `HEAD`
+equals the intended head OID. Preserve the timestamped report, reviewed range,
+and finding IDs. An exact-head commit report cannot replace the initial full
+branch checkpoint. Consume an adequate running review before launching another.
+
 ## Findings and corrections
 
 Treat every finding as a claim. Verify it against the current code, record its
