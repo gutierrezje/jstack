@@ -52,16 +52,16 @@ agent cannot substitute for an unavailable Max agent.
 
 | Work | Model | Effort | Default fan-out |
 | --- | --- | --- | ---: |
-| Planning and orchestration | `gpt-5.6-sol` | `low` | 0 |
-| Feature implementation | `gpt-5.6-luna` | `max` | 1 |
-| Refactoring and mechanical edits | `gpt-5.6-luna` | `high` | 1 |
-| Focused bug fix after cause is known | `gpt-5.6-luna` | `max` | 1 |
-| Bug investigation | `gpt-5.6-luna` | `max` | 1 |
-| Performance investigation | `gpt-5.6-luna` | `max` | 1 |
-| Repository exploration | `gpt-5.6-luna` | `high` | 1 |
-| Ambiguous research or cross-check | `gpt-5.6-luna` | `max` | 1 |
-| Test discovery and verification | `gpt-5.6-luna` | `high` | 1 |
-| Prose and product judgment | `gpt-5.6-sol` | `low` | 0 |
+| Planning and orchestration | `gpt-6-sol` | `low` | 0 |
+| Feature implementation | `gpt-6-luna` | `max` | 1 |
+| Refactoring and mechanical edits | `gpt-6-luna` | `high` | 1 |
+| Focused bug fix after cause is known | `gpt-6-luna` | `max` | 1 |
+| Bug investigation | `gpt-6-luna` | `max` | 1 |
+| Performance investigation | `gpt-6-luna` | `max` | 1 |
+| Repository exploration | `gpt-6-luna` | `high` | 1 |
+| Ambiguous research or cross-check | `gpt-6-luna` | `max` | 1 |
+| Test discovery and verification | `gpt-6-luna` | `high` | 1 |
+| Prose and product judgment | `gpt-6-sol` | `low` | 0 |
 | Architecture and difficult synthesis | `gpt-6-astra` | `medium` | 0 |
 | Hardest unresolved work | `gpt-6-astra` | `medium` | 0 |
 
