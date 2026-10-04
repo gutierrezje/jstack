@@ -1,5 +1,7 @@
 # Codex compatibility contract
 
+On Claude Code, read the [Claude Code compatibility overlay](claude-compatibility.md) first; it overrides this contract where they conflict.
+
 This contract overrides Cursor-specific mechanics retained in the ported pstack workflows. Preserve the workflow's intent and completion criteria while applying these substitutions.
 
 ## Delegation

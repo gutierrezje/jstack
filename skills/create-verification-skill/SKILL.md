@@ -1,6 +1,7 @@
 ---
 name: create-verification-skill
 description: "Create project-local behavior verification skills and adapters when asked to build repeatable UI, CLI, mobile, or service checks."
+disable-model-invocation: true
 ---
 
 # Create verification skill

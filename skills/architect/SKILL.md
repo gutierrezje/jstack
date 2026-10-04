@@ -1,6 +1,7 @@
 ---
 name: architect
 description: "Use when asked to design module boundaries, types, or interfaces before implementation."
+disable-model-invocation: true
 ---
 
 # Architect

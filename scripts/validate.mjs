@@ -15,6 +15,22 @@ function walk(directory) {
   });
 }
 
+const codexManifest = JSON.parse(readFileSync(join(root, ".codex-plugin", "plugin.json"), "utf8"));
+const claudeManifestFile = join(root, ".claude-plugin", "plugin.json");
+if (!existsSync(claudeManifestFile)) {
+  failures.push(".claude-plugin/plugin.json is missing");
+} else if (JSON.parse(readFileSync(claudeManifestFile, "utf8")).name !== codexManifest.name) {
+  failures.push(".claude-plugin/plugin.json name must match .codex-plugin/plugin.json");
+}
+
+// Codex reads `allow_implicit_invocation` from agents/openai.yaml; Claude Code reads
+// `disable-model-invocation` from SKILL.md frontmatter. Return a failure message when
+// the two runtimes disagree about whether the model may invoke this skill, else null.
+function checkInvocationParity(skillName, codexMetadata, skillSource) {
+  // TODO: compare the two flags and decide which mismatches fail validation.
+  return null;
+}
+
 const skillDirectories = readdirSync(skillsRoot, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => join(skillsRoot, entry.name));
@@ -36,6 +52,11 @@ for (const directory of skillDirectories) {
   const match = source.match(/^---\n[\s\S]*?^name:\s*([^\n]+)$/m);
   if (!match || match[1].trim() !== expectedName) {
     failures.push(`${relative(root, skillFile)} name must be ${expectedName}`);
+  }
+
+  if (existsSync(metadataFile)) {
+    const parity = checkInvocationParity(expectedName, readFileSync(metadataFile, "utf8"), source);
+    if (parity) failures.push(parity);
   }
 }
 

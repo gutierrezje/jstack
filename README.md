@@ -1,6 +1,6 @@
 # Jstack
 
-Jstack is a Codex plugin for software work. It routes tasks between models and
+Jstack is a Codex and Claude Code plugin for software work. It routes tasks between models and
 bundles skills for planning, investigation, implementation, review, and
 verification.
 
@@ -45,6 +45,22 @@ service.
 If you only want the skills, copy the directories under `skills/` into
 `~/.codex/skills/`. Keep their names unchanged because some skills link to files
 in neighboring directories.
+
+### Claude Code
+
+Add the repository as a marketplace and install the plugin:
+
+```text
+/plugin marketplace add gutierrezje/jstack
+/plugin install jstack@jstack
+```
+
+For a local checkout, run `/plugin marketplace add <path-to-checkout>`. Skills
+are namespaced, so `$arena` becomes `/jstack:arena`. Claude Code reads the same
+`skills/` directory; tier names map to Claude models in
+[Claude Code routes](skills/jesus-mode/references/routes.md#claude-code-routes),
+and runtime differences live in the
+[Claude Code compatibility overlay](skills/jesus-mode/references/claude-compatibility.md).
 
 ## Use
 

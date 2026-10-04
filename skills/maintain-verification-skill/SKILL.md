@@ -1,6 +1,7 @@
 ---
 name: maintain-verification-skill
 description: "Audit and repair a project's verification skills, executable adapters, feature coverage, and receipts against current source and live behavior. Use for /maintain-verification-skill or \"audit the verify skill\"."
+disable-model-invocation: true
 ---
 
 # Maintain verification skill

@@ -1,6 +1,7 @@
 ---
 name: sync-pstack
 description: Analyze upstream cursor/plugins pstack changes and guide semantic ports into Codex-native Jstack without overwriting local skills. Use when the user says "sync pstack", "check pstack updates", or asks to update Jstack from upstream.
+disable-model-invocation: true
 ---
 
 # Sync pstack into Jstack

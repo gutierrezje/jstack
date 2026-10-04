@@ -1,6 +1,7 @@
 ---
 name: principle-sequence-verifiable-units
 description: "Use for sweeps, migrations, or stacked changes that need coherent verification checkpoints before dependent work proceeds."
+disable-model-invocation: true
 ---
 
 

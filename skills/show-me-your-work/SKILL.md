@@ -1,6 +1,7 @@
 ---
 name: show-me-your-work
 description: "Use when asked for a decision trail, or when unattended work needs a durable record of decisions and evidence."
+disable-model-invocation: true
 ---
 
 # Show me your work

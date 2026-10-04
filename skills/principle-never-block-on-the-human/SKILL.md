@@ -1,6 +1,7 @@
 ---
 name: principle-never-block-on-the-human
 description: "Use when routine work is stalling for approval despite clear scope and existing authority."
+disable-model-invocation: true
 ---
 
 # Keep authorized work moving

@@ -1,6 +1,7 @@
 ---
 name: arena
 description: "Use when asked to compare parallel candidate implementations or designs and combine the strongest results."
+disable-model-invocation: true
 ---
 
 # Arena

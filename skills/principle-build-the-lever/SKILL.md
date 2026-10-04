@@ -1,6 +1,7 @@
 ---
 name: principle-build-the-lever
 description: "Use when repeated transformations or reproducible verification justify a reusable script, codemod, or generator."
+disable-model-invocation: true
 ---
 
 # Build the lever

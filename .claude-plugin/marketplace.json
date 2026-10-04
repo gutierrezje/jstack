@@ -1,0 +1,14 @@
+{
+  "name": "jstack",
+  "description": "Jstack: pstack-derived software workflows for Claude Code.",
+  "owner": {
+    "name": "Jstack contributors"
+  },
+  "plugins": [
+    {
+      "name": "jstack",
+      "source": "./",
+      "description": "Cost-aware multi-agent software workflows adapted from pstack."
+    }
+  ]
+}

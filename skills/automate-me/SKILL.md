@@ -1,6 +1,7 @@
 ---
 name: automate-me
 description: "Create or revise a personal mode skill when asked to capture working preferences as agent instructions."
+disable-model-invocation: true
 ---
 
 # Automate me

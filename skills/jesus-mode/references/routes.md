@@ -1,7 +1,8 @@
 # Jstack routing table
 
-This file is the single editable source for Jstack's Codex model, effort,
-service-tier, named-agent, and fan-out choices.
+This file is the single editable source for Jstack's model, effort,
+service-tier, named-agent, and fan-out choices on Codex and Claude Code. Routes
+use tier names; [Claude Code routes](#claude-code-routes) maps them for Claude.
 
 Use these routes after deciding that delegation benefits the task. They select
 children; they do not require a planner/executor split or replace the active
@@ -115,3 +116,20 @@ agent cannot substitute for an unavailable Max agent.
 ## Overrides
 
 Honor an explicit user-selected model, effort, topology, or worker count. State the cost or latency implication when the override materially increases fan-out.
+
+## Claude Code routes
+
+On Claude Code, keep every role, Pstack role, topology, and fan-out above and
+translate each tier to the `Agent` tool's `model` parameter:
+
+| Tier | Claude Code `model` | Intended effort |
+| --- | --- | --- |
+| Astra (`gpt-6-astra`) | `opus` | `high` |
+| Sol (`gpt-6-sol`) | `opus` | `low` |
+| Luna High | `sonnet` | `high` |
+| Luna Max | `sonnet` | `max` |
+| Terra High | `fable` | `high` |
+
+- Skip [named-agent dispatch](#named-agent-dispatch) and service tiers; they are Codex-only. Dispatch with `subagent_type: "general-purpose"`, or `"Explore"` for read-only exploration, plus the mapped `model`.
+- The `Agent` tool selects a model but not an effort; children run at the session effort. Treat the effort column as intent. Apply it only through a selector the runtime exposes, such as a workflow `agent()` effort option the user has opted into.
+- If a mapped model is rejected, report the mismatch once and use the nearest listed model. Never fall back silently.

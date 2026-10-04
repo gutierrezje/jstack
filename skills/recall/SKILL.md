@@ -1,6 +1,7 @@
 ---
 name: recall
 description: "Recover recent working context when asked to resume prior work or recall earlier tasks and decisions."
+disable-model-invocation: true
 ---
 
 # Recall

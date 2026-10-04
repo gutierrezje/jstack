@@ -1,6 +1,7 @@
 ---
 name: figure-it-out
 description: "Use for a large migration or multi-part task that needs a custom execution playbook."
+disable-model-invocation: true
 ---
 
 # Figure it out

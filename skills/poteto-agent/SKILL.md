@@ -1,6 +1,7 @@
 ---
 name: poteto-agent
 description: "Use as a delegated worker for Jesus mode or Poteto-style work."
+disable-model-invocation: true
 ---
 
 # Poteto agent
