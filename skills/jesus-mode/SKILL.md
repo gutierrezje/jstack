@@ -52,6 +52,7 @@ continue independent work; keep it visible until resolved.
 
 - For executable code changes or PR work, read and follow the [DiffOwl coverage contract](references/diffowl.md). Preserve cumulative review coverage and avoid duplicate reviews.
 - For PR creation or presentation updates, use [$open-pr](../open-pr/SKILL.md). Use [$babysit-pr](../babysit-pr/SKILL.md) when the user asks to babysit, shepherd, or finish a PR. Those skills retain their authorization and completion requirements.
+- For merging, releasing, or cleanup after delivery, use [$ship](../ship/SKILL.md) for the selected phases and their evidence.
 - Before delegating, read [global routes](references/routes.md) and the delegation sections of the [Codex compatibility contract](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it.
 - Read the relevant compatibility section when using ported Cursor mechanics, GitHub operations, or task history.
 - Use [related task context](references/codex-compatibility.md#related-task-context) when the user refers to prior work or a missing earlier decision affects the task.
