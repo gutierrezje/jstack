@@ -14,7 +14,7 @@ decision or the user requests a comparison. Before dispatching, follow
 [the global routing table](../jesus-mode/references/routes.md).
 
 1. Read callers, callees, types, tests, and nearby conventions. Name the boundary and constraints.
-2. Specify types, signatures, module ownership, migration shape, and risks. Consult `references/design-red-flags.md` when evaluating a new boundary.
+2. Specify types, signatures, module ownership, migration shape, and risks. Consult `references/design-red-flags.md` when evaluating a new boundary. Prefer a design whose ownership and imports make a locally plausible change correct across all consumers.
 3. When comparing independent candidates, give read-only agents the same brief using `references/runner-prompt.md` and the Architect routes. Compare their designs against current call sites and invariants; choose one or explain the synthesis.
 4. Record the decision at the level needed by the implementer. Use `references/rationale-template.md` when a durable rationale is useful or requested.
 

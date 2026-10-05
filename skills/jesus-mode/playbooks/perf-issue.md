@@ -1,6 +1,6 @@
 # Performance issue
 
-1. Capture a baseline on the user-visible path and freeze the metric, workload, and environment.
+1. Capture a baseline on the user-visible path and freeze the metric, workload, and environment. Vet the baseline and every reported measurement with [Benchmark Checklist](../../benchmark-checklist/SKILL.md).
 2. Profile before editing; attribute cost to a mechanism, not a hot-looking line.
 3. Compare structural options: remove work, reduce cardinality, change shape, cache with a valid lifetime, or reschedule outside the interactive path.
 4. Implement one hypothesis at a time.

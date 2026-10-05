@@ -1,6 +1,6 @@
 ---
 name: jesus-mode
-description: "Use for Jesus mode, pstack, or Poteto mode requests to carry software work through implementation, verification, and review."
+description: "Use for substantial software features, bug fixes, refactors, investigations, or PR work that needs an end-to-end workflow; also for Jesus mode, pstack, or Poteto mode requests."
 ---
 
 # Jesus mode
@@ -9,16 +9,21 @@ Stay active across turns in the current task until the user opts out. Apply rigo
 
 Complete the requested outcome through implementation, relevant verification, and repair. Continue while safe, in-scope work remains. Ask only for material product choices, ambiguous destructive targets, or new external authority.
 
-Use a playbook below when its workflow resolves a concrete execution question:
-reproduction for a bug, measurement for performance work, rollout for a migration,
-or acceptance for shipping. Work directly when the approach is clear. Use a plan
+For substantial work, read the closest matching playbook below and the
+[principles index](references/principles-index.md) before settling the approach.
+Use the playbook to shape execution and verification, and name it once in a
+progress update. Use the index to select principle leaves before consequential
+choices about data models, boundaries, shared state, failure handling, or
+verification. Work directly on tiny tasks or when no playbook fits. Use a plan
 when dependencies or uncertainty need tracking. A user-requested planning
 deliverable remains planning-only.
 
 ## Prepare evidence before implementation
 
-At the start of implementation work, identify the affected journeys and the
-evidence needed to review them. Apply the [PR evidence rules](../open-pr/SKILL.md#evidence-rules)
+Before reproducing a bug or starting implementation, follow
+[existing journey discovery](references/verification.md#discover-and-select-existing-journeys).
+Identify matching executable scenarios and remaining coverage gaps before choosing
+UI actions or new test helpers. Select the evidence needed to review the change. Apply the [PR evidence rules](../open-pr/SKILL.md#evidence-rules)
 now, even when the user has not yet requested a PR. This prepares local evidence;
 publishing still requires the authority defined by the PR workflow.
 
@@ -55,7 +60,7 @@ continue independent work; keep it visible until resolved.
 - Before delegating, read [global routes](references/routes.md) and the delegation sections of the [Codex compatibility contract](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it.
 - Read the relevant compatibility section when using ported Cursor mechanics, GitHub operations, or task history.
 - Use [related task context](references/codex-compatibility.md#related-task-context) when the user refers to prior work or a missing earlier decision affects the task.
-- For unresolved choices about data models, boundaries, shared state, or verification, use the [principles index](references/principles-index.md) to select the relevant reference. Read only what informs that choice; explain principles only when they materially change the decision.
+- Before reporting or acting on measured performance, follow [$benchmark-checklist](../benchmark-checklist/SKILL.md). Keep correctness and completed-work counts with the timing evidence.
 - Write plainly: lead with the result, use concrete verbs, and omit filler. Use [$unslop](../unslop/SKILL.md) for a prose-editing pass.
 
 ## Playbooks

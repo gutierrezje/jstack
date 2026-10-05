@@ -18,6 +18,11 @@ scope. Read the repository instructions and package scripts before choosing
 commands. Inspect the current diff or PR when it determines which product paths
 matter. Preserve user changes in a dirty checkout.
 
+Discover the project's existing automated journeys through
+[the verification contract](../jesus-mode/references/verification.md#discover-and-select-existing-journeys).
+Use the selected scenario's prerequisites to determine the environment; leave
+journey execution to the requested QA scope.
+
 Classify the client as mobile, web, or desktop. Read
 [application-targets.md](references/application-targets.md) completely and use
 the matching branch. List the components required for this test. Consider the

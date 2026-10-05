@@ -28,6 +28,10 @@ how something works and `$why` to find out why it ended up that way.
 than one independent pass. Other skills cover verification, retrospectives,
 teaching, writing, and the engineering principles behind Jesus mode.
 
+Use [$benchmark-checklist](skills/benchmark-checklist/SKILL.md) to vet measured
+performance and [$correct](skills/correct/SKILL.md) to prevent recurring repository
+mistakes with architecture, types, checks, or behavioral tests.
+
 Astra handles the highest-level reasoning, with Sol next for routine orchestration
 and judgment. Luna handles investigation and bounded tasks; Terra is reserved for
 Arena design comparisons. Change the
@@ -94,4 +98,4 @@ node scripts/validate.mjs
 
 ## Provenance
 
-Jstack is based on pstack `0.14.5` at commit `fdf357fae76feff7e5f2e5aaff57f99f644b55f8`. See [`NOTICE.md`](NOTICE.md) and [`LICENSE`](LICENSE).
+Jstack is based on pstack `0.15.13` at commit `e5a8186d7b43be8d6ac4452440fbead5f1a51c70`. See [`NOTICE.md`](NOTICE.md) and [`LICENSE`](LICENSE).

@@ -127,24 +127,43 @@ function handle(input: unknown) {
 
 External sources include RPC payloads, `JSON.parse`, `postMessage`, IPC, file contents, environment variables, database results.
 
+## Schemas before hand-rolled guards
+
+Look for the repository's runtime schema library and existing schemas before writing a property-by-property guard for external data. Let one schema own validation and infer the TypeScript type from it.
+
+```ts
+import { z } from "zod";
+
+const UserSchema = z.object({
+  id: z.string().uuid(),
+  role: z.enum(["admin", "member"]),
+});
+
+type User = z.infer<typeof UserSchema>;
+
+function parseUser(input: unknown): User {
+  return UserSchema.parse(input);
+}
+```
+
+Use `safeParse` when failure is an expected branch. Use the equivalent inference helper for another existing schema library. Keep dependencies unchanged when a small boundary can be validated without adding a schema system.
+
 ## No `as` casts
 
 Every `as` is a potential runtime crash. Cast only after the type system has verified the claim.
 
 ```ts
+import { z } from "zod";
+
 // Don't
 const user = data as User;
 
-// Do. Earn the cast at the boundary.
+// Do. Validate through the existing schema system.
+const UserSchema = z.object({ id: z.string(), name: z.string() });
+type User = z.infer<typeof UserSchema>;
+
 function parseUser(data: unknown): User {
-  if (typeof data !== "object" || data === null) {
-    throw new Error("expected object");
-  }
-  if (!("id" in data) || typeof (data as Record<string, unknown>).id !== "string") {
-    throw new Error("expected id");
-  }
-  // ... validate all fields
-  return data as User; // OK, earned cast after full validation
+  return UserSchema.parse(data);
 }
 ```
 

@@ -1,6 +1,6 @@
 # Hillclimb
 
-1. Freeze one metric, harness, target, budget, and acceptance threshold.
+1. Vet the harness with [Benchmark Checklist](../../benchmark-checklist/SKILL.md), including correctness and completed-work counts. Then freeze one metric, harness, target, budget, and acceptance threshold.
 2. Start an append-only decision trail with $show-me-your-work.
 3. Generate ranked hypotheses and choose the cheapest discriminating experiment.
 4. Change one factor, measure before/after, and accept only wins beyond noise.

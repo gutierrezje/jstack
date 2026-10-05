@@ -1,9 +1,10 @@
 # Real-surface QA
 
 Read and follow the [project verification contract](../../jesus-mode/references/verification.md).
-Classify the diff by changed user journey. Discover project-local
-`.agents/skills/verify-*` skills or the repository's equivalent and read only the
-matching skill and feature recipes. Use the repository's environment-setup skill
+Classify the diff by changed user journey and follow
+[existing journey discovery](../../jesus-mode/references/verification.md#discover-and-select-existing-journeys).
+Select matching executable scenarios as well as feature recipes; record uncovered
+acceptance requirements before choosing interactive checks. Use the repository's environment-setup skill
 when one exists to align the exact checkout, client or frontend build, backend,
 device or browser, authentication, logs, and data target. Do not duplicate its
 process-management workflow inside this skill.

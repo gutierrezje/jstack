@@ -14,6 +14,39 @@ authentication, mutable state, or cleanup differs enough that one interface
 would expose those differences to every caller. Do not add a wrapper that only
 renames one underlying command.
 
+## Discover and select existing journeys
+
+Before planning reproduction, implementation QA, or PR acceptance, discover the
+project's executable journeys. Read its repository instructions, verification
+skill and coverage index, package scripts, and relevant runner help or capability
+listing. A written recipe and an executable scenario provide different coverage;
+check which the project actually has before assembling individual UI actions.
+
+Map the affected behavior to the smallest relevant scenario set. Record the
+runner/command and scenario IDs, what each asserts, required runtime and fixtures,
+and any uncovered behavior. When no scenario fits, state the missing coverage
+and use the project's interactive recipe or focused test for that gap.
+
+Run matching scenarios within the task's authority and verification scope. For a
+bug, use a matching journey to reproduce before the fix and verify afterward when
+its fixtures and fault controls faithfully exercise the failure. Inspect existing
+receipts before repeating unchanged evidence. An investigation-only request can
+record selected journeys and limitations without executing mutating scenarios.
+
+Use the runner's documented setup, dry run, identity checks, assertions, receipt,
+and cleanup. Keep its target binding authoritative instead of wrapping the same
+run in another verifier. If a scenario is blocked or stale, record the concrete
+dependency or changed expectation; preserve the failed run. Use interactive
+controls for uncovered states or diagnosis, and identify what that fallback does
+and does not prove. Keep experimental and assisted status explicit; discovery
+does not promote a journey into a required release gate or authorize deployment,
+shared-state takeover, or new test infrastructure.
+
+Carry the selected commands, scenario IDs, prerequisites, and receipt paths into
+any delegated task or handoff. Report which relevant journeys ran, which were
+blocked or skipped and why, and the remaining coverage gaps. For changes without
+a runtime effect, state that applicability briefly and use appropriate checks.
+
 ## Deep adapter interface
 
 The adapter should let a cold agent express intent without knowing process
