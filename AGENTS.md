@@ -29,6 +29,7 @@ Run:
 
 ```bash
 node scripts/validate.mjs
+node --test scripts/validate.test.mjs
 claude plugin validate .
 python3 ~/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py .
 ```

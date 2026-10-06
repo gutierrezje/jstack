@@ -27,7 +27,17 @@ if (!existsSync(claudeManifestFile)) {
 // `disable-model-invocation` from SKILL.md frontmatter. Return a failure message when
 // the two runtimes disagree about whether the model may invoke this skill, else null.
 function checkInvocationParity(skillName, codexMetadata, skillSource) {
-  // TODO: compare the two flags and decide which mismatches fail validation.
+  if (/^policy:[ \t]*[^\s#]/m.test(codexMetadata)) {
+    return `${skillName} invocation policy in agents/openai.yaml must use a block mapping: put allow_implicit_invocation on an indented line beneath policy:.`;
+  }
+  const policy = `${codexMetadata}\n`.match(/^policy:[ \t]*(?:#.*)?\r?\n((?:[ \t]+[^\n]*\n|[ \t]*\r?\n|#[^\n]*\n)*)/m)?.[1] ?? "";
+  const frontmatter = skillSource.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1] ?? "";
+  const policyIndent = policy.match(/^([ \t]+)[^\s#]/m)?.[1] ?? "  ";
+  const codexDisabled = new RegExp(`^${policyIndent}allow_implicit_invocation:[ \\t]*false[ \\t]*(?:#.*)?\\r?$`, "m").test(policy);
+  const claudeDisabled = /^disable-model-invocation:[ \t]*true[ \t]*(?:#.*)?\r?$/m.test(frontmatter);
+  if (codexDisabled !== claudeDisabled) {
+    return `${skillName} invocation policy differs: align policy.allow_implicit_invocation in agents/openai.yaml with disable-model-invocation in SKILL.md (false/true for explicit-only, true/false or both omitted for automatic invocation).`;
+  }
   return null;
 }
 

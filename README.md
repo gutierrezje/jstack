@@ -94,6 +94,7 @@ require authorization covering that action and target; ask when it is missing.
 
 ```bash
 node scripts/validate.mjs
+node --test scripts/validate.test.mjs
 ```
 
 ## Provenance
