@@ -1,6 +1,0 @@
-interface:
-  display_name: "Technical Writing"
-  short_description: "Codex-native pstack workflow: technical-writing"
-  default_prompt: "Use $technical-writing for this task."
-policy:
-  allow_implicit_invocation: false

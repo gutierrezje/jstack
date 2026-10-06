@@ -1,6 +1,0 @@
-interface:
-  display_name: "Principle Test Behavior Not Implementation"
-  short_description: "Verify observable results and meaningful regression assertions"
-  default_prompt: "Apply $principle-test-behavior-not-implementation to these tests."
-policy:
-  allow_implicit_invocation: false

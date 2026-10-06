@@ -17,6 +17,7 @@ response:
 
 Keep model, effort, and fan-out choices only in `skills/jesus-mode/references/routes.md`.
 Honor the `tdd` → `pstack-tdd` and `teach` → `pstack-teach` name collisions.
+Port upstream `principle-*` skills as guides in `skills/jesus-mode/references/principles/`: move the description into the guide's first line and its trigger into `principles-index.md`. Port upstream custom agents, `benchmark-checklist`, and `technical-writing` to the guide paths the analyzer maps.
 Preserve Codex authorization boundaries and shared-checkout/write-isolation
 rules. Do not grant publishing, deployment, merge, deletion, or messaging
 authority through an upstream workflow.

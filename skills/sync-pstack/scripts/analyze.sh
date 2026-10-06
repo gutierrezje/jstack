@@ -97,11 +97,14 @@ changes=$(git -C "$upstream_dir" diff --name-status --find-renames "$base" "$hea
 
 map_local() {
   case "$1" in
+    pstack/skills/principle-*/SKILL.md) n=${1#pstack/skills/principle-}; printf 'skills/jesus-mode/references/principles/%s.md' "${n%/SKILL.md}" ;;
+    pstack/skills/benchmark-checklist/SKILL.md) printf 'skills/jesus-mode/references/benchmark-checklist.md' ;;
+    pstack/skills/technical-writing/SKILL.md) printf 'skills/jesus-mode/references/technical-writing.md' ;;
     pstack/skills/tdd/*) printf 'skills/pstack-tdd/%s' "${1#pstack/skills/tdd/}" ;;
     pstack/skills/teach/*) printf 'skills/pstack-teach/%s' "${1#pstack/skills/teach/}" ;;
     pstack/skills/*) printf 'skills/%s' "${1#pstack/skills/}" ;;
-    pstack/agents/comment-sicko.md) printf 'skills/comment-sicko/SKILL.md' ;;
-    pstack/agents/poteto-agent.md) printf 'skills/poteto-agent/SKILL.md' ;;
+    pstack/agents/comment-sicko.md) printf 'skills/no-comments/references/comment-sicko.md' ;;
+    pstack/agents/poteto-agent.md) printf 'skills/jesus-mode/references/poteto-agent.md' ;;
     pstack/.cursor-plugin/plugin.json) printf '.codex-plugin/plugin.json' ;;
     *) printf '' ;;
   esac
@@ -127,6 +130,7 @@ else
 fi
 
 printf 'SKILL_IMPACT\n'
+printf 'mapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\n'
 printf 'mapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\n'
 printf 'mapping: pstack/skills/teach/* -> skills/pstack-teach/*\n'
 if [[ -n "$changes" ]]; then

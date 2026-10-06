@@ -4,7 +4,7 @@ Use this contract for the `multi-phase-plan` playbook. The plan is the deliverab
 
 ## Decide before writing
 
-- Ground the plan in the [principles index](principles-index.md). Read each linked `$principle-*` skill whose trigger applies.
+- Ground the plan in the [principles index](principles-index.md). Read each linked principle guide whose trigger applies.
 - Preserve the user's scope, repository conventions, and authorization boundary.
 - Resolve empirical questions with a prototype or focused investigation. Put the evidence in Appendix A.
 - Use Codex children only for independent evidence lanes. Give each child a bounded question and require file pointers, conventions, entry points, and verification commands.
@@ -41,7 +41,7 @@ The program runs `skills/jesus-mode/playbooks/<execution-playbook>.md`. <State w
 ### Start program
 
 - [ ] Confirm the scope, ordered phases, execution playbook, and done condition.
-- [ ] Read the execution playbook and every named leaf skill from the current trunk when available.
+- [ ] Read the execution playbook and every named principle guide or skill from the current trunk when available.
 - [ ] Start only after the user's explicit go.
 
 ### Coordinate phases

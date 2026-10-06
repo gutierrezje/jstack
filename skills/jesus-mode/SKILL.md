@@ -12,7 +12,7 @@ Complete the requested outcome through implementation, relevant verification, an
 For substantial work, read the closest matching playbook below and the
 [principles index](references/principles-index.md) before settling the approach.
 Use the playbook to shape execution and verification, and name it once in a
-progress update. Use the index to select principle leaves before consequential
+progress update. Use the index to select principle guides before consequential
 choices about data models, boundaries, shared state, failure handling, or
 verification. Work directly on tiny tasks or when no playbook fits. Use a plan
 when dependencies or uncertainty need tracking. A user-requested planning
@@ -59,11 +59,11 @@ continue independent work; keep it visible until resolved.
 - For executable code changes or PR work, read and follow [diffowl.md](references/diffowl.md). Preserve cumulative review coverage and avoid duplicate reviews.
 - Before any PR create or edit, read [$open-pr](../open-pr/SKILL.md). Use [$babysit-pr](../babysit-pr/SKILL.md) when the user asks to babysit, shepherd, or finish a PR. Those skills retain their authorization and completion requirements.
 - When the user asks to merge, release, deploy, or clean up branches or worktrees, use [$ship](../ship/SKILL.md) for the selected phases and their evidence.
-- Before any subagent call, including reviewers requested by other skills, read [routes.md](references/routes.md) and the delegation sections of [codex-compatibility.md](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it.
+- Before any subagent call, including reviewers requested by other skills, read [routes.md](references/routes.md) and the delegation sections of [codex-compatibility.md](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it. Brief implementation children with [poteto-agent.md](references/poteto-agent.md).
 - Read the relevant [codex-compatibility.md](references/codex-compatibility.md) section when using ported Cursor mechanics, GitHub operations, or task history.
 - Use [related task context](references/codex-compatibility.md#related-task-context) when the user refers to prior work or a missing earlier decision affects the task.
-- Before reporting or acting on measured performance, follow [$benchmark-checklist](../benchmark-checklist/SKILL.md). Keep correctness and completed-work counts with the timing evidence.
-- Write plainly: lead with the result, use concrete verbs, and omit filler. Use [$unslop](../unslop/SKILL.md) for a prose-editing pass.
+- Before reporting or acting on measured performance, follow [benchmark-checklist.md](references/benchmark-checklist.md). Keep correctness and completed-work counts with the timing evidence.
+- Write plainly: lead with the result, use concrete verbs, and omit filler. Use [$unslop](../unslop/SKILL.md) for a prose-editing pass. For docs, RFCs, readmes, PR descriptions, or commit messages, follow [technical-writing.md](references/technical-writing.md).
 
 ## Playbooks
 

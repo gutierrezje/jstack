@@ -175,4 +175,4 @@ On Claude Code, apply [claude-compatibility.md](claude-compatibility.md) to this
 
 - Upstream pstack `tdd` is installed as `$pstack-tdd` because `$tdd` already exists.
 - Upstream pstack `teach` is installed as `$pstack-teach` because `$teach` already exists.
-- Cursor custom agents are installed as `$comment-sicko` and `$poteto-agent`; spawn a normal child and instruct it to read the relevant skill.
+- Cursor custom agents are guides, not skills: spawn a normal child and brief it with [comment-sicko.md](../../no-comments/references/comment-sicko.md) or [poteto-agent.md](poteto-agent.md).

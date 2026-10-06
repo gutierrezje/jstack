@@ -28,9 +28,10 @@ Use `$how` to learn how something works and `$why` to find out why it ended up t
 
 `$architect`, `$arena`, `$swarm`, and `$interrogate` handle work that needs more
 than one independent pass. Other skills cover verification, retrospectives,
-teaching, writing, and the engineering principles behind Jesus mode.
+teaching, and writing. The engineering principles behind Jesus mode are guides,
+not skills, listed in the [principles index](skills/jesus-mode/references/principles-index.md).
 
-Use [$benchmark-checklist](skills/benchmark-checklist/SKILL.md) to vet measured
+Use the [benchmark checklist](skills/jesus-mode/references/benchmark-checklist.md) guide to vet measured
 performance and [$correct](skills/correct/SKILL.md) to prevent recurring repository
 mistakes with architecture, types, checks, or behavioral tests.
 

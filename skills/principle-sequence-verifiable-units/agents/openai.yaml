@@ -1,6 +1,0 @@
-interface:
-  display_name: "Principle Sequence Verifiable Units"
-  short_description: "Codex-native pstack workflow: principle-sequence-verifiable-unit"
-  default_prompt: "Use $principle-sequence-verifiable-units for this task."
-policy:
-  allow_implicit_invocation: false

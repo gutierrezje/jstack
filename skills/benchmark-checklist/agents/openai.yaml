@@ -1,6 +1,0 @@
-interface:
-  display_name: "Benchmark checklist"
-  short_description: "Check whether a performance measurement supports its claim"
-  default_prompt: "Use $benchmark-checklist to vet this measurement."
-policy:
-  allow_implicit_invocation: false

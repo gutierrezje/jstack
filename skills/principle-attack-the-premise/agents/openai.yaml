@@ -1,6 +1,0 @@
-interface:
-  display_name: "Principle Attack the Premise"
-  short_description: "Test shared assumptions after repeated failed fixes"
-  default_prompt: "Apply $principle-attack-the-premise to this investigation."
-policy:
-  allow_implicit_invocation: false
