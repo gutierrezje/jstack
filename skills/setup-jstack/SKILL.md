@@ -1,6 +1,6 @@
 ---
 name: setup-jstack
-description: "Configure Jstack's models, effort, service tiers, named agents, and fan-out by routing role. Use for /setup-jstack, configuring Jstack models, or changing Jesus mode and specialist routing."
+description: "Configure Jstack model, effort, and fan-out routes. Use for /setup-jstack or changing routing."
 ---
 
 # Setup Jstack

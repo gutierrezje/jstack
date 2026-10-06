@@ -1,6 +1,6 @@
 ---
 name: typescript-best-practices
-description: "Apply TypeScript conventions when implementing or reviewing types, validation boundaries, or API signatures."
+description: "Use when writing or reviewing .ts/.tsx code: types, validation boundaries, and API signatures."
 ---
 
 # TypeScript best practices

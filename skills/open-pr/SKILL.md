@@ -1,6 +1,6 @@
 ---
 name: open-pr
-description: "Use when asked to create, prepare, or update a PR and its review evidence. Full review and repair loops belong to babysit-pr."
+description: "Read before any PR create or edit: description, screenshots, and evidence. Repairs: babysit-pr."
 ---
 
 # Open PR

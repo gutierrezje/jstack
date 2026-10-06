@@ -54,6 +54,12 @@ for (const directory of skillDirectories) {
     failures.push(`${relative(root, skillFile)} name must be ${expectedName}`);
   }
 
+  // Skill listings truncate descriptions near 100 characters; triggers past that are invisible.
+  const description = source.match(/^description:\s*"?(.*?)"?$/m)?.[1] ?? "";
+  if (!/^disable-model-invocation:\s*true$/m.test(source) && description.length > 100) {
+    failures.push(`${relative(root, skillFile)} auto-invoked description exceeds 100 characters`);
+  }
+
   if (existsSync(metadataFile)) {
     const parity = checkInvocationParity(expectedName, readFileSync(metadataFile, "utf8"), source);
     if (parity) failures.push(parity);

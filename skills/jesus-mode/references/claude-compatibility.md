@@ -12,6 +12,7 @@ On Claude Code, apply the [Codex compatibility contract](codex-compatibility.md)
 
 - Replace Cursor `Task` and Codex internal subagents with the `Agent` tool. Map tiers through [Claude Code routes](routes.md#claude-code-routes) and pass the mapped `model` explicitly.
 - Map Cursor `subagent_type` and Codex `agent_type` to a bounded prompt naming the relevant skill. Use `subagent_type: "general-purpose"`, or `"Explore"` for read-only search. Use a registered Claude agent type only when the current `Agent` tool lists it.
+- Route every `Agent` call, including independent reviewers requested by other skills. A code-quality review gate is Luna Max, so `sonnet`; when that matches the author's model, use the nearest different listed model and report the substitution.
 - Children run in the background by default and notify the parent on completion. Continue a child with `SendMessage`; do not poll.
 - Give parallel writers disjoint files, or pass `isolation: "worktree"` when overlapping writers are justified.
 - Use the `Workflow` tool only when the user explicitly opts into multi-agent orchestration.

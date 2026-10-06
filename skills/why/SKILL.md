@@ -1,6 +1,6 @@
 ---
 name: why
-description: "Investigate design rationale, regressions, or historical decisions using available source history and connected evidence. Use how for runtime behavior."
+description: "Why code is this way: design rationale, regressions, and history from evidence. For runtime: how."
 ---
 
 # Why

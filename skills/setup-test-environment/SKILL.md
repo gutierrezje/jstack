@@ -1,6 +1,6 @@
 ---
 name: setup-test-environment
-description: "Use when asked to launch an application checkout or PR for hands-on testing, including its services, client, and visible logs."
+description: "Launch an app checkout or PR for hands-on testing: services, client, simulator, and visible logs."
 ---
 
 # Set up an app test environment

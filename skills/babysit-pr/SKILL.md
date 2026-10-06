@@ -1,6 +1,6 @@
 ---
 name: babysit-pr
-description: "Use when asked to babysit, shepherd, or finish a PR through review, repairs, hosted checks, and a current-head verdict."
+description: "Babysit a PR to ready: review, repairs, CI, and a current-head verdict. Merging belongs to ship."
 ---
 
 # Babysit PR

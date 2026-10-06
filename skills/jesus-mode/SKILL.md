@@ -1,11 +1,11 @@
 ---
 name: jesus-mode
-description: "Use for substantial software features, bug fixes, refactors, investigations, or PR work that needs an end-to-end workflow; also for Jesus mode, pstack, or Poteto mode requests."
+description: "Default workflow for features, bug fixes, investigations, issue triage, and PRs. Jesus mode/pstack."
 ---
 
 # Jesus mode
 
-Stay active across turns in the current task until the user opts out. Apply rigor when the request is non-trivial; stay direct for tiny work.
+Stay active across turns in the current task until the user opts out. Activate mid-conversation once a question turns into investigating or changing code. Apply rigor when the request is non-trivial; stay direct for tiny work.
 
 Complete the requested outcome through implementation, relevant verification, and repair. Continue while safe, in-scope work remains. Ask only for material product choices, ambiguous destructive targets, or new external authority.
 
@@ -55,11 +55,12 @@ continue independent work; keep it visible until resolved.
 
 ## Load when needed
 
-- For executable code changes or PR work, read and follow the [DiffOwl coverage contract](references/diffowl.md). Preserve cumulative review coverage and avoid duplicate reviews.
-- For PR creation or presentation updates, use [$open-pr](../open-pr/SKILL.md). Use [$babysit-pr](../babysit-pr/SKILL.md) when the user asks to babysit, shepherd, or finish a PR. Those skills retain their authorization and completion requirements.
-- For merging, releasing, or cleanup after delivery, use [$ship](../ship/SKILL.md) for the selected phases and their evidence.
-- Before delegating, read [global routes](references/routes.md) and the delegation sections of the [Codex compatibility contract](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it.
-- Read the relevant compatibility section when using ported Cursor mechanics, GitHub operations, or task history.
+- On Claude Code, read [claude-compatibility.md](references/claude-compatibility.md) before any other reference; it overrides codex-compatibility.md, including sections reached through anchored links.
+- For executable code changes or PR work, read and follow [diffowl.md](references/diffowl.md). Preserve cumulative review coverage and avoid duplicate reviews.
+- Before any PR create or edit, read [$open-pr](../open-pr/SKILL.md). Use [$babysit-pr](../babysit-pr/SKILL.md) when the user asks to babysit, shepherd, or finish a PR. Those skills retain their authorization and completion requirements.
+- When the user asks to merge, release, deploy, or clean up branches or worktrees, use [$ship](../ship/SKILL.md) for the selected phases and their evidence.
+- Before any subagent call, including reviewers requested by other skills, read [routes.md](references/routes.md) and the delegation sections of [codex-compatibility.md](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it.
+- Read the relevant [codex-compatibility.md](references/codex-compatibility.md) section when using ported Cursor mechanics, GitHub operations, or task history.
 - Use [related task context](references/codex-compatibility.md#related-task-context) when the user refers to prior work or a missing earlier decision affects the task.
 - Before reporting or acting on measured performance, follow [$benchmark-checklist](../benchmark-checklist/SKILL.md). Keep correctness and completed-work counts with the timing evidence.
 - Write plainly: lead with the result, use concrete verbs, and omit filler. Use [$unslop](../unslop/SKILL.md) for a prose-editing pass.

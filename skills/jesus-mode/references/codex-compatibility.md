@@ -18,6 +18,8 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 - Read [routes.md](routes.md) before dispatching.
 - Start with one child. Add a child only for an independent evidence lane, disjoint work unit, or genuinely useful competing candidate.
 - Respect the current agent-slot limit. Follow the selected topology's candidate count; use two for unspecified panels and swarms. Require explicit user direction to exceed three workers.
+- While Jesus mode is active, [routes.md](routes.md) governs every child, including reviewers requested by other skills or plugins such as a code-quality review gate.
+- Start a new user-visible task's prompt with the active Jstack skill invocations, such as `$jesus-mode`, and the next lifecycle step so the workflow survives the handoff.
 - Keep integration and final judgment in the parent. If a requested reasoning route is unavailable, report the mismatch and use the best available advisor or remain in the parent; identify a fallback as such.
 
 ## Codex tools
@@ -30,6 +32,8 @@ This contract overrides Cursor-specific mechanics retained in the ported pstack 
 - Treat retained references to pstack's `bootstrap.ts`, `orch`, `watch-pr`, and `worktree-audit.sh` as design context only. Those Cursor/Bun/Graphite executables are intentionally not installed in this Codex port; use native Codex task, GitHub, CI, and filesystem tools instead.
 
 ## Review authorization
+
+On Claude Code, apply [claude-compatibility.md](claude-compatibility.md) to this section first.
 
 Native Codex delegation and a separately launched reviewer are different
 execution paths. Describe the actual path; a subprocess is not evidence of an
@@ -59,6 +63,8 @@ runners, endpoints, or wrappers is not a way to evade it. These instructions do
 not change sandbox, network, managed-policy, or approval requirements.
 
 ## GitHub transport
+
+On Claude Code, apply [claude-compatibility.md](claude-compatibility.md) to this section first.
 
 - Use the GitHub CLI or an installed GitHub/Codex plugin for PR and issue operations, with the native browser attachment-upload exception below. Use `gh api` when the high-level CLI lacks a required field or thread-aware operation.
 - Use UI control against the product under test and to capture screenshots. The signed-in GitHub attachment picker may also upload evidence; keep PR creation, body updates, readback, checks, review state, and lifecycle changes in the CLI or plugin.
@@ -145,6 +151,8 @@ PR; mark remote delivery and playback as untested.
 
 ## Related task context
 
+On Claude Code, apply [claude-compatibility.md](claude-compatibility.md) to this section first.
+
 Use this when the user refers to prior work or a missing earlier decision affects the current task. Recover useful decisions and evidence without importing unrelated conversation history.
 
 1. Extract anchors from the request and current checkout: issue or PR numbers, task IDs, branches, commits, quoted errors, file paths, components, and distinctive feature terms. The shared project alone is not a match.
@@ -155,6 +163,8 @@ Use this when the user refers to prior work or a missing earlier decision affect
 6. Mention any related task that materially changed the approach in the next progress update. If task-history tools are unavailable or no strong match exists, continue without blocking.
 
 ## External and destructive actions
+
+On Claude Code, apply [claude-compatibility.md](claude-compatibility.md) to this section first.
 
 - Follow the active Codex authorization boundary. Opening or merging PRs, force-pushing, deploying, posting externally, enabling automerge, deleting worktrees, clearing caches, or deleting simulators requires scope that actually authorizes it.
 - Resolve exact targets before destructive operations. Prefer recoverable operations and preserve unrelated work.

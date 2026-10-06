@@ -5,7 +5,7 @@ Jstack is a Codex and Claude Code plugin containing portable agent skills. Keep 
 ## Structure
 
 - `.codex-plugin/plugin.json`: Codex plugin metadata.
-- `.claude-plugin/plugin.json` and `marketplace.json`: Claude Code plugin and marketplace metadata. Keep the name in sync with the Codex manifest.
+- `.claude-plugin/plugin.json` and `marketplace.json`: Claude Code plugin and marketplace metadata. Keep the name in sync with the Codex manifest. Leave `version` out of the Claude manifest so Claude Code updates on every commit.
 - `skills/<name>/SKILL.md`: one skill per directory.
 - `skills/<name>/agents/openai.yaml`: user-facing metadata for each skill. When it sets `allow_implicit_invocation: false`, also set `disable-model-invocation: true` in the skill's frontmatter for Claude Code.
 - `skills/jesus-mode/references/routes.md`: the single source of truth for model, effort, and fan-out defaults.
@@ -17,6 +17,7 @@ Jstack is a Codex and Claude Code plugin containing portable agent skills. Keep 
 
 - Follow the writing-for-agents style: state what to do, front-load critical constraints, and use direct instructions.
 - Do not add user-specific absolute paths.
+- Lead each model-invoked skill description with its trigger and keep it within 100 characters; skill listings truncate the rest.
 - Do not duplicate model routing in individual skills. Link to the shared routing table.
 - Keep upstream attribution in `LICENSE` and `NOTICE.md`.
 - Preserve Codex authorization boundaries. A skill must not grant itself permission to publish, deploy, merge, delete, or message third parties.

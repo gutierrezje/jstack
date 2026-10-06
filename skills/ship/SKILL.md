@@ -1,6 +1,6 @@
 ---
 name: ship
-description: "Ship a PR or stack through the requested merge, release, and cleanup phases. Use for landing reviewed work, deploying or publishing an existing revision, or cleaning up after delivery."
+description: "Merge, release, or clean up after delivery: land PRs, deploy, and delete branches and worktrees."
 ---
 
 # Ship

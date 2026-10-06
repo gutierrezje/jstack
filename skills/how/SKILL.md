@@ -1,6 +1,6 @@
 ---
 name: how
-description: "Explain subsystem architecture, runtime flow, or code ownership when asked how code works or where a change belongs. Use why for historical rationale."
+description: "How code works: architecture, runtime flow, ownership, or where a change belongs. For history: why."
 ---
 
 # How

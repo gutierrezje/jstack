@@ -62,6 +62,7 @@ agent cannot substitute for an unavailable Max agent.
 | Repository exploration | `gpt-6-luna` | `high` | 1 |
 | Ambiguous research or cross-check | `gpt-6-luna` | `max` | 1 |
 | Test discovery and verification | `gpt-6-luna` | `high` | 1 |
+| Code-quality or structural review gate | `gpt-6-luna` | `max` | 1 |
 | Prose and product judgment | `gpt-6-sol` | `low` | 0 |
 | Architecture and difficult synthesis | `gpt-6-astra` | `medium` | 0 |
 | Hardest unresolved work | `gpt-6-astra` | `medium` | 0 |
