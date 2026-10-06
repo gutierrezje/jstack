@@ -23,7 +23,8 @@ ready. `$open-pr` prepares the review experience around What, How, Why, and
 Evidence. It verifies that screenshots and other artifacts are durable and
 readable, but leaves heavy review cycles to `$babysit-pr`.
 [$ship](skills/ship/SKILL.md) carries selected work through merge, release,
-live verification, and cleanup, reusing review evidence and recording delivery.
+live verification, and cleanup, reusing review evidence and reporting results
+in chat.
 Use `$how` to learn how something works and `$why` to find out why it ended up that way.
 
 `$architect`, `$arena`, `$swarm`, and `$interrogate` handle work that needs more

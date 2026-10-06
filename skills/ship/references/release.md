@@ -10,7 +10,7 @@ surfaces separately when they have different sources or targets.
 Identify the exact live target before a dry run or deployment. Confirm the
 previously deployed revision through live metadata or a verified deployment
 record; a merged PR or successful nightly job proves only what that job actually
-released. If the live baseline is unknown, record the gap and satisfy the
+released. If the live baseline is unknown, report the gap and satisfy the
 repository's release gate before proceeding.
 
 Compare that baseline with the intended source. Account for every intervening
@@ -25,7 +25,7 @@ Deploy from the exact selected source revision or approved immutable artifact. F
 source deployment, use a clean detached checkout at that revision when the active
 checkout contains unrelated work or the deploy tool generates files. Install
 through the repository's locked dependency procedure and run its required checks
-there. Record post-merge CI for the same revision; local checks do not waive a
+there. Verify post-merge CI for the same revision; local checks do not waive a
 required CI gate. Pending required checks keep release pending.
 
 Inspect the release tool's output behavior before running it against production.
@@ -61,13 +61,13 @@ contract hash can stay unchanged after an index-only change; verify the index
 effects separately through deployment results or live inspection. A successful
 deploy command alone does not prove the changed behavior or all release surfaces.
 
-Extend the delivery receipt with the preview, actual changes, live checks, and
-repository recovery procedure. If verification fails, preserve the deploy source
-and evidence, report the target's actual state, and use an authorized recovery
-path. Account changes and secret rotation need their own authority. If output
-exposes a secret, stop the emitting mode, restrict task-owned copies within
-existing authority, and report the exposure without repeating values; deleting a
+Report the preview, actual changes, and live checks in chat. If verification
+fails, preserve the deploy source and evidence, report the target's actual state,
+and use the repository's authorized recovery path. Account changes and secret
+rotation need their own authority. If output exposes a secret, stop the emitting
+mode, restrict task-owned copies within existing authority, and report the
+exposure without repeating values; deleting a
 local log does not remove transcript exposure.
 
 Completion: every selected target runs the intended source or artifact, required
-release checks pass, and the receipt accounts for the complete shipped delta.
+release checks pass, and the complete shipped delta is verified and reported.
