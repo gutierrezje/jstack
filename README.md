@@ -23,8 +23,8 @@ ready. `$open-pr` prepares the review experience around What, How, Why, and
 Evidence. It verifies that screenshots and other artifacts are durable and
 readable, but leaves heavy review cycles to `$babysit-pr`.
 [$ship](skills/ship/SKILL.md) carries selected work through merge, release,
-live verification, and cleanup, reusing review evidence and reporting results
-in chat.
+live verification, issue reconciliation, and cleanup, reusing review evidence
+and reporting results in chat.
 Use `$how` to learn how something works and `$why` to find out why it ended up that way.
 
 `$architect`, `$arena`, `$swarm`, and `$interrogate` handle work that needs more
@@ -79,7 +79,7 @@ Use $jesus-mode to diagnose and fix this bug with evidence.
 Use $arena to compare two implementation approaches and judge them.
 Use $open-pr to prepare this branch, gather evidence, and open its review-ready pull request.
 Use $babysit-pr to review this PR and keep working on it until DiffOwl and CI are clean.
-Use $ship to merge this PR, release to production if applicable, verify delivery, and clean up its worktree and local and remote branches.
+Use $ship to merge this PR, release to production if applicable, verify delivery, close or reconcile related issues, and clean up its worktree and local and remote branches.
 ```
 
 ## How delegation works

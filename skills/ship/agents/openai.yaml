@@ -1,4 +1,4 @@
 interface:
   display_name: "Ship"
-  short_description: "Merge, release, verify delivery, and clean up"
-  default_prompt: "Use $ship to merge this PR, release to production if applicable, verify delivery, and clean up its worktree and local and remote branches."
+  short_description: "Merge, release, reconcile issues, and clean up"
+  default_prompt: "Use $ship to merge this PR, release to production if applicable, verify delivery, close or reconcile related issues, and clean up its worktree and local and remote branches."

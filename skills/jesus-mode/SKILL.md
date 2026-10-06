@@ -58,7 +58,7 @@ continue independent work; keep it visible until resolved.
 - On Claude Code, read [claude-compatibility.md](references/claude-compatibility.md) before any other reference; it overrides codex-compatibility.md, including sections reached through anchored links.
 - For executable code changes or PR work, read and follow [diffowl.md](references/diffowl.md). Preserve cumulative review coverage and avoid duplicate reviews.
 - Before any PR create or edit, read [$open-pr](../open-pr/SKILL.md). Use [$babysit-pr](../babysit-pr/SKILL.md) when the user asks to babysit, shepherd, or finish a PR. Those skills retain their authorization and completion requirements.
-- When the user asks to merge, release, deploy, or clean up branches or worktrees, use [$ship](../ship/SKILL.md) for the selected phases and their evidence.
+- When the user asks to merge, release, deploy, close or reconcile issues after delivery, or clean up branches or worktrees, use [$ship](../ship/SKILL.md) for the selected phases and their evidence.
 - Before any subagent call, including reviewers requested by other skills, read [routes.md](references/routes.md) and the delegation sections of [codex-compatibility.md](references/codex-compatibility.md). Delegate when an independent question or disjoint work unit benefits from it. Brief implementation children with [poteto-agent.md](references/poteto-agent.md).
 - Read the relevant [codex-compatibility.md](references/codex-compatibility.md) section when using ported Cursor mechanics, GitHub operations, or task history.
 - Use [related task context](references/codex-compatibility.md#related-task-context) when the user refers to prior work or a missing earlier decision affects the task.
@@ -82,7 +82,7 @@ Read the playbook whose trigger matches the task.
 - [authoring-a-skill](playbooks/authoring-a-skill.md): creating or editing a skill or agent instructions.
 - [eval](playbooks/eval.md): comparing models, prompts, or workflows with graded runs.
 - [babysit](playbooks/babysit.md): carrying an existing PR through review and CI.
-- Merging, releasing, or cleanup after delivery: use [$ship](../ship/SKILL.md).
+- Merging, releasing, reconciling delivery issues, or cleanup: use [$ship](../ship/SKILL.md).
 - [autonomous-run](playbooks/autonomous-run.md): unattended iterative work toward a binary exit condition.
 - [orchestrate](playbooks/orchestrate.md): a multi-track program run by parallel children with a durable ledger.
 - [autopilot-full](playbooks/autopilot-full.md): an authorized queue of independent PRs, built and merged end to end.
