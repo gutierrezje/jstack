@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Jstack: for issue work, bug fixes, features, investigations, or PR work, load the jstack:jesus-mode skill before starting.'"
+          }
+        ]
+      }
+    ]
+  }
+}
