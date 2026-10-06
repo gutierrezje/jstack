@@ -67,28 +67,30 @@ continue independent work; keep it visible until resolved.
 
 ## Playbooks
 
-- `investigation`: [playbooks/investigation.md](playbooks/investigation.md)
-- `bug-fix`: [playbooks/bug-fix.md](playbooks/bug-fix.md)
-- `perf-issue`: [playbooks/perf-issue.md](playbooks/perf-issue.md)
-- `hillclimb`: [playbooks/hillclimb.md](playbooks/hillclimb.md)
-- `runtime-forensics`: [playbooks/runtime-forensics.md](playbooks/runtime-forensics.md)
-- `trace-forensics`: [playbooks/trace-forensics.md](playbooks/trace-forensics.md)
-- `feature`: [playbooks/feature.md](playbooks/feature.md)
-- `refactoring`: [playbooks/refactoring.md](playbooks/refactoring.md)
-- `prototype`: [playbooks/prototype.md](playbooks/prototype.md)
-- `visual-parity`: [playbooks/visual-parity.md](playbooks/visual-parity.md)
-- `authoring-a-skill`: [playbooks/authoring-a-skill.md](playbooks/authoring-a-skill.md)
-- `eval`: [playbooks/eval.md](playbooks/eval.md)
-- `babysit`: [playbooks/babysit.md](playbooks/babysit.md)
-- `shipping`: [playbooks/shipping.md](playbooks/shipping.md)
-- `autonomous-run`: [playbooks/autonomous-run.md](playbooks/autonomous-run.md)
-- `orchestrate`: [playbooks/orchestrate.md](playbooks/orchestrate.md)
-- `autopilot-full`: [playbooks/autopilot-full.md](playbooks/autopilot-full.md)
-- `autopilot-stack`: [playbooks/autopilot-stack.md](playbooks/autopilot-stack.md)
-- `session-pickup`: [playbooks/session-pickup.md](playbooks/session-pickup.md)
-- `pause-safely`: [playbooks/pause-safely.md](playbooks/pause-safely.md)
-- `multi-phase-plan`: [playbooks/multi-phase-plan.md](playbooks/multi-phase-plan.md)
-- `worktree-cleanup`: [playbooks/worktree-cleanup.md](playbooks/worktree-cleanup.md)
+Read the playbook whose trigger matches the task.
+
+- [investigation](playbooks/investigation.md): an open question about behavior or code, answered with evidence before any change.
+- [bug-fix](playbooks/bug-fix.md): a reported defect or failing behavior.
+- [perf-issue](playbooks/perf-issue.md): a slow path or resource regression on a user-visible flow.
+- [hillclimb](playbooks/hillclimb.md): improving one metric through repeated measured experiments.
+- [runtime-forensics](playbooks/runtime-forensics.md): a live symptom that needs instrumentation to explain.
+- [trace-forensics](playbooks/trace-forensics.md): diagnosing from an existing trace, profile, or capture.
+- [feature](playbooks/feature.md): new user-facing behavior.
+- [refactoring](playbooks/refactoring.md): restructuring without changing observable behavior.
+- [prototype](playbooks/prototype.md): a throwaway build to settle a design decision.
+- [visual-parity](playbooks/visual-parity.md): matching UI to a reference image or design.
+- [authoring-a-skill](playbooks/authoring-a-skill.md): creating or editing a skill or agent instructions.
+- [eval](playbooks/eval.md): comparing models, prompts, or workflows with graded runs.
+- [babysit](playbooks/babysit.md): carrying an existing PR through review and CI.
+- Merging, releasing, or cleanup after delivery: use [$ship](../ship/SKILL.md).
+- [autonomous-run](playbooks/autonomous-run.md): unattended iterative work toward a binary exit condition.
+- [orchestrate](playbooks/orchestrate.md): a multi-track program run by parallel children with a durable ledger.
+- [autopilot-full](playbooks/autopilot-full.md): an authorized queue of independent PRs, built and merged end to end.
+- [autopilot-stack](playbooks/autopilot-stack.md): a dependent PR stack built for the operator to land.
+- [session-pickup](playbooks/session-pickup.md): resuming prior work from a task, branch, PR, or checkpoint.
+- [pause-safely](playbooks/pause-safely.md): stopping mid-task at a verifiable, resumable boundary.
+- [multi-phase-plan](playbooks/multi-phase-plan.md): work large enough to need a durable phased plan.
+- [worktree-cleanup](playbooks/worktree-cleanup.md): auditing and removing stale worktrees and branches.
 
 ## Completion
 

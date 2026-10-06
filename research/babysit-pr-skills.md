@@ -12,7 +12,7 @@ The existing Jesus mode playbook already has the right minimal invariant: resolv
 exact PR, branch, head SHA, checks, review threads, and mergeability; after an
 authorized change, re-read live state. See
 [babysit.md](../skills/jesus-mode/playbooks/babysit.md),
-[shipping.md](../skills/jesus-mode/playbooks/shipping.md),
+[ship](../skills/ship/SKILL.md),
 and [session-pickup.md](../skills/jesus-mode/playbooks/session-pickup.md).
 
 ## Reusable core
