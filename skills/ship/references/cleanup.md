@@ -2,6 +2,11 @@
 
 ## Resolve eligible targets
 
+For mobile simulator state, read
+[simulator lifecycle](../../jesus-mode/references/simulator-lifecycle.md).
+Include authorized branch-owned disposable simulators in the cleanup set and
+release them before removing their worktree.
+
 Read task history and live PR and deployment state. For a combined shipping run,
 finish the selected merge and release verification before cleanup. For
 cleanup-only, establish the existing delivery result or authorized recoverable
@@ -9,7 +14,8 @@ retention first.
 
 Enumerate worktrees through Git and managed attachments through the app's artifact
 tools when available. Restrict cleanup to the requested worktrees, local branches,
-remote branches, and task-owned disposable files. Broader disk reclamation uses
+remote branches, task-owned disposable simulators, and task-owned disposable
+files. Broader disk reclamation uses
 the [worktree-cleanup playbook](../../jesus-mode/playbooks/worktree-cleanup.md).
 
 For each target, inspect its exact path or ref, head, owner, tracked changes,

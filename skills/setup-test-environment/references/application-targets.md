@@ -5,6 +5,9 @@ scripts remain the source of truth for exact commands.
 
 ## Mobile
 
+Read [simulator lifecycle](../../jesus-mode/references/simulator-lifecycle.md)
+before selecting a simulator. Carry its ownership state into the setup handoff.
+
 Treat the app bundle, native client, backend, device, and logs as separate pieces
 that must agree on one test target.
 
