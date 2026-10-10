@@ -163,6 +163,10 @@ self-report is supporting evidence. It is not a receipt by itself. Bind the
 receipt to what actually ran, then inspect the resulting user-visible or durable
 state.
 
+For simulator ownership and shipping cleanup, follow
+[simulator lifecycle](simulator-lifecycle.md). Reuse this run's manifest or receipt
+for that state.
+
 ## Maintenance and coordination
 
 Treat a product change to a mapped journey, entry point, launch path,

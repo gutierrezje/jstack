@@ -17,6 +17,10 @@ request as ending at merge. "Production if applicable" selects the repository's
 established release path; distinguish no release surface from an unknown or
 blocked release path.
 Select issue reconciliation and cleanup only when requested or already authorized.
+When selecting phases, account for
+[owned QA simulator lifecycle](../jesus-mode/references/simulator-lifecycle.md)
+and any standing user or repository cleanup policy. Such a policy selects its
+authorized disposal scope; otherwise keep a merge-only request at merge.
 
 Reuse user authorization covering each operation and target. Automatic skill
 selection and a retrieved shipping example grant no authority. Prepare the exact
