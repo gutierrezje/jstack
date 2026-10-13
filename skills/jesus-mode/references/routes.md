@@ -127,9 +127,12 @@ translate each tier to the `Agent` tool's `model` parameter:
 | --- | --- | --- |
 | Astra (`gpt-6-astra`) | `opus` | `high` |
 | Sol (`gpt-6-sol`) | `opus` | `low` |
+| Luna High, lookup work | `haiku` | `medium` |
 | Luna High | `sonnet` | `high` |
 | Luna Max | `sonnet` | `max` |
 | Terra High | `fable` | `high` |
+
+Lookup work is cheap, reversible retrieval whose output the parent can check directly: repository exploration, test discovery and running, documentation or API fact lookup, the How explorer, and Swarm exploration arms. Keep judgment on `sonnet`, including interpreting test failures, verification verdicts, Why investigators, critics, reviewers, and any child that edits files.
 
 - Skip [named-agent dispatch](#named-agent-dispatch) and service tiers; they are Codex-only. Dispatch with `subagent_type: "general-purpose"`, or `"Explore"` for read-only exploration, plus the mapped `model`.
 - The `Agent` tool selects a model but not an effort; children run at the session effort. Treat the effort column as intent. Apply it only through a selector the runtime exposes, such as a workflow `agent()` effort option the user has opted into.
