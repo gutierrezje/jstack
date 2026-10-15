@@ -1,0 +1,29 @@
+{
+  "frozenAt": "2026-10-15T19:18:30.275Z",
+  "sourceRevision": "57ce511b2bac12d019f1deaccb47fccce0c48cb2",
+  "policySources": [
+    {
+      "name": "verification.md",
+      "sha256": "9d79d4526352a107a922d36d105e51c177cdd3506fa443f693cd35c7f69e7ca7"
+    },
+    {
+      "name": "video-evidence.md",
+      "sha256": "780cea8bea9e48da9dd1bdc7fda22572ccc7896be83cfeeb84d9e5bba01fad5c"
+    }
+  ],
+  "sha256": {
+    "protocol.json": "f9629b7e3bf1cb5aa93ded3edafcfc7276e3c6fec4d51c0eb8e7c14413f7bd6a",
+    "cases.json": "7665c9a26c8fa1dcb5af321813eae0c27fb113d51a0def6b9de89b8f6155cf51",
+    "answers.json": "59b36b37544185eb895597714203100daa2f9e8f3784d3c992873db57d5b9ef4",
+    "checklist.txt": "d8ee32109781b60bab26f0cb39f7cd53ca4a3f664d971ff5cb6a0034072d7493",
+    "run.mjs": "0643ba773dc33e1d72b0a8c212c0e21e3fea9f5eb7e40ce926d72cafc4d95a57",
+    "grade.test.mjs": "63bbd3f5aa7fcbd327528861c485be42ce818a298de629a01186814839887aa6",
+    "policy.txt": "7ba2876e4c34334f80212de9907950604e7ea38fa9db5aed47b5248a0817a5ff",
+    "packets/01-C.txt": "01fe97633f0d78c951f8f8d1f2903e5a65c87acc7f03607ab2506a43e984833b",
+    "packets/01-D.txt": "01026faac218b74a271fad9bd731ec66208c2932e2bad5ae38bad8d24e8bed8f",
+    "packets/02-D.txt": "7a786c0731110ecce3fe54ce1f46c6cd4e25be455b5ea3d8ebc64e5c2a638f55",
+    "packets/02-C.txt": "2db8e1e99c533b732049c448b3257cc40fc044d0bfd5640c3bfb380de201834c",
+    "packets/03-C.txt": "2a55c5f0a6f5f6e8b7c4e1b7fa9b1e4a12decda1bc45f40b69ccba63f3fa18c7",
+    "packets/03-D.txt": "33e2d24e62787b4697944cddf91462c7d3614b618feb6698416ceb318011162c"
+  }
+}

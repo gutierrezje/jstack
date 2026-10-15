@@ -1,0 +1,76 @@
+{
+  "decisions": [
+    {
+      "id": "e11",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "ui", "db"],
+      "reason": "The UI shows one row, but the independent read finds two records with the same operation ID, so retrying produced a duplicate. The successful-looking video does not override the persisted result."
+    },
+    {
+      "id": "e07",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "typed", "interrupt"],
+      "reason": "The draft was entered, but the runner was interrupted before termination or relaunch, so restoration after force termination was never observed. Cleanup completed."
+    },
+    {
+      "id": "e01",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "publish", "ui", "db"],
+      "reason": "The matching target saved the sip; after full relaunch the UI showed 4 stars and Iced, and an independent read confirmed exactly one record with rating=4 and temperature=iced."
+    },
+    {
+      "id": "e09",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "summary", "db"],
+      "reason": "The editor screenshot showed a 4-star choice, but the independent read found rating=3 on the submitted record and no later edits occurred. The receipt summary does not establish the claimed persisted rating."
+    },
+    {
+      "id": "e03",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["config", "runtime", "checks"],
+      "reason": "The observed app was bundle b41 from r41 and sent requests to dev-A, while the claim requires build b42 from r42 on dev-B. Passing checks on the wrong runtime and backend do not verify the requested target."
+    },
+    {
+      "id": "e06",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "ui", "db", "video"],
+      "reason": "After full relaunch the matching target showed the sip with 4 stars, and an independent read found one record with rating=4. The optional demonstration video is corrupt, but the claim does not depend on timing."
+    },
+    {
+      "id": "e04",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "db", "video"],
+      "reason": "The independent assertion found two records after one submission, failing the exactly-one requirement. The required continuous capture also failed to finalize and is unreadable."
+    },
+    {
+      "id": "e12",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["receipt", "binding"],
+      "reason": "The existing receipt contains post-relaunch UI rating=4 and an independent persisted rating=4 for the requested immutable target. Today's identity check confirms the target, fixture, recipe, and assertions remain unchanged, with no expiration or current-session requirement."
+    },
+    {
+      "id": "e02",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "summary", "checks"],
+      "reason": "The assertions establish a saved toast, visible title after relaunch, and count=1, but none observes the saved rating or temperature. The requested 4-star and iced fields therefore remain unverified despite the runner summary."
+    },
+    {
+      "id": "e08",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "ui", "db", "cleanup"],
+      "reason": "After full relaunch the profile showed the requested name, and an independent read confirmed it for f08. Separately, deletion of the run-owned fixture timed out; it remains retained and documented for retry."
+    },
+    {
+      "id": "e05",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "behavior", "video"],
+      "reason": "The result screen and independent query support the persisted sip, but the required video cannot be decoded from the beginning and fails before the triggering action. No other observation proves continuity of the loading transition."
+    },
+    {
+      "id": "e10",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "xxl"],
+      "reason": "At the requested XXL text size, a fresh accessibility-tree observation and interaction assertion show that the keyboard occludes the submit button and it cannot be activated. The default-size observation does not satisfy the XXL claim."
+    }
+  ]
+}

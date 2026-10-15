@@ -1,0 +1,14 @@
+{
+  "file": "skills/sync-pstack/scripts/analyze.sh",
+  "replacements": [
+    {
+      "fromLines": [
+        "    pstack/skills/*) printf 'skills/%s' \"${1#pstack/skills/}\" ;;"
+      ],
+      "toLines": [
+        "    pstack/skills/poteto-mode/*) printf 'skills/jesus-mode/%s' \"${1#pstack/skills/poteto-mode/}\" ;;",
+        "    pstack/skills/*) printf 'skills/%s' \"${1#pstack/skills/}\" ;;"
+      ]
+    }
+  ]
+}

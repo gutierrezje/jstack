@@ -1,0 +1,56 @@
+{
+  "recordedAt": "2026-10-15 19:21:26 UTC",
+  "timing": "Coarse parent-observed dispatch-to-completion wall time, including orchestration; not inference latency. Paired subjects run concurrently.",
+  "route": {
+    "agentType": "luna-high-fast",
+    "model": "gpt-6-luna",
+    "effort": "high",
+    "actualServiceTier": null
+  },
+  "tokens": null,
+  "monetaryCost": null,
+  "trials": [
+    {
+      "trial": "01-C",
+      "dispatchedAt": "2026-10-15 19:18:37 UTC",
+      "observedCompleteAt": "2026-10-15 19:19:18 UTC",
+      "agent": "/root/evidence_01_c",
+      "elapsedSeconds": 41
+    },
+    {
+      "trial": "01-D",
+      "dispatchedAt": "2026-10-15 19:18:37 UTC",
+      "observedCompleteAt": "2026-10-15 19:19:27 UTC",
+      "agent": "/root/evidence_01_d",
+      "elapsedSeconds": 50
+    },
+    {
+      "trial": "02-D",
+      "dispatchedAt": "2026-10-15 19:19:27 UTC",
+      "observedCompleteAt": "2026-10-15 19:20:08 UTC",
+      "agent": "/root/evidence_02_d",
+      "elapsedSeconds": 41
+    },
+    {
+      "trial": "02-C",
+      "dispatchedAt": "2026-10-15 19:19:27 UTC",
+      "observedCompleteAt": "2026-10-15 19:20:08 UTC",
+      "agent": "/root/evidence_02_c",
+      "elapsedSeconds": 41
+    },
+    {
+      "trial": "03-C",
+      "dispatchedAt": "2026-10-15 19:20:08 UTC",
+      "observedCompleteAt": "2026-10-15 19:21:26 UTC",
+      "agent": "/root/evidence_03_c",
+      "elapsedSeconds": 78
+    },
+    {
+      "trial": "03-D",
+      "dispatchedAt": "2026-10-15 19:20:08 UTC",
+      "observedCompleteAt": "2026-10-15 19:21:26 UTC",
+      "agent": "/root/evidence_03_d",
+      "elapsedSeconds": 78
+    }
+  ]
+}

@@ -1,0 +1,570 @@
+Evaluate the requested PRODUCT CLAIM in each synthetic case using the guidance below. Treat listed observations as facts; do not infer missing observations. This is evidence adjudication only, not a request to execute a product.
+
+Return a JSON object with a decisions array containing exactly one entry per case: {"id":"case ID","verdict":"VERIFIED | NOT VERIFIED | INCONCLUSIVE","evidenceIds":["decisive observation IDs"],"reason":"brief explanation including evidence gaps or cleanup/capture failures"}. Cite every observation needed to justify the result and any separate capture or cleanup limitation. Do not invent IDs. Do not merely copy a receipt's summary verdict.
+
+Read only this packet. Do not read sibling files, source files, expected answers, or other trial outputs. Do not browse, delegate, send messages, run product commands, or ask questions. Write the requested result file, then finish.
+
+GUIDANCE
+SOURCE: verification.md
+# Project verification contract
+
+A project verifier is maintained project code. It has three parts:
+
+- a `verify-<surface>` skill that selects user journeys and states the safety
+  rules;
+- an executable adapter, including an adopted project-native controller when it
+  already fits, that hides repeated setup, control, observation, and cleanup
+  mechanics; and
+- a machine-readable receipt that binds a result to the exact target.
+
+Use one adapter interface per real control seam. Split adapters when runtime,
+authentication, mutable state, or cleanup differs enough that one interface
+would expose those differences to every caller. Do not add a wrapper that only
+renames one underlying command.
+
+## Discover and select existing journeys
+
+Before planning reproduction, implementation QA, or PR acceptance, discover the
+project's executable journeys. Read its repository instructions, verification
+skill and coverage index, package scripts, and relevant runner help or capability
+listing. A written recipe and an executable scenario provide different coverage;
+check which the project actually has before assembling individual UI actions.
+
+Map the affected behavior to the smallest relevant scenario set. Record the
+runner/command and scenario IDs, what each asserts, required runtime and fixtures,
+and any uncovered behavior. When no scenario fits, state the missing coverage
+and use the project's interactive recipe or focused test for that gap.
+
+Run matching scenarios within the task's authority and verification scope. For a
+bug, use a matching journey to reproduce before the fix and verify afterward when
+its fixtures and fault controls faithfully exercise the failure. Inspect existing
+receipts before repeating unchanged evidence. An investigation-only request can
+record selected journeys and limitations without executing mutating scenarios.
+
+Use the runner's documented setup, dry run, identity checks, assertions, receipt,
+and cleanup. Keep its target binding authoritative instead of wrapping the same
+run in another verifier. If a scenario is blocked or stale, record the concrete
+dependency or changed expectation; preserve the failed run. Use interactive
+controls for uncovered states or diagnosis, and identify what that fallback does
+and does not prove. Keep experimental and assisted status explicit; discovery
+does not promote a journey into a required release gate or authorize deployment,
+shared-state takeover, or new test infrastructure.
+
+Carry the selected commands, scenario IDs, prerequisites, and receipt paths into
+any delegated task or handoff. Report which relevant journeys ran, which were
+blocked or skipped and why, and the remaining coverage gaps. For changes without
+a runtime effect, state that applicability briefly and use appropriate checks.
+
+## Deep adapter interface
+
+The adapter should let a cold agent express intent without knowing process
+topology, ports, selectors, artifact paths, or provider-specific commands. Keep
+the external interface small and put volatile mechanics inside the adapter.
+
+Every non-trivial adapter provides:
+
+- `--help` with examples, prerequisites, side effects, authority requirements,
+  output shape, and recovery instructions;
+- `capabilities`, or an equivalent structured help command, so an agent can
+  discover supported operations without reading the implementation;
+- `doctor`, which observes the running target and fails on an inconsistent
+  checkout, build, runtime, backend, device, account, fixture, or owned process;
+- automatic capture of the command, target identity, observations, artifacts,
+  exit status, and timing for each verification action;
+- `receipt --run <run-id>`, which returns the current machine-readable receipt;
+  and
+- `cleanup`, which removes only resources recorded as owned by the current run
+  and reports retained state.
+
+Add capability groups only when they hide repeated project-specific work:
+
+- Inspection: `info`, `snapshot`, `screenshot`, `components`.
+- Video: recording around a feature run, with start/stop controls only when
+  interactive exploration needs them. Follow [video evidence](video-evidence.md)
+  when recording is requested or needed to prove a temporal claim.
+- Navigation: `home`, `new-session`, `select-project`, `select-runtime`,
+  `scroll`.
+- Interaction: `send`, semantic `click` or `aria-click`, `type`, `press`,
+  `upload-image`, `add-context`, session-scoped `feature-flag`.
+- Performance: `trace`, `profile`, `perf-metrics`, `wait-settle`.
+- Streaming: `console`, `network-log`, `network-summary`.
+- Lifecycle: `start`, `watch --restart`, `cleanup`.
+
+Prefer an outcome command when a sequence recurs. `new-session` should open the
+session, wait for readiness, and verify the destination instead of making every
+caller reproduce four clicks. Keep semantic atomic commands for exploration and
+new journeys.
+
+Prefer user-visible names, accessibility roles, and stable identifiers. Expose
+coordinate clicks as `click-xy` and unrestricted evaluation as `eval` only when
+the project needs those escape hatches. Require a fresh observation before
+`click-xy`, and state the `eval` boundary in help.
+
+Build the adapter after the first manual path exposes the real sequence. Keep a
+manual path only when a local or platform tool already supplies a stable,
+composable interface and another wrapper would add no depth.
+
+## Command contract
+
+- Group capabilities under subcommands so top-level help stays small. Put exact
+  flags, examples, output, side effects, and recovery in leaf-command help.
+- Support `--json` for inspectable, non-streaming results. Emit one JSON object
+  on stdout and human diagnostics on stderr.
+- Use JSON Lines for streams. A command intended for shell substitution may
+  emit one documented scalar, such as an evidence or scratch path.
+- Give every structured result a schema version, command name, success flag,
+  observed target, artifacts, and cleanup state.
+- Return a nonzero status for incomplete work. Structured errors name the
+  expected state, observed state, cause when known, and a concrete next action.
+- Make commands safe to retry. Record a run ID and every owned process, port,
+  temporary directory, fixture, and configuration override in a run manifest.
+- Give any command with destructive or persistent side effects `--dry-run`.
+  Require an explicit apply flag and named target when the action can affect
+  shared data. Keep production targets disabled unless the user grants that
+  authority.
+- Keep credentials, provider bodies, and unrelated environment variables out
+  of stdout, logs, screenshots, and receipts.
+
+`doctor` reports effective runtime identity rather than configuration alone.
+For example, observe the bundle requested by the client, the backend serving the
+page, the provider account used by the child process, and the immutable
+deployment associated with a hosted URL.
+
+## Feature coverage
+
+Keep a compact coverage index in `features/README.md`. Inventory discoverable
+user entry points such as routes, commands, menus, shortcuts, and deep links.
+Map each entry point to a feature ID, or mark it excluded with a reason. A newly
+discovered unmapped entry point is a coverage gap.
+
+Keep detailed actions in feature files. Each recipe names its preconditions,
+all supported user entry points, exact adapter commands, observable results,
+mutation class, proof, cleanup, and gotchas. Update the recipe in the same
+change when product work intentionally changes one of those facts.
+
+## Evidence receipt
+
+Write one machine-readable receipt per feature run. Use this stable shape,
+extending nested objects only when the project needs more identity fields:
+
+```json
+{
+  "schemaVersion": 1,
+  "result": "VERIFIED | NOT VERIFIED | INCONCLUSIVE",
+  "feature": { "id": "<feature-id>", "entryPoint": "<entry-point>" },
+  "target": {
+    "source": "<checkout, revision, dirty-state identity>",
+    "artifact": "<build, binary, bundle, or deployment>",
+    "runtime": "<process, device, backend, provider, account label>"
+  },
+  "actions": [],
+  "observed": [],
+  "artifacts": [],
+  "mutation": { "authority": "<scope>", "records": [] },
+  "cleanup": { "removed": [], "restored": [], "retained": [], "running": [] },
+  "confounds": []
+}
+```
+
+A screenshot, successful command, server start, configured model name, or agent
+self-report is supporting evidence. It is not a receipt by itself. Bind the
+receipt to what actually ran, then inspect the resulting user-visible or durable
+state.
+
+For simulator ownership and shipping cleanup, follow
+[simulator lifecycle](simulator-lifecycle.md). Reuse this run's manifest or receipt
+for that state.
+
+## Maintenance and coordination
+
+Treat a product change to a mapped journey, entry point, launch path,
+authentication flow, target identity, or cleanup rule as a verifier change.
+Use periodic maintenance to find missed drift and coverage gaps, not as the only
+update mechanism.
+
+Parallel verification runs use separate run IDs, fixtures, ports, accounts, and
+artifact directories unless shared state is the behavior under test. Each lane
+returns its receipt path. The coordinator reads the receipts, confirms their
+target identities, and reports contradictions or missing proof instead of
+combining self-reported verdicts.
+
+Serialize performance trials on one machine unless concurrency is the workload.
+Across machines, compare only normalized or hardware-independent measurements.
+
+
+SOURCE: video-evidence.md
+# Video evidence
+
+Use video when the user requests it or a material claim depends on a sequence,
+transition, animation, or timing-dependent interaction. Keep screenshots for
+reviewing static states. Select the required proof before driving the journey;
+an optional demonstration clip does not become an acceptance gate by default.
+
+## Prepare capture
+
+Use the project's verifier and existing controller. Discover recording support
+through its capabilities or documented help, then bind the recorder to the same
+checkout, build, runtime, device or page, and fixtures as the feature receipt.
+Use [environment setup](../../setup-test-environment/SKILL.md) when the target is
+not ready. Keep platform mechanics in the project adapter.
+
+Choose the backend for the surface actually under test:
+
+- **Playwright-managed web:** enable video when creating the context, before
+  driving the page. Close the owned context to finalize the video. Preserve
+  successful recordings when they are review evidence; failure-only retention
+  discards the passing demonstration. Capture a trace when action, DOM, or
+  network inspection helps diagnosis. See [Playwright videos](https://playwright.dev/docs/videos).
+- **Existing browser or desktop app:** inspect the available tool's recording
+  API, or use a documented platform recorder scoped to the relevant window or
+  region. Attaching to an existing browser does not establish that its context
+  can record. A renderer recording does not cover native menus or dialogs.
+- **Simulator or device:** use the platform's supported recorder against the
+  explicitly selected device. For iOS Simulator, inspect `simctl io` help and
+  select the device ID rather than relying on an ambiguous booted-device alias.
+  Confirm the app's build and backend separately from the device identity.
+
+Check dependencies, capture permission, output format, target scope, and stop
+behavior before the journey. Use task-specific fixtures and capture only the
+surface needed. Report a missing capability precisely and continue independent
+work; a tool listing or a command's successful start is not a working capture.
+
+## Record and finalize
+
+Deliver the shortest clip that proves the claim. For a simple interaction, aim
+for 5–10 seconds or less: begin the triggering action within the first second
+and end about one second after the result is readable. Keep longer footage when
+the behavior itself requires it, such as a loading delay or a multi-step flow;
+identify what the additional time proves.
+
+1. State the feature, entry point, triggering action, expected result, and
+   whether video is required. Finish app startup, navigation to the initial
+   state, fixture setup, and action planning before recording unless one of
+   those steps is the behavior under test. Record baseline and treatment under
+   comparable conditions when the old behavior matters.
+2. Start capture immediately before the trigger and confirm it is active. Keep
+   recorder start, the prepared interaction, and stop in one short execution
+   when the driver supports it; retain fresh observations needed to act safely.
+   Use semantic actions and observable waits, recording action timestamps.
+   Keep only the lead-in needed for recorder startup and a readable initial state.
+3. Stop promptly once the result is readable. Finalize in cleanup on success,
+   assertion failure, timeout, and recoverable runner interruption such as
+   cancellation or a handled termination signal. Stop only the
+   recorder and resources owned by this run; bound finalization so a stuck
+   recorder cannot hang verification indefinitely.
+4. Trim unrelated leading and trailing time from recorders that capture the
+   whole session, including setup and agent/tool idle time. Keep the continuous
+   trigger-to-result interval at its original speed, including waits that bear
+   on the claim. Save a separate delivery clip and retain the original under
+   the evidence storage rules; record the source clip and trim offsets.
+5. Play or decode the delivery clip from its beginning, not just a selected
+   interval. Confirm the trigger appears promptly, the result remains readable,
+   and every retained interval supports the claim. Check target, dimensions,
+   duration, and trigger-to-result coverage. If the action appears only near
+   the end of an otherwise idle clip, trim or recapture before sharing it.
+   Inspect still frames when needed, but do not describe a slideshow assembled
+   from screenshots as continuous interaction footage.
+6. Preserve the original behavior result and any capture failure separately.
+   Keep failed or incomplete recordings for diagnosis, marked with their actual
+   coverage. Add the artifact to the feature receipt before handing it off.
+
+For performance measurements, separate demonstration capture from measurement
+or hold recording overhead constant and disclose it.
+
+## Receipt and result
+
+Extend `artifacts` in the [existing receipt](verification.md#evidence-receipt).
+For each video, record its kind, local path, media type, capture scope, start/end
+time, measured duration, finalization status, and covered action IDs. Keep
+source/build/runtime identity in the enclosing receipt; identify a baseline
+clip's separate target explicitly. Record missing required capture and the
+attempted recovery in `confounds`.
+
+List covered actions only after inspecting the clip. Keep intended coverage
+separate when a file is missing or unreadable. Use observed capture timestamps,
+not receipt-writing time, and distinguish the action interval from media duration.
+
+Use these result rules:
+
+- A failed behavior assertion is `NOT VERIFIED`, including when capture also
+  fails. Preserve both failures.
+- A passing behavior with missing, unreadable, or incomplete required video is
+  `INCONCLUSIVE`. Preserve the passing observations and exact evidence gap.
+- Optional video failure does not invalidate otherwise sufficient proof.
+- An interrupted journey establishes only the actions actually observed.
+
+A video supports the receipt; it does not replace assertions or a second view of
+persisted state. A synthetic fixture validates the capture harness, not the real
+product. Label that distinction in both the receipt and the handoff.
+
+## Delivery and reuse
+
+Keep one-off recordings in task scratch space or an existing ignored artifact
+directory under the [evidence storage rules](../../open-pr/SKILL.md#evidence-storage-and-cleanup).
+Publish selected clips only within an authorized PR or artifact operation using
+the [GitHub transport contract](codex-compatibility.md#github-transport).
+Include the journey, result, and source identity with the clip. Preserve its
+canonical published URL and any retention limit in the evidence record.
+
+Readback must confirm the intended clip appears and plays in the rendered PR;
+image-load checks do not verify video. Preserve local evidence until publication
+and dependent checks finish. After a repair, refresh only affected journeys as
+specified by [Babysit QA](../../babysit-pr/SKILL.md).
+
+For a dry run, capture against a disposable fixture, inspect the file and receipt,
+and prepare the delivery content locally. Stop before uploads or PR mutations.
+Report which capture, cleanup, and delivery stages actually ran, including any
+unexercised native or remote path.
+
+
+CASES
+[
+  {
+    "id": "e11",
+    "claim": "Retrying after a transient network failure must not publish duplicates.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f11",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target and isolated fixture match."
+      },
+      {
+        "id": "ui",
+        "fact": "After timeout and retry the list shows one row; video looks successful."
+      },
+      {
+        "id": "db",
+        "fact": "Independent read finds two persisted records with the same f11 operation ID. Before the run neither existed."
+      }
+    ],
+    "proof": "Independent persisted uniqueness assertion after retry is required."
+  },
+  {
+    "id": "e07",
+    "claim": "The draft survives force termination and is restored on launch.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f07",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target and fixture match."
+      },
+      {
+        "id": "typed",
+        "fact": "Draft text entered and visible before termination."
+      },
+      {
+        "id": "interrupt",
+        "fact": "Runner was interrupted before terminating or relaunching the app. Cleanup completed. Receipt reports success based on completed actions only."
+      }
+    ],
+    "proof": "Must observe saved text after actual termination and relaunch."
+  },
+  {
+    "id": "e01",
+    "claim": "Publish an iced sip with 4 stars and show it after relaunch.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f01",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed client bundle b41 built from clean r41, sim-A connected to dev-A with f01; all following observations are from this run."
+      },
+      {
+        "id": "publish",
+        "fact": "Publish tapped; toast says Saved."
+      },
+      {
+        "id": "ui",
+        "fact": "After full app relaunch, sip f01 is visible with 4 stars and Iced."
+      },
+      {
+        "id": "db",
+        "fact": "Independent database read for f01: exactly one sip, rating=4, temperature=iced."
+      }
+    ],
+    "proof": "UI after relaunch and independent persisted values required; video optional."
+  },
+  {
+    "id": "e09",
+    "claim": "The submitted 4-star sip retains the chosen rating.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f09",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target and fixture match."
+      },
+      {
+        "id": "summary",
+        "fact": "Receipt summary says VERIFIED; toast Saved appears; screenshot of the editor before submission shows 4 stars."
+      },
+      {
+        "id": "db",
+        "fact": "Independent database read after completion returns rating=3 for the submitted f09 record; no later edits occurred."
+      }
+    ],
+    "proof": "Persisted rating must equal the submitted choice."
+  },
+  {
+    "id": "e03",
+    "claim": "Verify the new build b42 can submit and reload a sip on dev-B.",
+    "target": "source r42/build b42/runtime sim-A/backend dev-B/fixture f03",
+    "evidence": [
+      {
+        "id": "config",
+        "fact": "Environment file says dev-B; build command for r42 succeeded."
+      },
+      {
+        "id": "runtime",
+        "fact": "Observed installed app serves bundle b41 from r41 and sends requests to dev-A."
+      },
+      {
+        "id": "checks",
+        "fact": "Submission, independent DB read, and reload all pass for f03 on dev-A with b41."
+      }
+    ],
+    "proof": "All behavior must run against the requested actual build and backend."
+  },
+  {
+    "id": "e06",
+    "claim": "The submitted sip is visible after relaunch with its saved rating.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f06",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target and fixture match."
+      },
+      {
+        "id": "ui",
+        "fact": "Full relaunch shows f06 with its requested 4-star rating."
+      },
+      {
+        "id": "db",
+        "fact": "Independent database query finds one f06 record with rating=4."
+      },
+      {
+        "id": "video",
+        "fact": "Optional demonstration video is corrupt; no claim depends on timing."
+      }
+    ],
+    "proof": "UI plus independent persisted state required; video explicitly optional."
+  },
+  {
+    "id": "e04",
+    "claim": "Submitting a sip must persist exactly one record.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f04",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target and fixture match."
+      },
+      {
+        "id": "db",
+        "fact": "Independent database assertion failed: expected count=1, observed count=2 after one submission."
+      },
+      {
+        "id": "video",
+        "fact": "Required capture also failed to finalize and is unreadable."
+      }
+    ],
+    "proof": "Independent persisted count and continuous submit-to-result video required."
+  },
+  {
+    "id": "e12",
+    "claim": "Reuse evidence to confirm that build b41's submit-and-reload journey preserves the rating.",
+    "target": "immutable source r41/build b41/runtime contract sim-A/backend revision dev-A-17/fixture f12",
+    "evidence": [
+      {
+        "id": "receipt",
+        "fact": "Yesterday's receipt records the exact requested immutable source, build, backend revision and isolated fixture. It contains observed UI after relaunch with rating=4 and an independent persisted read of rating=4."
+      },
+      {
+        "id": "binding",
+        "fact": "Today's read-only identity check confirms exactly those artifacts, runtime configuration, backend revision and fixture are unchanged. The UI recipe and required assertions are unchanged. No expiration policy or current-session execution requirement applies."
+      }
+    ],
+    "proof": "Existing evidence may be reused when all relevant identities and dependencies remain valid."
+  },
+  {
+    "id": "e02",
+    "claim": "Publish an iced sip with 4 stars and preserve both fields after relaunch.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f02",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed running target and fixture exactly match requested target."
+      },
+      {
+        "id": "summary",
+        "fact": "Runner reports VERIFIED and all assertions passed."
+      },
+      {
+        "id": "checks",
+        "fact": "Assertions checked toast Saved, visible sip title after relaunch, and database count=1. No assertion or observation read rating or temperature; the payload merely requested 4 and iced."
+      }
+    ],
+    "proof": "UI and independently persisted rating and temperature are required."
+  },
+  {
+    "id": "e08",
+    "claim": "The profile display name update persists and is visible after relaunch.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f08",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target and disposable fixture match."
+      },
+      {
+        "id": "ui",
+        "fact": "Profile after full relaunch shows the requested new display name."
+      },
+      {
+        "id": "db",
+        "fact": "Independent database read confirms that same display name for f08."
+      },
+      {
+        "id": "cleanup",
+        "fact": "Deletion of the run-owned fixture timed out. Fixture is retained and documented for retry; no product assertion failed."
+      }
+    ],
+    "proof": "UI and independently persisted name required. Report cleanup separately from this product claim."
+  },
+  {
+    "id": "e05",
+    "claim": "The loading transition stays continuous through submission, and the sip persists.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f05",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target and fixture match."
+      },
+      {
+        "id": "behavior",
+        "fact": "Result screen appears; independent database query finds the correct sip."
+      },
+      {
+        "id": "video",
+        "fact": "Video listed as finalized, but decode from the beginning fails before the triggering action. No other temporal observation exists."
+      }
+    ],
+    "proof": "Continuous trigger-to-result video is required for the transition claim."
+  },
+  {
+    "id": "e10",
+    "claim": "At large accessibility text size the submit button is reachable without dismissing the keyboard.",
+    "target": "source r41/build b41/runtime sim-A/backend dev-A/fixture f10/textSize XXL",
+    "evidence": [
+      {
+        "id": "identity",
+        "fact": "Observed target, fixture and XXL text size match."
+      },
+      {
+        "id": "default",
+        "fact": "At default text size the submit button was visible and tappable."
+      },
+      {
+        "id": "xxl",
+        "fact": "Fresh XXL accessibility-tree observation and interaction assertion agree: submit is occluded by the keyboard and cannot be activated. Screenshot supports the same state."
+      }
+    ],
+    "proof": "Reachability at the requested XXL setting is required. Treat supplied observations as facts; no actual image is attached."
+  }
+]

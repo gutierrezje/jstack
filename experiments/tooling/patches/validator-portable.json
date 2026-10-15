@@ -1,0 +1,21 @@
+{
+  "file": "scripts/validate.mjs",
+  "replacements": [
+    {
+      "fromLines": [
+        "import { dirname, join, relative, resolve } from \"node:path\";"
+      ],
+      "toLines": [
+        "import { basename, dirname, join, relative, resolve } from \"node:path\";"
+      ]
+    },
+    {
+      "fromLines": [
+        "  const expectedName = directory.split(\"/\").at(-1);"
+      ],
+      "toLines": [
+        "  const expectedName = basename(directory);"
+      ]
+    }
+  ]
+}

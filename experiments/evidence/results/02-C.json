@@ -1,0 +1,76 @@
+{
+  "decisions": [
+    {
+      "id": "e02",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "checks"],
+      "reason": "The target and fixture match, and the assertions confirm save, relaunch visibility, and count=1, but they never observe persisted rating or temperature; the requested fields are unverified."
+    },
+    {
+      "id": "e12",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["receipt", "binding"],
+      "reason": "The existing receipt proves rating=4 in the relaunched UI and independent persisted read; today's identity check confirms the artifacts, runtime, backend revision, fixture, recipe, and assertions remain unchanged, with no expiration or current-session requirement."
+    },
+    {
+      "id": "e04",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "db", "video"],
+      "reason": "The matching target produced two persisted records after one submission, contradicting exactly one; the required continuous submit-to-result video also failed to finalize and is unreadable."
+    },
+    {
+      "id": "e06",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "ui", "db", "video"],
+      "reason": "The matching target shows the submitted sip with 4 stars after full relaunch, and an independent query confirms one record with rating=4. The optional demonstration video is corrupt, but the claim does not depend on timing."
+    },
+    {
+      "id": "e10",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "xxl"],
+      "reason": "At the requested XXL setting, the fresh accessibility-tree observation and interaction assertion show the submit button is occluded and cannot be activated; the screenshot supports this. Default-size reachability does not establish the requested behavior."
+    },
+    {
+      "id": "e01",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "publish", "ui", "db"],
+      "reason": "On the matching bundle, backend, and fixture, publishing reports Saved; after full relaunch the sip appears with 4 stars and Iced, and an independent database read confirms exactly one sip with rating=4 and temperature=iced."
+    },
+    {
+      "id": "e09",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "summary", "db"],
+      "reason": "The editor showed the chosen 4 stars, but the independent post-completion read found rating=3 and no later edits occurred, contradicting retention of the chosen rating; the receipt's summary verdict is unsupported."
+    },
+    {
+      "id": "e05",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "behavior", "video"],
+      "reason": "The matching target produced the result screen and the correct persisted sip, but continuous loading behavior cannot be established: the finalized video fails to decode before the trigger and no other temporal observation exists."
+    },
+    {
+      "id": "e11",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "ui", "db"],
+      "reason": "Although the UI shows one row after retry, the independent read finds two persisted records with the same operation ID, where neither existed before; this contradicts the no-duplicates claim."
+    },
+    {
+      "id": "e03",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["config", "runtime", "checks"],
+      "reason": "The environment file and build command do not establish the effective target: the observed app runs b41 from r41 against dev-A, and all passing checks are on that wrong target. The requested b42/dev-B behavior remains untested."
+    },
+    {
+      "id": "e08",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "ui", "db", "cleanup"],
+      "reason": "On the matching target and disposable fixture, the requested display name appears after full relaunch and the independent database read confirms it. Separately, fixture deletion timed out, so the run-owned fixture remains and is documented for retry."
+    },
+    {
+      "id": "e07",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "typed", "interrupt"],
+      "reason": "The matching target shows the draft before termination, but the runner was interrupted before termination or relaunch, so restoration was never observed. Cleanup completed; the receipt's success covers only actions actually completed."
+    }
+  ]
+}

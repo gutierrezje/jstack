@@ -1,0 +1,14 @@
+{
+  "baseRevision": "57ce511b2bac12d019f1deaccb47fccce0c48cb2",
+  "destination": "native OpenAI Codex",
+  "reviewer": "/root/eval_structural_review",
+  "requestedRoute": "luna-max-fast",
+  "originalScopes": ["evidence/frozen.json", "tooling/frozen-manifest.json"],
+  "repairAndRestoredArtifactSha256": {
+    "evidence/audit-safety.mjs": "0ec231dfd802a1ce3c82ed259eba9c0cb53cd3e0f6e6ca25ad47d2507eb3f33a",
+    "evidence/audit-safety.test.mjs": "451b01529465511ebd05afb3fa2d2a2983df97b5fdab414a0a7bbcc97f9f17cc",
+    "tooling/replay.mjs": "89b02c9c660b5edf14f299a8bc8254f988cbd0e540a157771ca84ac91665ac62",
+    "tooling/replay.test.mjs": "ff813d2adbf1503a66510fcbe8db5d71212e7e4a6a6d0c2f3c21d35f00d18e43",
+    "tooling/candidates/validate-invocation.mjs": "a4a71e080f9b07004091b99d75d69c25f585f4261d0cfbdfb219d284a1fcd7e2"
+  }
+}

@@ -1,0 +1,756 @@
+{
+  "experiment": "evidence-adjudication-v1",
+  "frozenAt": "2026-10-15T19:18:30.275Z",
+  "gradedAt": "2026-10-15T19:21:26.987Z",
+  "environment": {
+    "node": "v26.4.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "arms": {
+    "C": {
+      "passed": 35,
+      "total": 36,
+      "falseVerified": 0,
+      "perRun": [
+        11,
+        12,
+        12
+      ]
+    },
+    "D": {
+      "passed": 36,
+      "total": 36,
+      "falseVerified": 0,
+      "perRun": [
+        12,
+        12,
+        12
+      ]
+    }
+  },
+  "improvement": 1,
+  "regressions": [],
+  "promote": false,
+  "costs": {
+    "tokens": null,
+    "monetary": null,
+    "observedServiceTier": null
+  },
+  "results": [
+    {
+      "trial": "01-C",
+      "outputSha256": "26f8ca2d5490382ab16e1dc672054f24f11d5a4891da59e208ce8e10784e9719",
+      "error": null,
+      "schemaValid": true,
+      "passed": 11,
+      "total": 12,
+      "falseVerified": 0,
+      "scores": [
+        {
+          "id": "e01",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e02",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e03",
+          "expected": "INCONCLUSIVE",
+          "actual": "NOT VERIFIED",
+          "pass": false,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e04",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e05",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e06",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e07",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e08",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e09",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e10",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e11",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e12",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        }
+      ]
+    },
+    {
+      "trial": "01-D",
+      "outputSha256": "c9831d8ef51a159e6d64128c5d91abfe50ab7080aea691902125a2c5ea3e073f",
+      "error": null,
+      "schemaValid": true,
+      "passed": 12,
+      "total": 12,
+      "falseVerified": 0,
+      "scores": [
+        {
+          "id": "e01",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e02",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e03",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e04",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e05",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e06",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e07",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e08",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e09",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e10",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e11",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e12",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        }
+      ]
+    },
+    {
+      "trial": "02-D",
+      "outputSha256": "528073314d79d38b4bc2a338d844a9db2cb914f19c06598165ec66cf1c8f4421",
+      "error": null,
+      "schemaValid": true,
+      "passed": 12,
+      "total": 12,
+      "falseVerified": 0,
+      "scores": [
+        {
+          "id": "e01",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e02",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e03",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e04",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e05",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e06",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e07",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e08",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e09",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e10",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e11",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e12",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        }
+      ]
+    },
+    {
+      "trial": "02-C",
+      "outputSha256": "759f2f294a09979376340efa83df5f1d8fdff45da2fd6f038200efaa1c1e7bbf",
+      "error": null,
+      "schemaValid": true,
+      "passed": 12,
+      "total": 12,
+      "falseVerified": 0,
+      "scores": [
+        {
+          "id": "e01",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e02",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e03",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e04",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e05",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e06",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e07",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e08",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e09",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e10",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e11",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e12",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        }
+      ]
+    },
+    {
+      "trial": "03-C",
+      "outputSha256": "ffafa03a04b12d3332abd9e133c76ae3bf7aaaaccb3a6df3a07c7ebf0e6312b7",
+      "error": null,
+      "schemaValid": true,
+      "passed": 12,
+      "total": 12,
+      "falseVerified": 0,
+      "scores": [
+        {
+          "id": "e01",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e02",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e03",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e04",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e05",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e06",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e07",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e08",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e09",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e10",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e11",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e12",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        }
+      ]
+    },
+    {
+      "trial": "03-D",
+      "outputSha256": "f5613b8f4490d5a710a157e2a6c6a72bcbb9c5ed87beaec10dd2b8f570640775",
+      "error": null,
+      "schemaValid": true,
+      "passed": 12,
+      "total": 12,
+      "falseVerified": 0,
+      "scores": [
+        {
+          "id": "e01",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e02",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e03",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e04",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e05",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e06",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e07",
+          "expected": "INCONCLUSIVE",
+          "actual": "INCONCLUSIVE",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e08",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e09",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e10",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e11",
+          "expected": "NOT VERIFIED",
+          "actual": "NOT VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        },
+        {
+          "id": "e12",
+          "expected": "VERIFIED",
+          "actual": "VERIFIED",
+          "pass": true,
+          "falseVerified": false,
+          "missingEvidence": [],
+          "inventedEvidence": []
+        }
+      ]
+    }
+  ]
+}

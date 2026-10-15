@@ -1,0 +1,76 @@
+{
+  "decisions": [
+    {
+      "id": "e02",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "checks"],
+      "reason": "The target matches and the checks establish a saved toast, a visible title after relaunch, and one database record, but neither the displayed nor persisted rating or temperature was observed; the requested payload and VERIFIED summary do not prove those fields."
+    },
+    {
+      "id": "e12",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["receipt", "binding"],
+      "reason": "The prior receipt contains the required post-relaunch UI rating and independent persisted rating for the exact target, and today's identity check confirms the target and required dependencies remain unchanged, so the evidence can be reused."
+    },
+    {
+      "id": "e04",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "db", "video"],
+      "reason": "On the matching target, the independent database assertion found two records after one submission, contradicting the exactly-one requirement. Required video also failed to finalize and is unreadable."
+    },
+    {
+      "id": "e06",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "ui", "db", "video"],
+      "reason": "The matching target shows the requested 4-star sip after full relaunch, and an independent read confirms one persisted record with rating 4. The corrupt video was optional and does not affect this proof."
+    },
+    {
+      "id": "e10",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "xxl"],
+      "reason": "At the requested XXL text size on the matching target, fresh accessibility and interaction observations show the submit button is occluded and cannot be activated. The default-size observation does not establish reachability at XXL."
+    },
+    {
+      "id": "e01",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "publish", "ui", "db"],
+      "reason": "On the matching target, publication produced a saved toast, the sip appears after full relaunch with 4 stars and Iced, and an independent database read confirms exactly one sip with rating 4 and temperature iced."
+    },
+    {
+      "id": "e09",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "summary", "db"],
+      "reason": "The editor screenshot shows the chosen 4 stars, but the independent post-completion database read returns rating 3 for the submitted record, contradicting the required persisted rating. The VERIFIED summary does not override that value."
+    },
+    {
+      "id": "e05",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "behavior", "video"],
+      "reason": "The result screen and independent database query support that the sip persisted, but the required continuous transition proof is missing: the finalized video cannot decode from the beginning and fails before the triggering action."
+    },
+    {
+      "id": "e11",
+      "verdict": "NOT VERIFIED",
+      "evidenceIds": ["identity", "ui", "db"],
+      "reason": "Despite the list showing one row after retry, the independent read finds two persisted records with the same operation ID, violating the no-duplicates requirement."
+    },
+    {
+      "id": "e03",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["config", "runtime", "checks"],
+      "reason": "The requested build and backend are not established at runtime: the installed app serves b41 from r41 and sends requests to dev-A. Passing checks ran on that different target, so they do not prove behavior on b42/dev-B."
+    },
+    {
+      "id": "e08",
+      "verdict": "VERIFIED",
+      "evidenceIds": ["identity", "ui", "db", "cleanup"],
+      "reason": "On the matching target, the requested display name is visible after full relaunch and independently confirmed in the database. Separately, cleanup timed out and the run-owned fixture remains retained for retry."
+    },
+    {
+      "id": "e07",
+      "verdict": "INCONCLUSIVE",
+      "evidenceIds": ["identity", "typed", "interrupt"],
+      "reason": "The draft was visible before termination, but the runner was interrupted before terminating or relaunching the app, so restoration after force termination was not observed. Cleanup completed; the receipt's success summary covers completed actions only."
+    }
+  ]
+}

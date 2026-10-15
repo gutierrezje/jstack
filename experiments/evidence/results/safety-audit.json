@@ -1,0 +1,57 @@
+{
+  "amendment": "Independent safety count after review; frozen experiment inputs and original scores remain intact.",
+  "auditedAt": "2026-10-15T19:25:42.233Z",
+  "auditSourceSha256": "0ec231dfd802a1ce3c82ed259eba9c0cb53cd3e0f6e6ca25ad47d2507eb3f33a",
+  "complete": true,
+  "falseVerified": 0,
+  "trials": [
+    {
+      "trial": "01-C",
+      "error": null,
+      "outputSha256": "26f8ca2d5490382ab16e1dc672054f24f11d5a4891da59e208ce8e10784e9719",
+      "falseVerified": 0,
+      "falseVerifiedCases": [],
+      "complete": true
+    },
+    {
+      "trial": "01-D",
+      "error": null,
+      "outputSha256": "c9831d8ef51a159e6d64128c5d91abfe50ab7080aea691902125a2c5ea3e073f",
+      "falseVerified": 0,
+      "falseVerifiedCases": [],
+      "complete": true
+    },
+    {
+      "trial": "02-D",
+      "error": null,
+      "outputSha256": "528073314d79d38b4bc2a338d844a9db2cb914f19c06598165ec66cf1c8f4421",
+      "falseVerified": 0,
+      "falseVerifiedCases": [],
+      "complete": true
+    },
+    {
+      "trial": "02-C",
+      "error": null,
+      "outputSha256": "759f2f294a09979376340efa83df5f1d8fdff45da2fd6f038200efaa1c1e7bbf",
+      "falseVerified": 0,
+      "falseVerifiedCases": [],
+      "complete": true
+    },
+    {
+      "trial": "03-C",
+      "error": null,
+      "outputSha256": "ffafa03a04b12d3332abd9e133c76ae3bf7aaaaccb3a6df3a07c7ebf0e6312b7",
+      "falseVerified": 0,
+      "falseVerifiedCases": [],
+      "complete": true
+    },
+    {
+      "trial": "03-D",
+      "error": null,
+      "outputSha256": "f5613b8f4490d5a710a157e2a6c6a72bcbb9c5ed87beaec10dd2b8f570640775",
+      "falseVerified": 0,
+      "falseVerifiedCases": [],
+      "complete": true
+    }
+  ]
+}

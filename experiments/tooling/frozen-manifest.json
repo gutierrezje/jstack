@@ -1,0 +1,733 @@
+{
+  "protocol": {
+    "baselineRevision": "57ce511b2bac12d019f1deaccb47fccce0c48cb2",
+    "execution": "Run each deterministic case once against its pinned baseline and once against its isolated candidate. Cases using the real analyze.sh create a local synthetic Git remote; a PATH-scoped adapter rewrites only the script’s fixed upstream URL to that remote. No network access is used.",
+    "observation": "Record process exit code plus exact stdout and stderr, replacing only each temporary fixture root with <FIXTURE>. Candidate and baseline assertions are frozen per case.",
+    "budget": {
+      "cases": 33,
+      "runsPerVariantPerCase": 1,
+      "speedClaim": false
+    },
+    "scoring": {
+      "casePass": "The observed exit code and every required or forbidden output substring match the frozen expectation.",
+      "promotionThreshold": "All candidate expectations pass, with zero false accepts and every passing or rejecting control preserved. A candidate that changes unrelated baseline behavior fails the threshold.",
+      "falseAccept": "A case frozen to reject exits successfully in the candidate."
+    },
+    "limitations": [
+      "The Windows separator cases exercise Node's win32 basename helper with simulated path strings; they are not native Windows runs.",
+      "The analyzer uses a local synthetic Git remote with the fixed upstream URL rewritten by Git configuration; it does not test upstream availability, authentication, or remote history.",
+      "One deterministic pass per case is a correctness check, not a timing, variance, or performance claim.",
+      "Results describe only the frozen corpus and do not prove behavior for untested inputs."
+    ],
+    "frozenAtUtc": "2026-10-15T19:27:18Z",
+    "freezeNote": "Final artifact freeze after the case corpus and expectations were authored; the runner, README, scoring clarification, patches, and source hashes are fixed before the first comparison."
+  },
+  "sourceHashes": {
+    "baseline:skills/sync-pstack/scripts/analyze.sh": "91807e6133bd56d4dde295080f234fe07281d2cf59493716a5f3e7536df24ffa",
+    "baseline:scripts/validate.mjs": "6362fbb890027edb51f8b7d8c4bd5031c06ae19b00c57936aca9a2c2c88164b1",
+    "baseline:skills/jesus-mode/scripts/check-plan.mjs": "b186d0cb79b7c3981095188cfbfceaa7701dd2197ed11b0f6a370f7f2fff3c19",
+    "experiments/tooling/patches/invocation-policy.patch": "13af759848c0d394e4e19a957a378a273556954d41e60aa72af2d8b78e4aa032",
+    "experiments/tooling/patches/analyze-map.json": "f71c9a02111fd9c54f1a378a06489db5f7f2cab7c9705ec413ea82f317a836df",
+    "experiments/tooling/patches/validator-portable.json": "2aa10828d23588b55765ec0e96855e93fc47f10f682a535b42393246b1447daa",
+    "experiments/tooling/patches/plan-fences.json": "a96aee8e16aca0d1dcad0ef7e8333b86f7b1530c9cc7f702eb0c9e28e4302ccd",
+    "experiments/tooling/corpus/plan-template.md": "d546b01c23f6e9ae45b567cabda0d65f0ce4daa71fe63308f839870298211f25",
+    "experiments/tooling/run.mjs": "70f1e20cd5e010972b0a6a55d851e7a961f727d3f3a5673ef3d94de59cc96c36",
+    "experiments/tooling/README.md": "024b2c57584300f80b4b3a17cb319b84cf417f5077b418d26c9a5c7dd30409fd",
+    "experiments/tooling/scoring-clarification.md": "67d6c0f5d595060a3db920cd5177a31abd3aea31664532afefede51d44c77baa"
+  },
+  "candidateProvenance": {
+    "analyze-map": "One-line ordered case addition stored in patches/analyze-map.json.",
+    "invocation-policy": {
+      "sourceCommit": "c3f90713fe9a575c44328c685da509f01301ab17",
+      "diffBase": "57ce511b2bac12d019f1deaccb47fccce0c48cb2",
+      "artifact": "candidates/validate-invocation.mjs",
+      "note": "Exact candidate source read from the prescribed commit; its removal of the existing description-length check is included unchanged.",
+      "candidateSourceSha256": "a4a71e080f9b07004091b99d75d69c25f585f4261d0cfbdfb219d284a1fcd7e2"
+    },
+    "plan-fences": "Small fence-state replacement stored in patches/plan-fences.json.",
+    "validator-portable": "Import basename and use it for the skill directory name, stored in patches/validator-portable.json."
+  },
+  "cases": [
+    {
+      "id": "map_modified_poteto_skill",
+      "area": "analyze-map",
+      "role": "target",
+      "input": {
+        "operation": "modify",
+        "path": "pstack/skills/poteto-mode/SKILL.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/poteto-mode/SKILL.md (missing)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/jesus-mode/SKILL.md (present)"
+        ]
+      }
+    },
+    {
+      "id": "map_added_poteto_reference",
+      "area": "analyze-map",
+      "role": "target",
+      "input": {
+        "operation": "add",
+        "path": "pstack/skills/poteto-mode/references/new-guide.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/poteto-mode/references/new-guide.md (missing)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/jesus-mode/references/new-guide.md (present)"
+        ]
+      }
+    },
+    {
+      "id": "map_deleted_poteto_skill",
+      "area": "analyze-map",
+      "role": "target",
+      "input": {
+        "operation": "delete",
+        "path": "pstack/skills/poteto-mode/SKILL.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/poteto-mode/SKILL.md (missing)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/jesus-mode/SKILL.md (present)"
+        ]
+      }
+    },
+    {
+      "id": "map_rename_into_poteto_skill",
+      "area": "analyze-map",
+      "role": "target",
+      "input": {
+        "operation": "rename",
+        "oldPath": "pstack/skills/legacy/SKILL.md",
+        "path": "pstack/skills/poteto-mode/SKILL.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/poteto-mode/SKILL.md (missing)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "-> skills/jesus-mode/SKILL.md (present)"
+        ]
+      }
+    },
+    {
+      "id": "control_generic_skill_mapping",
+      "area": "analyze-map",
+      "role": "control",
+      "input": {
+        "operation": "modify",
+        "path": "pstack/skills/reviewing/SKILL.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/skills/reviewing/SKILL.md -> skills/reviewing/SKILL.md (present)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/skills/reviewing/SKILL.md -> skills/reviewing/SKILL.md (present)"
+        ]
+      }
+    },
+    {
+      "id": "control_poteto_agent_mapping",
+      "area": "analyze-map",
+      "role": "control",
+      "input": {
+        "operation": "modify",
+        "path": "pstack/agents/poteto-agent.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/agents/poteto-agent.md -> skills/jesus-mode/references/poteto-agent.md (present)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/agents/poteto-agent.md -> skills/jesus-mode/references/poteto-agent.md (present)"
+        ]
+      }
+    },
+    {
+      "id": "control_unmapped_new_upstream_file",
+      "area": "analyze-map",
+      "role": "control",
+      "input": {
+        "operation": "add",
+        "path": "pstack/docs/new-build.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/docs/new-build.md -> (no mapped Jstack file)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/docs/new-build.md -> (no mapped Jstack file)"
+        ]
+      }
+    },
+    {
+      "id": "control_unmapped_deleted_upstream_file",
+      "area": "analyze-map",
+      "role": "control",
+      "input": {
+        "operation": "delete",
+        "path": "pstack/docs/old-build.md"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/docs/old-build.md -> (no mapped Jstack file)"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "pstack/docs/old-build.md -> (no mapped Jstack file)"
+        ]
+      }
+    },
+    {
+      "id": "invocation_matching_explicit_only",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "false",
+        "claude": "true"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      }
+    },
+    {
+      "id": "invocation_matching_automatic",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "true",
+        "claude": "false"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      }
+    },
+    {
+      "id": "invocation_both_omitted",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "omitted",
+        "claude": "omitted"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      }
+    },
+    {
+      "id": "invocation_codex_explicit_claude_automatic_mismatch",
+      "area": "invocation-policy",
+      "role": "target",
+      "input": {
+        "codex": "false",
+        "claude": "false"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "sample invocation policy differs"
+        ]
+      }
+    },
+    {
+      "id": "invocation_codex_automatic_claude_explicit_mismatch",
+      "area": "invocation-policy",
+      "role": "target",
+      "input": {
+        "codex": "true",
+        "claude": "true"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "sample invocation policy differs"
+        ]
+      }
+    },
+    {
+      "id": "invocation_inline_policy_rejected",
+      "area": "invocation-policy",
+      "role": "target",
+      "input": {
+        "codex": "inline-false",
+        "claude": "true"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "must use a block mapping"
+        ]
+      }
+    },
+    {
+      "id": "invocation_matching_with_comments_and_crlf_metadata",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "false",
+        "claude": "true",
+        "metadataCrlf": true,
+        "comments": true
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      }
+    },
+    {
+      "id": "invocation_missing_metadata_counterpart",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "missing",
+        "claude": "omitted"
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "skills/sample is missing agents/openai.yaml"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "skills/sample is missing agents/openai.yaml"
+        ]
+      }
+    },
+    {
+      "id": "invocation_missing_skill_counterpart",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "false",
+        "claude": "missing-skill"
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "skills/sample is missing SKILL.md"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "skills/sample is missing SKILL.md"
+        ]
+      }
+    },
+    {
+      "id": "invocation_direct_script_path_from_outside_root",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "true",
+        "claude": "false",
+        "cwd": "outside"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      }
+    },
+    {
+      "id": "invocation_overlong_description_regression_probe",
+      "area": "invocation-policy",
+      "role": "control",
+      "input": {
+        "codex": "true",
+        "claude": "false",
+        "descriptionLength": 120
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "auto-invoked description exceeds 100 characters"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "auto-invoked description exceeds 100 characters"
+        ]
+      }
+    },
+    {
+      "id": "plan_tilde_fence_hides_placeholder",
+      "area": "plan-fences",
+      "role": "target",
+      "input": {
+        "appendix": "~~~js\n<example>\n~~~"
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unfilled placeholder"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      }
+    },
+    {
+      "id": "plan_indented_backtick_fence_hides_placeholder",
+      "area": "plan-fences",
+      "role": "target",
+      "input": {
+        "appendix": "  ```js\n<example>\n  ```"
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unfilled placeholder"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      }
+    },
+    {
+      "id": "plan_short_closer_does_not_close_long_fence",
+      "area": "plan-fences",
+      "role": "target",
+      "input": {
+        "appendix": "````js\n<example>\n```\n<still-code>\n````"
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unfilled placeholder"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      }
+    },
+    {
+      "id": "plan_unmatched_tilde_fence_runs_to_eof",
+      "area": "plan-fences",
+      "role": "target",
+      "input": {
+        "appendix": "~~~js\n<example>"
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unfilled placeholder"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      }
+    },
+    {
+      "id": "plan_longer_closer_is_valid",
+      "area": "plan-fences",
+      "role": "target",
+      "input": {
+        "appendix": "```js\n<example>\n````"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      }
+    },
+    {
+      "id": "plan_other_marker_does_not_close_fence",
+      "area": "plan-fences",
+      "role": "control",
+      "input": {
+        "appendix": "~~~js\n```\n<example>\n~~~"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      }
+    },
+    {
+      "id": "plan_prose_placeholder_remains_rejected",
+      "area": "plan-fences",
+      "role": "control",
+      "input": {
+        "appendix": "Replace <example> before implementation."
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unfilled placeholder"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unfilled placeholder"
+        ]
+      }
+    },
+    {
+      "id": "plan_ordinary_fence_control",
+      "area": "plan-fences",
+      "role": "control",
+      "input": {
+        "appendix": "```js\n<example>\n```"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      }
+    },
+    {
+      "id": "plan_structural_error_control",
+      "area": "plan-fences",
+      "role": "control",
+      "input": {
+        "planModification": "rename-live-block"
+      },
+      "expectedBaseline": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unexpected block \"Verify, missing.\""
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unexpected block \"Verify, missing.\""
+        ]
+      }
+    },
+    {
+      "id": "plan_invalid_backtick_info_rejected",
+      "area": "plan-fences",
+      "role": "target",
+      "input": {
+        "appendix": "```js`\n<example>\n```"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "1 phase sections, 0 problems"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 1,
+        "stderrContains": [
+          "unfilled placeholder"
+        ]
+      }
+    },
+    {
+      "id": "portable_validator_direct_path_from_outside",
+      "area": "validator-portable",
+      "role": "control",
+      "input": {
+        "codex": "true",
+        "claude": "false",
+        "cwd": "outside"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      }
+    },
+    {
+      "id": "portable_validator_posix_directory_name",
+      "area": "validator-portable",
+      "role": "control",
+      "input": {
+        "codex": "false",
+        "claude": "true"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutContains": [
+          "Validated 1 skills"
+        ]
+      }
+    },
+    {
+      "id": "portable_windows_separator_helper",
+      "area": "validator-portable",
+      "role": "target",
+      "input": {
+        "path": "C:\\fixture\\skills\\example",
+        "mode": "simulated-win32"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutEquals": "C:\\fixture\\skills\\example\n"
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutEquals": "example\n"
+      }
+    },
+    {
+      "id": "portable_windows_trailing_separator_helper",
+      "area": "validator-portable",
+      "role": "target",
+      "input": {
+        "path": "C:\\fixture\\skills\\example\\",
+        "mode": "simulated-win32"
+      },
+      "expectedBaseline": {
+        "exitCode": 0,
+        "stdoutEquals": "C:\\fixture\\skills\\example\\\n"
+      },
+      "expectedCandidate": {
+        "exitCode": 0,
+        "stdoutEquals": "example\n"
+      }
+    }
+  ]
+}

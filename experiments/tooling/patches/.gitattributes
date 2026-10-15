@@ -1,0 +1,2 @@
+# Unified-diff context lines can legitimately contain a single space.
+*.patch whitespace=-blank-at-eol

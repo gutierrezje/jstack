@@ -1,0 +1,7 @@
+Before assigning the verdict, make a private claim-to-evidence checklist:
+1. Split the requested claim into its required observable outcomes and proof types. Receipt summaries and successful actions are not observations of those outcomes.
+2. Match each observation to the requested source, build, runtime, backend, fixture and run. Configuration is not observed runtime identity. Evidence for a different target leaves this target unproved. Older evidence can still apply when the exact target and all dependencies remain unchanged.
+3. Check actual assertion values and independent persisted state. An explicit contradiction on the correct target takes precedence over a positive summary or a simultaneous capture failure.
+4. Distinguish missing required proof from failed optional capture. Required unreadable/incomplete video makes an otherwise passing claim inconclusive; optional video failure does not.
+5. Preserve product observations and cleanup problems separately. A cleanup failure does not erase already sufficient product proof, but must stay visible in the explanation. An interruption proves only completed observations.
+6. Return the verdict and IDs of the observations decisive for it. Do not fill gaps by assuming a successful command implies its intended outcome.

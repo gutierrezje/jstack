@@ -1,0 +1,1390 @@
+{
+  "protocol": {
+    "baselineRevision": "57ce511b2bac12d019f1deaccb47fccce0c48cb2",
+    "manifest": "experiments/tooling/frozen-manifest.json",
+    "manifestSha256": "7996ef39cae4a87d9a5294a7b5822ad64462a6533019ba741b8b23b356b65226",
+    "frozenAtUtc": "2026-10-15T19:27:18Z",
+    "scoringClarification": "experiments/tooling/scoring-clarification.md",
+    "scoringClarificationSha256": "67d6c0f5d595060a3db920cd5177a31abd3aea31664532afefede51d44c77baa",
+    "caseCount": 33,
+    "runsPerVariantPerCase": 1,
+    "exactOutputs": "Each child stdout and stderr is retained after replacing the temporary fixture root with <FIXTURE>."
+  },
+  "runtime": {
+    "node": "v26.4.0",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "bash": "GNU bash, version 5.3.15(1)-release (aarch64-apple-darwin25.4.0)"
+  },
+  "sourceHashes": {
+    "baseline:skills/sync-pstack/scripts/analyze.sh": "91807e6133bd56d4dde295080f234fe07281d2cf59493716a5f3e7536df24ffa",
+    "baseline:scripts/validate.mjs": "6362fbb890027edb51f8b7d8c4bd5031c06ae19b00c57936aca9a2c2c88164b1",
+    "baseline:skills/jesus-mode/scripts/check-plan.mjs": "b186d0cb79b7c3981095188cfbfceaa7701dd2197ed11b0f6a370f7f2fff3c19",
+    "experiments/tooling/patches/invocation-policy.patch": "13af759848c0d394e4e19a957a378a273556954d41e60aa72af2d8b78e4aa032",
+    "experiments/tooling/patches/analyze-map.json": "f71c9a02111fd9c54f1a378a06489db5f7f2cab7c9705ec413ea82f317a836df",
+    "experiments/tooling/patches/validator-portable.json": "2aa10828d23588b55765ec0e96855e93fc47f10f682a535b42393246b1447daa",
+    "experiments/tooling/patches/plan-fences.json": "a96aee8e16aca0d1dcad0ef7e8333b86f7b1530c9cc7f702eb0c9e28e4302ccd",
+    "experiments/tooling/corpus/plan-template.md": "d546b01c23f6e9ae45b567cabda0d65f0ce4daa71fe63308f839870298211f25",
+    "experiments/tooling/run.mjs": "70f1e20cd5e010972b0a6a55d851e7a961f727d3f3a5673ef3d94de59cc96c36",
+    "experiments/tooling/README.md": "024b2c57584300f80b4b3a17cb319b84cf417f5077b418d26c9a5c7dd30409fd",
+    "experiments/tooling/scoring-clarification.md": "67d6c0f5d595060a3db920cd5177a31abd3aea31664532afefede51d44c77baa"
+  },
+  "scores": {
+    "baselineReproducedFrozenPredictions": 33,
+    "baselineMatchedDesiredOracle": 19,
+    "candidateMatchedDesiredOracle": 32,
+    "targetCases": 15,
+    "targetCasesMatchedDesiredOracle": 15,
+    "controls": 18,
+    "candidateControlsRetained": 17,
+    "falseAccepts": [
+      "invocation_overlong_description_regression_probe"
+    ],
+    "promotionThresholdMet": false,
+    "byArea": {
+      "analyze-map": {
+        "cases": 8,
+        "baselineReproducedPrediction": 8,
+        "baselineMatchedDesiredOracle": 4,
+        "candidateMatchedDesiredOracle": 8,
+        "targetCases": 4,
+        "targetCandidateMatchedDesiredOracle": 4,
+        "controls": 4,
+        "candidateControlsRetained": 4
+      },
+      "invocation-policy": {
+        "cases": 11,
+        "baselineReproducedPrediction": 11,
+        "baselineMatchedDesiredOracle": 8,
+        "candidateMatchedDesiredOracle": 10,
+        "targetCases": 3,
+        "targetCandidateMatchedDesiredOracle": 3,
+        "controls": 8,
+        "candidateControlsRetained": 7
+      },
+      "plan-fences": {
+        "cases": 10,
+        "baselineReproducedPrediction": 10,
+        "baselineMatchedDesiredOracle": 5,
+        "candidateMatchedDesiredOracle": 10,
+        "targetCases": 6,
+        "targetCandidateMatchedDesiredOracle": 6,
+        "controls": 4,
+        "candidateControlsRetained": 4
+      },
+      "validator-portable": {
+        "cases": 4,
+        "baselineReproducedPrediction": 4,
+        "baselineMatchedDesiredOracle": 2,
+        "candidateMatchedDesiredOracle": 4,
+        "targetCases": 2,
+        "targetCandidateMatchedDesiredOracle": 2,
+        "controls": 2,
+        "candidateControlsRetained": 2
+      }
+    }
+  },
+  "limitations": [
+    "The Windows separator cases exercise Node's win32 basename helper with simulated path strings; they are not native Windows runs.",
+    "The analyzer uses a local synthetic Git remote with the fixed upstream URL rewritten by Git configuration; it does not test upstream availability, authentication, or remote history.",
+    "One deterministic pass per case is a correctness check, not a timing, variance, or performance claim.",
+    "Results describe only the frozen corpus and do not prove behavior for untested inputs."
+  ],
+  "cases": [
+    {
+      "id": "map_modified_poteto_skill",
+      "area": "analyze-map",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "cc16fe1a770abd0272c741aeb4ad2e8afff2589a",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: cc16fe1a770abd0272c741aeb4ad2e8afff2589a\nhead: 7af044e635c6a375995f705ebda13be7bcf26328\ncomparison: cc16fe1a770abd0272c741aeb4ad2e8afff2589a..7af044e635c6a375995f705ebda13be7bcf26328 (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nM\tpstack/skills/poteto-mode/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nM: pstack/skills/poteto-mode/SKILL.md -> skills/poteto-mode/SKILL.md (missing)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "stdout missing \"-> skills/jesus-mode/SKILL.md (present)\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "cc16fe1a770abd0272c741aeb4ad2e8afff2589a",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: cc16fe1a770abd0272c741aeb4ad2e8afff2589a\nhead: 7af044e635c6a375995f705ebda13be7bcf26328\ncomparison: cc16fe1a770abd0272c741aeb4ad2e8afff2589a..7af044e635c6a375995f705ebda13be7bcf26328 (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nM\tpstack/skills/poteto-mode/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nM: pstack/skills/poteto-mode/SKILL.md -> skills/jesus-mode/SKILL.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "map_added_poteto_reference",
+      "area": "analyze-map",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "d5b6af86a48804f0f62427529c18d2e3850bd9ff",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: d5b6af86a48804f0f62427529c18d2e3850bd9ff\nhead: 0e941564e9de4dc5127fa80ad77cd206e1ee7609\ncomparison: d5b6af86a48804f0f62427529c18d2e3850bd9ff..0e941564e9de4dc5127fa80ad77cd206e1ee7609 (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nA\tpstack/skills/poteto-mode/references/new-guide.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nA: pstack/skills/poteto-mode/references/new-guide.md -> skills/poteto-mode/references/new-guide.md (missing)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "stdout missing \"-> skills/jesus-mode/references/new-guide.md (present)\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "d5b6af86a48804f0f62427529c18d2e3850bd9ff",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: d5b6af86a48804f0f62427529c18d2e3850bd9ff\nhead: 0e941564e9de4dc5127fa80ad77cd206e1ee7609\ncomparison: d5b6af86a48804f0f62427529c18d2e3850bd9ff..0e941564e9de4dc5127fa80ad77cd206e1ee7609 (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nA\tpstack/skills/poteto-mode/references/new-guide.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nA: pstack/skills/poteto-mode/references/new-guide.md -> skills/jesus-mode/references/new-guide.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "map_deleted_poteto_skill",
+      "area": "analyze-map",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "cc16fe1a770abd0272c741aeb4ad2e8afff2589a",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: cc16fe1a770abd0272c741aeb4ad2e8afff2589a\nhead: 4051787cc84cf7f42fad24a70906b9baf6eb4b0a\ncomparison: cc16fe1a770abd0272c741aeb4ad2e8afff2589a..4051787cc84cf7f42fad24a70906b9baf6eb4b0a (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nD\tpstack/skills/poteto-mode/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nD: pstack/skills/poteto-mode/SKILL.md -> skills/poteto-mode/SKILL.md (missing)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "stdout missing \"-> skills/jesus-mode/SKILL.md (present)\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "cc16fe1a770abd0272c741aeb4ad2e8afff2589a",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: cc16fe1a770abd0272c741aeb4ad2e8afff2589a\nhead: 4051787cc84cf7f42fad24a70906b9baf6eb4b0a\ncomparison: cc16fe1a770abd0272c741aeb4ad2e8afff2589a..4051787cc84cf7f42fad24a70906b9baf6eb4b0a (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nD\tpstack/skills/poteto-mode/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nD: pstack/skills/poteto-mode/SKILL.md -> skills/jesus-mode/SKILL.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "map_rename_into_poteto_skill",
+      "area": "analyze-map",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "65f9c5e3865872c828a41ef8013d7342ab8d1825",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: 65f9c5e3865872c828a41ef8013d7342ab8d1825\nhead: 4f98a16c6c296dfcb6976e8dec82ac4825a9cd8d\ncomparison: 65f9c5e3865872c828a41ef8013d7342ab8d1825..4f98a16c6c296dfcb6976e8dec82ac4825a9cd8d (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nR100\tpstack/skills/legacy/SKILL.md\tpstack/skills/poteto-mode/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nR100: pstack/skills/poteto-mode/SKILL.md -> skills/poteto-mode/SKILL.md (missing)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "stdout missing \"-> skills/jesus-mode/SKILL.md (present)\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "65f9c5e3865872c828a41ef8013d7342ab8d1825",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: 65f9c5e3865872c828a41ef8013d7342ab8d1825\nhead: 4f98a16c6c296dfcb6976e8dec82ac4825a9cd8d\ncomparison: 65f9c5e3865872c828a41ef8013d7342ab8d1825..4f98a16c6c296dfcb6976e8dec82ac4825a9cd8d (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nR100\tpstack/skills/legacy/SKILL.md\tpstack/skills/poteto-mode/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nR100: pstack/skills/poteto-mode/SKILL.md -> skills/jesus-mode/SKILL.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "control_generic_skill_mapping",
+      "area": "analyze-map",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "48a5004446b5fc56fc3355e226902efe7e265337",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: 48a5004446b5fc56fc3355e226902efe7e265337\nhead: b0c7d4582dae10f42cb93d1dad290afbd28079e7\ncomparison: 48a5004446b5fc56fc3355e226902efe7e265337..b0c7d4582dae10f42cb93d1dad290afbd28079e7 (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nM\tpstack/skills/reviewing/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nM: pstack/skills/reviewing/SKILL.md -> skills/reviewing/SKILL.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "48a5004446b5fc56fc3355e226902efe7e265337",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: 48a5004446b5fc56fc3355e226902efe7e265337\nhead: b0c7d4582dae10f42cb93d1dad290afbd28079e7\ncomparison: 48a5004446b5fc56fc3355e226902efe7e265337..b0c7d4582dae10f42cb93d1dad290afbd28079e7 (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nM\tpstack/skills/reviewing/SKILL.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nM: pstack/skills/reviewing/SKILL.md -> skills/reviewing/SKILL.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "control_poteto_agent_mapping",
+      "area": "analyze-map",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "727f17c8b833bbc6900a1d2b1b3d3aa537113dd0",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: 727f17c8b833bbc6900a1d2b1b3d3aa537113dd0\nhead: 2a0271ce4d42948c5b3c8bfbd3ee64a438bed0ac\ncomparison: 727f17c8b833bbc6900a1d2b1b3d3aa537113dd0..2a0271ce4d42948c5b3c8bfbd3ee64a438bed0ac (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nM\tpstack/agents/poteto-agent.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nM: pstack/agents/poteto-agent.md -> skills/jesus-mode/references/poteto-agent.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "727f17c8b833bbc6900a1d2b1b3d3aa537113dd0",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: 727f17c8b833bbc6900a1d2b1b3d3aa537113dd0\nhead: 2a0271ce4d42948c5b3c8bfbd3ee64a438bed0ac\ncomparison: 727f17c8b833bbc6900a1d2b1b3d3aa537113dd0..2a0271ce4d42948c5b3c8bfbd3ee64a438bed0ac (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nM\tpstack/agents/poteto-agent.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nM: pstack/agents/poteto-agent.md -> skills/jesus-mode/references/poteto-agent.md (present)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "control_unmapped_new_upstream_file",
+      "area": "analyze-map",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "d5b6af86a48804f0f62427529c18d2e3850bd9ff",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: d5b6af86a48804f0f62427529c18d2e3850bd9ff\nhead: fbc8c2e1ba6a4becb790df83ec8ce79a95e8834c\ncomparison: d5b6af86a48804f0f62427529c18d2e3850bd9ff..fbc8c2e1ba6a4becb790df83ec8ce79a95e8834c (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nA\tpstack/docs/new-build.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nA: pstack/docs/new-build.md -> (no mapped Jstack file)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "d5b6af86a48804f0f62427529c18d2e3850bd9ff",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: d5b6af86a48804f0f62427529c18d2e3850bd9ff\nhead: fbc8c2e1ba6a4becb790df83ec8ce79a95e8834c\ncomparison: d5b6af86a48804f0f62427529c18d2e3850bd9ff..fbc8c2e1ba6a4becb790df83ec8ce79a95e8834c (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nA\tpstack/docs/new-build.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nA: pstack/docs/new-build.md -> (no mapped Jstack file)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "control_unmapped_deleted_upstream_file",
+      "area": "analyze-map",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "bash",
+          "<FIXTURE>/baseline/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/baseline/repo",
+          "--base",
+          "a0352657e83797142a7bbd546afcce45af408665",
+          "--upstream-dir",
+          "<FIXTURE>/baseline/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/baseline/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/baseline/repo\nbase: a0352657e83797142a7bbd546afcce45af408665\nhead: 5d9475c47dbc94a3bdd9ecdbca2a7b1b204e07bb\ncomparison: a0352657e83797142a7bbd546afcce45af408665..5d9475c47dbc94a3bdd9ecdbca2a7b1b204e07bb (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nD\tpstack/docs/old-build.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nD: pstack/docs/old-build.md -> (no mapped Jstack file)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/baseline/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/baseline/upstream-checkout'...\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "bash",
+          "<FIXTURE>/candidate/repo/skills/sync-pstack/scripts/analyze.sh",
+          "<FIXTURE>/candidate/repo",
+          "--base",
+          "a0352657e83797142a7bbd546afcce45af408665",
+          "--upstream-dir",
+          "<FIXTURE>/candidate/upstream-checkout"
+        ],
+        "cwd": "<FIXTURE>/candidate/repo",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "BASELINE\njstack_repo: /private<FIXTURE>/candidate/repo\nbase: a0352657e83797142a7bbd546afcce45af408665\nhead: 5d9475c47dbc94a3bdd9ecdbca2a7b1b204e07bb\ncomparison: a0352657e83797142a7bbd546afcce45af408665..5d9475c47dbc94a3bdd9ecdbca2a7b1b204e07bb (pstack/)\nUPSTREAM_CHANGES\nstatus: CHANGED\nD\tpstack/docs/old-build.md\nSKILL_IMPACT\nmapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\nmapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\nmapping: pstack/skills/teach/* -> skills/pstack-teach/*\nD: pstack/docs/old-build.md -> (no mapped Jstack file)\nADAPTATION_SIGNALS\nNONE\nUPSTREAM_DIR\npath: /private<FIXTURE>/candidate/upstream-checkout\nretained: yes\n",
+        "stderr": "Cloning into '/private<FIXTURE>/candidate/upstream-checkout'...\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_matching_explicit_only",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_matching_automatic",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_both_omitted",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_codex_explicit_claude_automatic_mismatch",
+      "area": "invocation-policy",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 0; expected 1",
+          "stderr missing \"sample invocation policy differs\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- sample invocation policy differs: align policy.allow_implicit_invocation in agents/openai.yaml with disable-model-invocation in SKILL.md (false/true for explicit-only, true/false or both omitted for automatic invocation).\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_codex_automatic_claude_explicit_mismatch",
+      "area": "invocation-policy",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 0; expected 1",
+          "stderr missing \"sample invocation policy differs\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- sample invocation policy differs: align policy.allow_implicit_invocation in agents/openai.yaml with disable-model-invocation in SKILL.md (false/true for explicit-only, true/false or both omitted for automatic invocation).\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_inline_policy_rejected",
+      "area": "invocation-policy",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 0; expected 1",
+          "stderr missing \"must use a block mapping\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- sample invocation policy in agents/openai.yaml must use a block mapping: put allow_implicit_invocation on an indented line beneath policy:.\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_matching_with_comments_and_crlf_metadata",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_missing_metadata_counterpart",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- skills/sample is missing agents/openai.yaml\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- skills/sample is missing agents/openai.yaml\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_missing_skill_counterpart",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- skills/sample is missing SKILL.md\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- skills/sample is missing SKILL.md\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_direct_script_path_from_outside_root",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>/outside",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>/outside",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "invocation_overlong_description_regression_probe",
+      "area": "invocation-policy",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "- skills/sample/SKILL.md auto-invoked description exceeds 100 characters\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 0; expected 1",
+          "stderr missing \"auto-invoked description exceeds 100 characters\""
+        ]
+      }
+    },
+    {
+      "id": "plan_tilde_fence_hides_placeholder",
+      "area": "plan-fences",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 1 problems\n",
+        "stderr": "case.md:44: unfilled placeholder\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 1; expected 0",
+          "stdout missing \"1 phase sections, 0 problems\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_indented_backtick_fence_hides_placeholder",
+      "area": "plan-fences",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 1 problems\n",
+        "stderr": "case.md:44: unfilled placeholder\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 1; expected 0",
+          "stdout missing \"1 phase sections, 0 problems\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_short_closer_does_not_close_long_fence",
+      "area": "plan-fences",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 1 problems\n",
+        "stderr": "case.md:46: unfilled placeholder\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 1; expected 0",
+          "stdout missing \"1 phase sections, 0 problems\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_unmatched_tilde_fence_runs_to_eof",
+      "area": "plan-fences",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 1 problems\n",
+        "stderr": "case.md:44: unfilled placeholder\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 1; expected 0",
+          "stdout missing \"1 phase sections, 0 problems\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_longer_closer_is_valid",
+      "area": "plan-fences",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_other_marker_does_not_close_fence",
+      "area": "plan-fences",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_prose_placeholder_remains_rejected",
+      "area": "plan-fences",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 1 problems\n",
+        "stderr": "case.md:43: unfilled placeholder\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 1 problems\n",
+        "stderr": "case.md:43: unfilled placeholder\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_ordinary_fence_control",
+      "area": "plan-fences",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_structural_error_control",
+      "area": "plan-fences",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "0 phase sections, 2 problems\n",
+        "stderr": "case.md:29: Parse records (P1): unexpected block \"Verify, missing.\"\ncase.md:18: Parse records (P1): blocks are [Depends on., Files., Build., You see., Verify, static., Verify, performance., Review gate., Authority., Complete.], expected [Depends on., Files., Build., You see., Verify, static., Verify, live., Verify, performance., Review gate., Authority., Complete.]\n",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "0 phase sections, 2 problems\n",
+        "stderr": "case.md:29: Parse records (P1): unexpected block \"Verify, missing.\"\ncase.md:18: Parse records (P1): blocks are [Depends on., Files., Build., You see., Verify, static., Verify, performance., Review gate., Authority., Complete.], expected [Depends on., Files., Build., You see., Verify, static., Verify, live., Verify, performance., Review gate., Authority., Complete.]\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "plan_invalid_backtick_info_rejected",
+      "area": "plan-fences",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 0 problems\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "exit code 0; expected 1",
+          "stderr missing \"unfilled placeholder\""
+        ]
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/check-plan.mjs",
+          "case.md"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "Parse records (P1): 6 boxes\n1 phase sections, 1 problems\n",
+        "stderr": "case.md:44: unfilled placeholder\n",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "portable_validator_direct_path_from_outside",
+      "area": "validator-portable",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>/outside",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>/outside",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "portable_validator_posix_directory_name",
+      "area": "validator-portable",
+      "role": "control",
+      "baseline": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      },
+      "candidate": {
+        "command": [
+          "/opt/homebrew/Cellar/node/26.4.0/bin/node",
+          "<FIXTURE>/scripts/validate.mjs"
+        ],
+        "cwd": "<FIXTURE>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "Validated 1 skills and 5 text files.\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "portable_windows_separator_helper",
+      "area": "validator-portable",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "simulated win32 path helper",
+          "baseline"
+        ],
+        "cwd": "<in-process>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "C:\\fixture\\skills\\example\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "stdout did not equal the frozen value"
+        ]
+      },
+      "candidate": {
+        "command": [
+          "simulated win32 path helper",
+          "candidate"
+        ],
+        "cwd": "<in-process>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "example\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    },
+    {
+      "id": "portable_windows_trailing_separator_helper",
+      "area": "validator-portable",
+      "role": "target",
+      "baseline": {
+        "command": [
+          "simulated win32 path helper",
+          "baseline"
+        ],
+        "cwd": "<in-process>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "C:\\fixture\\skills\\example\\\n",
+        "stderr": "",
+        "reproducesFrozenPrediction": true,
+        "predictionAssertionFailures": [],
+        "matchesDesiredOracle": false,
+        "desiredOracleAssertionFailures": [
+          "stdout did not equal the frozen value"
+        ]
+      },
+      "candidate": {
+        "command": [
+          "simulated win32 path helper",
+          "candidate"
+        ],
+        "cwd": "<in-process>",
+        "exitCode": 0,
+        "signal": null,
+        "error": null,
+        "stdout": "example\n",
+        "stderr": "",
+        "matchesDesiredOracle": true,
+        "desiredOracleAssertionFailures": []
+      }
+    }
+  ]
+}

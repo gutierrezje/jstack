@@ -1,0 +1,14 @@
+{
+  "e01":{"verdict":"VERIFIED","requiredCitations":["identity","ui","db"]},
+  "e02":{"verdict":"INCONCLUSIVE","requiredCitations":["checks"]},
+  "e03":{"verdict":"INCONCLUSIVE","requiredCitations":["runtime"]},
+  "e04":{"verdict":"NOT VERIFIED","requiredCitations":["db","video"]},
+  "e05":{"verdict":"INCONCLUSIVE","requiredCitations":["video"]},
+  "e06":{"verdict":"VERIFIED","requiredCitations":["identity","ui","db","video"]},
+  "e07":{"verdict":"INCONCLUSIVE","requiredCitations":["interrupt"]},
+  "e08":{"verdict":"VERIFIED","requiredCitations":["identity","ui","db","cleanup"]},
+  "e09":{"verdict":"NOT VERIFIED","requiredCitations":["db"]},
+  "e10":{"verdict":"NOT VERIFIED","requiredCitations":["xxl"]},
+  "e11":{"verdict":"NOT VERIFIED","requiredCitations":["db"]},
+  "e12":{"verdict":"VERIFIED","requiredCitations":["receipt","binding"]}
+}

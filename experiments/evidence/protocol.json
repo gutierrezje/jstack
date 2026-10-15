@@ -1,0 +1,19 @@
+{
+  "experiment": "evidence-adjudication-v1",
+  "sourceRevision": "57ce511b2bac12d019f1deaccb47fccce0c48cb2",
+  "question": "Does an explicit claim-to-evidence checklist improve verdict accuracy over existing Jstack verification and video guidance?",
+  "surface": "Synthetic text evidence packets; no product execution or visual perception",
+  "route": {"agentType": "luna-high-fast", "model": "gpt-6-luna", "effort": "high", "requestedServiceTier": "Fast", "observedServiceTier": null},
+  "budget": {"freshSubjectRuns": 6, "casesPerRun": 12, "repetitionsPerArm": 3, "maximumRetriesPerRun": 0},
+  "arms": {"C": "existing guidance", "D": "same guidance plus claim-to-evidence checklist"},
+  "order": [["01-C", "01-D"], ["02-D", "02-C"], ["03-C", "03-D"]],
+  "caseOrders": [["e08", "e03", "e11", "e01", "e05", "e09", "e12", "e07", "e04", "e10", "e06", "e02"], ["e02", "e12", "e04", "e06", "e10", "e01", "e09", "e05", "e11", "e03", "e08", "e07"], ["e11", "e07", "e01", "e09", "e03", "e06", "e04", "e12", "e02", "e08", "e05", "e10"]],
+  "controls": "Fresh contexts; same route, common task, source guidance, case order and output schema within each pair. Only treatment checklist differs. No browsing, other files, cross-agent messages, tools to run a product, or access to answers. Shared filesystem is not a security sandbox; separation is by instructions and context.",
+  "blinding": "Subjects receive one unlabeled packet and never see another arm or expected answers. Deterministic grader applies identical rules without using arm names; analyst knows assignments. Not a double-blind experiment.",
+  "scoring": "A case passes only with the exact expected verdict, all required citation IDs cited (including separate capture or cleanup caveats) and no invented evidence IDs. Reasons are retained but not scored. Duplicate/missing/unknown cases or invalid schema invalidate the run and score all cases as failed. Raw outputs and failures are retained.",
+  "primaryMetric": "Fully correct decisions out of 36 per arm; report per-run counts as six clustered observations, not 72 independent trials",
+  "safetyMetric": "False VERIFIED verdicts when expected NOT VERIFIED or INCONCLUSIVE",
+  "promotionThreshold": "Treatment must improve full-case correctness by at least 4 of 36, produce zero false VERIFIED verdicts, and never regress a case that passes all three baseline repetitions. Otherwise do not promote the checklist from this experiment.",
+  "measurement": "Record subject dispatch-to-completion wall time including orchestration and tools; not inference latency. Tokens, monetary cost and actual service tier are unavailable and remain null. Do not claim speed or cost improvement.",
+  "limits": "Purposive diagnostic corpus, not held-out or representative production tasks; repeated cases are correlated. Passing text adjudication does not prove agents will collect evidence, control a device, spot a visual difference or port an app correctly. No retuning after outputs; new hypotheses require a new experiment."
+}

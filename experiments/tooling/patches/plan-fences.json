@@ -1,0 +1,40 @@
+{
+  "file": "skills/jesus-mode/scripts/check-plan.mjs",
+  "replacements": [
+    {
+      "fromLines": [
+        "  let fenced = false;",
+        "  for (let index = start; index < raw.length; index += 1) {",
+        "    const text = raw[index];",
+        "    const fence = /^`{3,}/.test(text);",
+        "    lines.push({ line: index + 1, text, code: fenced || fence });",
+        "    if (fence) fenced = !fenced;",
+        "  }"
+      ],
+      "toLines": [
+        "  let activeFence = null;",
+        "  for (let index = start; index < raw.length; index += 1) {",
+        "    const text = raw[index];",
+        "    const fence = text.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);",
+        "    let code = activeFence !== null;",
+        "    if (fence) {",
+        "      const marker = fence[1];",
+        "      const rest = fence[2];",
+        "      const character = marker[0];",
+        "      const length = marker.length;",
+        "      if (activeFence === null) {",
+        "        if (character !== \"`\" || !rest.includes(\"`\")) {",
+        "          activeFence = { character, length };",
+        "          code = true;",
+        "        }",
+        "      } else if (character === activeFence.character && length >= activeFence.length && /^\\s*$/.test(rest)) {",
+        "        activeFence = null;",
+        "        code = true;",
+        "      }",
+        "    }",
+        "    lines.push({ line: index + 1, text, code });",
+        "  }"
+      ]
+    }
+  ]
+}
