@@ -37,6 +37,11 @@ When selected QA requires video, follow the
 [video evidence contract](../jesus-mode/references/video-evidence.md). Keep
 optional demonstration clips separate from required acceptance evidence.
 
+Track repairs, reviews, QA, and verification using the
+[model contributions contract](../open-pr/SKILL.md#model-contributions).
+Before issuing a verdict, refresh the PR's table when body edits are authorized;
+otherwise include the proposed update in the handoff.
+
 ## Workflow
 
 1. Capture repository and PR identity, base and head SHAs, worktree state,

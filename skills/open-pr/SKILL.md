@@ -69,7 +69,8 @@ waive it, and this skill's evidence flexibility does not authorize that change.
 6. Push non-destructively to the intended head branch. Confirm the remote OID
    matches the prepared local OID.
 7. Create or update the PR. Write the body from the prepared diff and collected
-   evidence, not from memory or the commit titles alone. Create new PRs ready
+   evidence, including the [model contributions](#model-contributions) record,
+   not from memory or the commit titles alone. Create new PRs ready
    for review unless the user requested a draft or a review blocker remains.
 8. Read the remote PR back through the CLI or GitHub plugin. Confirm its head SHA
    matches the prepared local head and its title, body, and links are correct.
@@ -108,10 +109,50 @@ Use these sections:
 
 ## Evidence
 <Direct proof for the claims above.>
+
+## Model contributions
+
+| Role | Model | Scope and result |
+| --- | --- | --- |
+| Implementation | <model> | <Changes authored, including repairs.> |
+| Review | <model> | <Review type, covered revision or range, and result.> |
+| QA | <model> | <User journeys exercised, revision or build, and result.> |
+| Verification | <model> | <Tests or checks run, covered revision, and result.> |
+| PR preparation | <model> | <PR creation or description update.> |
 ```
 
-Add risks, rollout notes, or reviewer guidance when they help. Keep the four
+Add risks, rollout notes, or reviewer guidance when they help. Keep the five
 core sections even when the PR is small.
+
+## Model contributions
+
+Record contributions as work happens and retain them through handoffs and
+compaction. Include the parent and contributing children. Ask delegated workers
+to return their model identity, role, scope, and result with their evidence.
+Collect those records before creating or updating the PR body.
+
+- Use the model identifier exposed by the runtime or execution receipt. Preserve
+  the version when available. If only a family or alias is exposed, label it as
+  such; use `Unknown (not exposed)` when no identity is available. Routing
+  defaults, tool names, and the model opening the PR do not establish who did
+  earlier work. Record actual fallbacks when known.
+- Keep the five roles above visible. Use one row per contributor and role;
+  split further by scope when needed. Add roles such as design when useful.
+  A model may fill several roles;
+  credit each only for work it performed. Label an author's review as self-review.
+- For an unperformed role, use `None` as the model and state `Not run`, `Pending`,
+  or `Not applicable` with a reason. Record failed and blocked attempts accurately.
+  Attribution does not require running optional work or change acceptance gates.
+- Identify human and automated contributions as `Human` or the named CI or tool
+  when applicable. Credit a model that ran or assessed checks for that action;
+  identify the underlying checks in Evidence. Use a review report's model identity
+  when available instead of treating its tool name as a model.
+- Preserve earlier contributors when another model takes over or repairs the PR.
+  Update outcomes and covered revisions as work progresses. Mark stale evidence
+  explicitly; prior participation does not establish current-head coverage.
+- Keep the table concise and consistent with Evidence. Before completing an
+  authorized PR body edit, read the remote body back and confirm the record
+  survived. For read-only work, return proposed attribution in the handoff.
 
 ## Evidence rules
 

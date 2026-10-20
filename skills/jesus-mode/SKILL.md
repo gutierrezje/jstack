@@ -20,6 +20,10 @@ deliverable remains planning-only.
 
 ## Prepare evidence before implementation
 
+Track [model contributions](../open-pr/SKILL.md#model-contributions) from the
+start of implementation, review, QA, or verification so PR preparation can
+attribute each role across agents and handoffs.
+
 Before reproducing a bug or starting implementation, follow
 [existing journey discovery](references/verification.md#discover-and-select-existing-journeys).
 Identify matching executable scenarios and remaining coverage gaps before choosing
