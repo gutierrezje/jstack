@@ -37,6 +37,5 @@ try {
   fs.renameSync(draft, path.join(stage, "done"));
   process.exit(exit);
 } catch (error) {
-  console.error(messageOf(error));
-  process.exit(2);
+  process.stderr.write(`${messageOf(error)}\n`, () => process.exit(2));
 }

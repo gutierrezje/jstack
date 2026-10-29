@@ -40,6 +40,23 @@ test("missing and corrupt jars fail closed before executing Java", () => {
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
 
+test("large diagnostics retain the leading failure and final context while remaining bounded", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "statechart-diagnostic-"));
+  try {
+    const view = path.join(dir, "view.mjs");
+    fs.writeFileSync(view, 'throw new Error("Leading failure: " + "x".repeat(120000) + " final context");\n');
+    const result = run([model, "--view", view, "--out", path.join(dir, "out")]);
+    assert.equal(result.status, 2);
+    assert.match(result.stderr, /^Leading failure: /);
+    const receipt = JSON.parse(result.stdout);
+    assert.equal(receipt.status, "INCONCLUSIVE");
+    assert.match(receipt.reason, /^Leading failure: /);
+    assert.match(receipt.reason, /final context$/);
+    assert.match(receipt.reason, /\[diagnostic truncated\]/);
+    assert.ok(receipt.reason.length <= 65536);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
 test("timeout kills a Java stand-in that ignores termination and removes temporary files", {
   skip: !process.env.TLA2TOOLS && "Set TLA2TOOLS to the verified pinned jar.",
 }, async () => {

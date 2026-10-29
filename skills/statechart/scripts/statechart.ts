@@ -125,13 +125,19 @@ try {
       ...(flags.view ? [flags.view] : []),
     ], { detached: true, stdio: ["ignore", "pipe", "pipe"], env: { ...process.env, TMPDIR: tmp } });
     let diagnostic = "";
-    const capture = (chunk: Buffer) => { diagnostic = (diagnostic + chunk.toString()).slice(-65536); };
+    const capture = (chunk: Buffer) => {
+      const text = diagnostic + chunk.toString();
+      const marker = "\n... [diagnostic truncated] ...\n";
+      const half = Math.floor((65536 - marker.length) / 2);
+      diagnostic = text.length <= 65536 ? text : text.slice(0, half) + marker + text.slice(-half);
+    };
     worker.stdout.on("data", capture);
     worker.stderr.on("data", capture);
     const exited = new Promise<number>((resolve, reject) => {
       worker.on("error", reject);
       worker.on("exit", (code) => resolve(code ?? 2));
     });
+    const drained = new Promise<void>((resolve) => worker.on("close", () => resolve()));
     if (worker.pid === undefined) { await exited; throw new Error("Cannot start the model checker worker."); }
     janitor = spawn("/bin/sh", ["-c",
       'while read -r line; do :; done; kill -s KILL -- "-$1"; rm -rf -- "$2" "$3"',
@@ -141,9 +147,13 @@ try {
     let verdict: number;
     try { await Promise.race([stopped, exited, janitorFailed]); }
     finally {
+      clearTimeout(timer);
       await killGroup(worker.pid);
+      let drainTimer: ReturnType<typeof setTimeout> | undefined;
+      await Promise.race([drained, new Promise<void>((resolve) => { drainTimer = setTimeout(resolve, 250); })]);
+      clearTimeout(drainTimer);
       // A trusted view may detach a helper that retains these pipes. Its lifetime
-      // must not hold the command open after the owned worker exits.
+      // must not hold the command open after the bounded diagnostic drain.
       worker.stdout.destroy();
       worker.stderr.destroy();
     }
