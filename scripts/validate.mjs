@@ -9,10 +9,12 @@ const failures = [];
 const userPathPattern = new RegExp("/Users/" + "[^/\\s]+/");
 
 function walk(directory) {
-  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const path = join(directory, entry.name);
-    return entry.isDirectory() ? walk(path) : [path];
-  });
+  return readdirSync(directory, { withFileTypes: true })
+    .filter((entry) => ![".git", "node_modules"].includes(entry.name))
+    .flatMap((entry) => {
+      const path = join(directory, entry.name);
+      return entry.isDirectory() ? walk(path) : [path];
+    });
 }
 
 const codexManifest = JSON.parse(readFileSync(join(root, ".codex-plugin", "plugin.json"), "utf8"));
