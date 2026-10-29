@@ -1,5 +1,10 @@
 # Project verification contract
 
+For an explicitly requested finite state model check, use
+[$statechart](../../statechart/SKILL.md). Its `formal-model-check` receipt records
+bounded model evidence; keep product replay and this project's verification
+receipts separate.
+
 A project verifier is maintained project code. It has three parts:
 
 - a `verify-<surface>` skill that selects user journeys and states the safety

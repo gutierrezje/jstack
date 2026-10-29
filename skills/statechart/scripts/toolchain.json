@@ -1,0 +1,10 @@
+{
+  "tlc": {
+    "release": "v1.7.4",
+    "url": "https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar",
+    "sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+    "banner": "TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)",
+    "license": "https://github.com/tlaplus/tlaplus/blob/v1.7.4/LICENSE"
+  },
+  "java": { "minimumMajor": 11, "testedMajor": 21, "heapMiB": 256 }
+}
