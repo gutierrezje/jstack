@@ -25,6 +25,8 @@ readable, but leaves heavy review cycles to `$babysit-pr`.
 [$ship](skills/ship/SKILL.md) carries selected work through merge, release,
 live verification, issue reconciliation, and cleanup, reusing review evidence
 and reporting results in chat.
+[$working-brief](skills/working-brief/SKILL.md) turns research and plans into readable decisions,
+next actions, and traceable evidence without turning proposals into commitments.
 Use `$how` to learn how something works and `$why` to find out why it ended up that way.
 
 `$architect`, `$arena`, `$swarm`, and `$interrogate` handle work that needs more
