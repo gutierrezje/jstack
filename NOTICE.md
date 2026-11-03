@@ -8,3 +8,10 @@ Jstack is a Codex-native adaptation of the `pstack` plugin by Lauren Tan.
 - Upstream copyright: Copyright (c) 2026 Lauren Tan
 
 The upstream work is distributed under the MIT License. Jstack retains that license and rewrites Cursor-specific orchestration for Codex's skills and collaboration tools.
+
+## Working brief
+
+The Working brief editorial workflow was developed for Jstack from a personal-assistant
+skill. It uses selected, independently phrased technical-writing principles with
+[pinned source attribution](skills/working-brief/references/technical-writing.md).
+It does not copy the complete upstream guides.

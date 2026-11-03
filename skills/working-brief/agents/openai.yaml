@@ -1,0 +1,4 @@
+interface:
+  display_name: "Working brief"
+  short_description: "Turn research into clear decisions, actions, and evidence"
+  default_prompt: "Use $working-brief to make this material easier to understand and act on."
