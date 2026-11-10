@@ -48,7 +48,7 @@
     "Local dependency setup with pinned SHA verification; no automatic mise/Java installation.",
     "Bounded command, JSON receipts, nonpass for incomplete or vacuous checks, JVM heap cap.",
     "Process-exit observation independent of pipe closure; inherited pipes released on worker exit.",
-    "Shipped tests trimmed to Jstack regression coverage: adapter, cancellation, CLI, corpus, and plain-TLC suites with the 14 corpus models they name; upstream renderer, differential, fuzz, message, pipeline, and TLC-output suites stay upstream.",
+    "The full test suite lives on the statechart-tests branch, mounted at scripts/test in CI and local runs, so plugin installs never download it.",
     "Tests adapted for receipts, stricter outcomes, real jar verification, macOS symlink paths, and TypeScript checks.",
     "Jstack cancellation and adapter regression tests, locked dev dependencies, and deterministic CI."
   ]

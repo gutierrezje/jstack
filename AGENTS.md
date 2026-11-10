@@ -14,6 +14,7 @@ Jstack is a Codex and Claude Code plugin containing portable agent skills. Keep 
 - `skills/jesus-mode/references/codex-compatibility.md`: mappings from upstream Cursor concepts to Codex behavior.
 - `skills/jesus-mode/references/claude-compatibility.md`: Claude Code overrides layered on the Codex contract. Put Claude-specific behavior here, not in individual skills.
 - `scripts/validate.mjs`: repository-level structural and link checks.
+- Tests, fixtures, and eval corpora never live on `main`, because every file there ships in each install. Statechart's suite lives on the `statechart-tests` branch; mount it with `git worktree add skills/statechart/scripts/test statechart-tests`.
 
 ## Rules
 

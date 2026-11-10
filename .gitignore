@@ -1,2 +1,4 @@
 .DS_Store
 node_modules/
+# Mounted from the statechart-tests branch; see AGENTS.md.
+skills/statechart/scripts/test/

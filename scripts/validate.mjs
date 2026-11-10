@@ -13,7 +13,9 @@ function walk(directory) {
     .filter((entry) => ![".git", "node_modules"].includes(entry.name))
     .flatMap((entry) => {
       const path = join(directory, entry.name);
-      return entry.isDirectory() ? walk(path) : [path];
+      if (!entry.isDirectory()) return [path];
+      // A nested checkout, such as the mounted statechart-tests worktree, is not part of this tree.
+      return existsSync(join(path, ".git")) ? [] : walk(path);
     });
 }
 
@@ -68,13 +70,12 @@ for (const directory of skillDirectories) {
   }
 }
 
-// Every file under skills/ ships in each plugin install; keep tests, fixtures, and eval corpora upstream.
-// Statechart keeps only the trimmed Jstack regression suite its CI runs.
+// Every file under skills/ ships in each plugin install. Tests live on separate branches, such as
+// statechart-tests, which installs never clone.
 const testArtifactPattern = /(^|\/)(tests?|__tests__|fixtures|evals?)\/|\.(test|spec)\.[cm]?[jt]sx?$/;
-const allowedTestRoot = "statechart/scripts/test/";
 for (const file of walk(skillsRoot)) {
   const path = relative(skillsRoot, file).split(sep).join("/");
-  if (testArtifactPattern.test(path) && !path.startsWith(allowedTestRoot)) {
+  if (testArtifactPattern.test(path)) {
     failures.push(`${relative(root, file)} is a test or eval artifact; skills/ ships runtime files only`);
   }
 }
