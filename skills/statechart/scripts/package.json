@@ -1,0 +1,14 @@
+{
+  "name": "@jstack/statechart",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test --test-concurrency=2 test/*.test.ts",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "fast-check": "4.5.3",
+    "typescript": "5.9.3",
+    "@types/node": "24.10.1"
+  }
+}

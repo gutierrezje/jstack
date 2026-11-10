@@ -27,6 +27,13 @@ live verification, issue reconciliation, and cleanup, reusing review evidence
 and reporting results in chat.
 Use `$how` to learn how something works and `$why` to find out why it ended up that way.
 
+Use the explicitly invoked [$statechart](skills/statechart/SKILL.md) to check a finite
+TLA+ model and explain rule failures as paths through states. It writes a local
+Mermaid chart, report, and machine-readable model-check receipt. The check needs
+an installed Java runtime and a separately supplied, pinned TLC jar; setup is
+explicit. A model result covers its stated bounds, and product behavior needs
+separate replay or tests.
+
 `$architect`, `$arena`, `$swarm`, and `$interrogate` handle work that needs more
 than one independent pass. Other skills cover verification, retrospectives,
 teaching, and writing. The engineering principles behind Jesus mode are guides,
