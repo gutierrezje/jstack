@@ -18,6 +18,14 @@ proof. Use disposable fixtures or authorized read-only queries when checking
 storage behavior. Record dispositions in the review record; update the PR body
 or threads only within the user's publication authority.
 
+A verdict counts only from a verifier that did not write the change and ran it
+the way a user would. Green CI and an approving bot review are not verdicts.
+A verdict covers a patch, not a SHA: after a rebase or retarget, compare
+`git patch-id` at the verdict head with the current head before trusting it.
+When only tests, docs, or lint config differ, a lane's result stands if what it
+ran builds the same at both heads apart from noise you can name; the changed
+files still get fresh checks and review.
+
 Use [$babysit-pr](../../babysit-pr/SKILL.md) for missing acceptance evidence or
 in-scope repairs. Retain its authority boundaries. Merge readiness requires
 passing required checks and current review and QA evidence for the frozen head.
@@ -41,9 +49,14 @@ merge.
 
 For dependent PRs, land the contiguous verified run from the bottom, one at a
 time. After each merge, fetch the base, read back the merged state and resulting
-commit, and refresh the next PR's base, head, checks, and coverage. Stop at the
-first failed gate. Retargeting or rewriting a descendant still needs the
-applicable authority.
+commit, and refresh the next PR's base, head, checks, and coverage. On GitHub a
+PR whose base is still its parent's branch merges into that branch, so retarget
+it to trunk before merging and recheck its verdict. A verified PR above an
+unverified one waits; one that does not need the code below it may move onto
+trunk and land alone after a fresh verdict. Change no other branch or base while
+a merge is in flight. Stop at the first failed gate or the first unverified PR;
+extending the run is a new acceptance pass. Retargeting or rewriting a
+descendant still needs the applicable authority.
 
 Confirm the resulting merge revision is present on the intended base and record
 its relationship to the reviewed PR. Preserve the PR head and actual landed

@@ -1,8 +1,8 @@
 # Redesign From First Principles
 
-Apply when integrating a new requirement into an existing design. Redesign as if the requirement had been a foundational assumption from day one, instead of bolting it on.
+Apply when integrating a new requirement into an existing design.
 
-When integrating a change, don't bolt it onto the existing design. Redesign as if the requirement had been there from the start. The result should look like what we would have built if we'd known on day one.
+When integrating a change, don't bolt it onto the existing design. Redesign as if the requirement had been a foundational assumption from the start. The result should look like what we would have built if we'd known on day one.
 
 - Read all affected files and understand the current design holistically
 - Ask: "if we were writing this from scratch with this new requirement, what would we build?"

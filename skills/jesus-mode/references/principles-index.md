@@ -13,7 +13,7 @@ Principles are guides, not skills. Read a guide only when its trigger applies; r
 - [experience-first](principles/experience-first.md): product, UX, or feature-scope tradeoffs come up.
 - [exhaust-the-design-space](principles/exhaust-the-design-space.md): facing a novel UI interaction or architectural decision with no precedent in the codebase.
 - [build-the-lever](principles/build-the-lever.md): repeated transformations or reproducible verification justify a reusable script, codemod, or generator.
-- [attack-the-premise](principles/attack-the-premise.md): repeated fixes fail the same check.
+- [attack-the-premise](principles/attack-the-premise.md): two or more fixes that share one premise have failed the same check.
 
 ## Architecture
 
@@ -27,10 +27,10 @@ Principles are guides, not skills. Read a guide only when its trigger applies; r
 ## Verification
 
 - [prove-it-works](principles/prove-it-works.md): after completing a task, before declaring done.
-- [fix-root-causes](principles/fix-root-causes.md): debugging.
+- [fix-root-causes](principles/fix-root-causes.md): debugging; trace a symptom to the first place the system went wrong.
 - [sequence-verifiable-units](principles/sequence-verifiable-units.md): sweeps, migrations, or stacked changes that need coherent verification checkpoints before dependent work proceeds.
-- [test-behavior-not-implementation](principles/test-behavior-not-implementation.md): writing or reviewing tests.
-- [explain-the-number](principles/explain-the-number.md): before trusting or reporting a measured result.
+- [test-behavior-not-implementation](principles/test-behavior-not-implementation.md): writing, changing, or keeping a test.
+- [explain-the-number](principles/explain-the-number.md): before measuring, and before trusting, reporting, or acting on a measured result.
 
 ## Delegation
 

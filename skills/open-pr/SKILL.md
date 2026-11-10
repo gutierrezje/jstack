@@ -68,7 +68,7 @@ waive it, and this skill's evidence flexibility does not authorize that change.
    start or extend a model-review coverage chain solely to open the PR.
 6. Push non-destructively to the intended head branch. Confirm the remote OID
    matches the prepared local OID.
-7. Create or update the PR. Write the body from the prepared diff and collected
+7. Create or update the PR. Keep commit bodies from restating their subject. Write the body from the prepared diff and collected
    evidence, including the [model contributions](#model-contributions) record,
    not from memory or the commit titles alone. Create new PRs ready
    for review unless the user requested a draft or a review blocker remains.
@@ -120,6 +120,8 @@ Use these sections:
 | Verification | <model> | <Tests or checks run, covered revision, and result.> |
 | PR preparation | <model> | <PR creation or description update.> |
 ```
+
+For a stack, each child PR targets its parent's branch and rebases onto the parent's exact tip. As a parent merges, move the child onto trunk per [$ship](../ship/SKILL.md). Prefer several narrow PRs to one large PR.
 
 Add risks, rollout notes, or reviewer guidance when they help. Keep the five
 core sections even when the PR is small.

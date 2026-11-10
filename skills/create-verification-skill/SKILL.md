@@ -28,6 +28,12 @@ Read and follow the [project verification contract](../jesus-mode/references/ver
 6. Include exact target identity, setup, launch, a deterministic read-only or
    disposable happy path, evidence capture, mutation authority, cleanup, failure
    interpretation, and a feature map under `features/`.
+   Make launch reach a usable state from an empty data directory, including
+   migrations and seed data. Ready means usable, not only that a process or port
+   answers; a database health check can pass while init scripts still run.
+   When seed data lacks a precondition a journey needs, the journey reports a
+   failure and the reason goes in that feature's `Gotchas`; never weaken the
+   journey to make it pass.
    For requested video or temporal behavior, follow the
    [video evidence contract](../jesus-mode/references/video-evidence.md); document
    recorder capabilities, finalization, receipt coverage, and the recipe's
@@ -38,7 +44,10 @@ Read and follow the [project verification contract](../jesus-mode/references/ver
    workflow can select only the journeys affected by a change.
 8. Run every adapter or adopted project-native controller against the real
    product, inspect its receipt, fix the instructions, and validate every
-   generated skill.
+   generated skill. When the proof ran in a stand-in for the real target (a
+   container for a fresh VM, a local stack for a remote one), list every setup
+   step the stand-in did that the target will not, and keep those steps
+   unverified until a run on the real target covers them.
 
 Completion means a cold agent can select the correct verification skill, bind it
 to the exact target, discover the control interface through help, drive one real

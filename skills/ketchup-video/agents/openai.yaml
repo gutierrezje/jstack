@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ketchup Video"
+  short_description: "Catch up on this chat with a short subtitled video"
+  default_prompt: "Use $ketchup-video to catch me up on this chat with a short subtitled video."
+policy:
+  allow_implicit_invocation: false

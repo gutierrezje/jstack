@@ -12,10 +12,10 @@ Read [the global routing table](../jesus-mode/references/routes.md) before dispa
 
 1. Freeze one shared brief, grounding files, output contract, and judging rubric.
 2. Select Arena design runners for design alternatives, or implementation runners when candidates must produce working code. Use the user's N or the selected route's default candidate count. Keep candidate work isolated or read-only.
-3. Dispatch candidates without showing them one another's work.
+3. Dispatch candidates without showing them one another's work. Require an artifact and a short rationale naming alternatives considered and rejected.
 4. Verify each artifact with the same checks. Reject any candidate that fails the hard gates.
 5. Judge evidence blind to model prestige. Select one base and list exact grafts from other candidates.
 6. Apply grafts one at a time and rerun the relevant check after each.
-7. Report the candidates, scores, selected base, accepted grafts, rejected ideas, and final verification.
+7. Report the candidates, scores, selected base and why, accepted grafts with their source candidates, rejected ideas, any dropouts or convergence, and final verification.
 
 Completion means one verified artifact remains and every graft has an observed benefit.

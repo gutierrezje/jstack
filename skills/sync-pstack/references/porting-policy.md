@@ -22,6 +22,8 @@ Preserve Codex authorization boundaries and shared-checkout/write-isolation
 rules. Do not grant publishing, deployment, merge, deletion, or messaging
 authority through an upstream workflow.
 
+Skip upstream test suites, fixtures, eval corpora, and the `docs/guide` user guide: every file under `skills/` ships in each plugin install, so port runtime files only.
+
 Never copy Cursor runtime scripts, custom agents, or assumptions about Cursor
 transcripts, `Task`, Graphite, Bun, or background execution blindly. Port their
 user-visible intent to the Codex-native interfaces described by the compatibility

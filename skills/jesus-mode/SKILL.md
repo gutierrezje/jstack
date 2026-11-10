@@ -18,6 +18,10 @@ verification. Work directly on tiny tasks or when no playbook fits. Use a plan
 when dependencies or uncertainty need tracking. A user-requested planning
 deliverable remains planning-only.
 
+On your first message for a task, tell the user in your own words their goal, the problem they are solving, and, when the task ships a change, the smallest change you expect to meet it. Proceed without waiting for confirmation. If the evidence rules out the requested change, show it and stop. Restate the goal in each child brief, open the PR's Why section with it, and open each final report with it, except after a fully specified one-line edit.
+
+Match each child's model, effort, and fan-out to the job using [routes.md](references/routes.md), including its effort adjustments. Verification stays on the route the table assigns it.
+
 ## Prepare evidence before implementation
 
 Track [model contributions](../open-pr/SKILL.md#model-contributions) from the

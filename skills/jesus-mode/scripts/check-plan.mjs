@@ -19,6 +19,19 @@ const PROGRAM_HEADINGS = ["Start program", "Coordinate phases", "Verify and publ
 const PERFORMANCE_ITEMS = ["Metric.", "Probe.", "Baseline.", "Rule."];
 const BOX = /^\s*- \[[ x]\] (.*)$/;
 
+const CODE_SPAN = /(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)/g;
+
+function openingFence(text) {
+  const match = text.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+  if (!match || (match[1][0] === "`" && match[2].includes("`"))) return null;
+  return { char: match[1][0], length: match[1].length };
+}
+
+function closingFence(text, opening) {
+  const match = text.match(/^ {0,3}(`+|~+)[ \t]*$/);
+  return Boolean(match && match[1][0] === opening.char && match[1].length >= opening.length);
+}
+
 function validate(source, label) {
   const raw = source.split(/\r?\n/);
   const problems = [];
@@ -31,17 +44,22 @@ function validate(source, label) {
   }
 
   const lines = [];
-  let fenced = false;
+  let fence = null;
   for (let index = start; index < raw.length; index += 1) {
     const text = raw[index];
-    const fence = /^`{3,}/.test(text);
-    lines.push({ line: index + 1, text, code: fenced || fence });
-    if (fence) fenced = !fenced;
+    let code = fence !== null;
+    if (fence && closingFence(text, fence)) {
+      fence = null;
+    } else if (!fence) {
+      fence = openingFence(text);
+      code = fence !== null;
+    }
+    lines.push({ line: index + 1, text, code });
   }
 
   for (const entry of lines) {
     if (entry.code) continue;
-    const prose = entry.text.replace(/`[^`]*`/g, "");
+    const prose = entry.text.replace(CODE_SPAN, "");
     if (/<[^>]+>/.test(prose)) fail(entry.line, "unfilled placeholder");
   }
 
@@ -216,6 +234,24 @@ None.
   );
   const contradictoryResult = validate(contradictory, "contradictory");
   if (contradictoryResult.problems.length === 0) throw new Error("contradictory fixture unexpectedly passed");
+  const withTail = (tail) => validate(valid + tail, "fence");
+  const passing = [
+    "```markdown\n## Example only\n```\n",
+    "   ```markdown\n## Example only\n   ```\n",
+    "```markdown\n## Example only\n````\n",
+    "````markdown\n```markdown\n## Example only\n```\n````\n",
+    "~~~markdown `info`\n## Example only\n ~~~\n",
+    "````markdown\n~~~\n## Example only\n````\n",
+    "````markdown\n``` info\n## Example only\n````\n",
+  ];
+  for (const tail of passing) {
+    const result = withTail(tail);
+    if (result.problems.length > 0) throw new Error(`fence fixture failed: ${JSON.stringify(tail)}\n${result.problems.join("\n")}`);
+  }
+  const afterFence = withTail("```\n<inside>\n```\nAfter <placeholder>\n");
+  if (!afterFence.problems.some((problem) => problem.includes("unfilled placeholder"))) {
+    throw new Error("placeholder after a closed fence was not reported");
+  }
   console.log("check-plan self-test passed");
 }
 

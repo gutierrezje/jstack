@@ -82,7 +82,7 @@ else
 fi
 
 upstream_url='https://github.com/cursor/plugins.git'
-git clone --filter=blob:none --no-checkout --sparse --branch main --single-branch \
+git clone --no-checkout --sparse --branch main --single-branch \
   "$upstream_url" "$upstream_dir" >&2 || die 'upstream clone failed'
 git -C "$upstream_dir" fetch --quiet origin main || die 'upstream fetch failed'
 git -C "$upstream_dir" sparse-checkout set pstack || die 'sparse checkout of pstack failed'
@@ -100,6 +100,8 @@ map_local() {
     pstack/skills/principle-*/SKILL.md) n=${1#pstack/skills/principle-}; printf 'skills/jesus-mode/references/principles/%s.md' "${n%/SKILL.md}" ;;
     pstack/skills/benchmark-checklist/SKILL.md) printf 'skills/jesus-mode/references/benchmark-checklist.md' ;;
     pstack/skills/technical-writing/SKILL.md) printf 'skills/jesus-mode/references/technical-writing.md' ;;
+    pstack/skills/poteto-mode/*) printf 'skills/jesus-mode/%s' "${1#pstack/skills/poteto-mode/}" ;;
+    pstack/skills/setup-pstack/*) printf 'skills/setup-jstack/%s' "${1#pstack/skills/setup-pstack/}" ;;
     pstack/skills/tdd/*) printf 'skills/pstack-tdd/%s' "${1#pstack/skills/tdd/}" ;;
     pstack/skills/teach/*) printf 'skills/pstack-teach/%s' "${1#pstack/skills/teach/}" ;;
     pstack/skills/*) printf 'skills/%s' "${1#pstack/skills/}" ;;
@@ -131,6 +133,8 @@ fi
 
 printf 'SKILL_IMPACT\n'
 printf 'mapping: pstack/skills/principle-*/SKILL.md -> skills/jesus-mode/references/principles/*.md\n'
+printf 'mapping: pstack/skills/poteto-mode/* -> skills/jesus-mode/*\n'
+printf 'mapping: pstack/skills/setup-pstack/* -> skills/setup-jstack/*\n'
 printf 'mapping: pstack/skills/tdd/* -> skills/pstack-tdd/*\n'
 printf 'mapping: pstack/skills/teach/* -> skills/pstack-teach/*\n'
 if [[ -n "$changes" ]]; then

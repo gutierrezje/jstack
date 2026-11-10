@@ -26,6 +26,12 @@ readable, but leaves heavy review cycles to `$babysit-pr`.
 live verification, issue reconciliation, and cleanup, reusing review evidence
 and reporting results in chat.
 Use `$how` to learn how something works and `$why` to find out why it ended up that way.
+Use [$ketchup](skills/ketchup/SKILL.md) to catch up on this chat since your last
+message, including the context needed for each decision waiting on you, or
+[$ketchup-video](skills/ketchup-video/SKILL.md) for the same catch-up as a short
+subtitled video. [$in-your-own-words](skills/in-your-own-words/SKILL.md) restates
+your goal before work starts, and [$sharpen](skills/sharpen/SKILL.md) makes a task
+deeper before it is handed off.
 
 Use the explicitly invoked [$statechart](skills/statechart/SKILL.md) to check a finite
 TLA+ model and explain rule failures as paths through states. It writes a local
@@ -110,4 +116,4 @@ node scripts/validate.mjs
 
 ## Provenance
 
-Jstack is based on pstack `0.15.13` at commit `e5a8186d7b43be8d6ac4452440fbead5f1a51c70`. See [`NOTICE.md`](NOTICE.md) and [`LICENSE`](LICENSE).
+Jstack is based on pstack `0.15.36` at commit `de8ee15dd1194627d21eb5fcd41cb1873208dabb`. See [`NOTICE.md`](NOTICE.md) and [`LICENSE`](LICENSE).

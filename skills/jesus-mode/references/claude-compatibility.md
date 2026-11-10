@@ -11,8 +11,9 @@ On Claude Code, apply the [Codex compatibility contract](codex-compatibility.md)
 ## Delegation
 
 - Replace Cursor `Task` and Codex internal subagents with the `Agent` tool. Map tiers through [Claude Code routes](routes.md#claude-code-routes) and pass the mapped `model` explicitly.
-- Map Cursor `subagent_type` and Codex `agent_type` to a bounded prompt naming the relevant skill. Use `subagent_type: "general-purpose"`, or `"Explore"` for read-only search. Use a registered Claude agent type only when the current `Agent` tool lists it.
+- Map Cursor `subagent_type` and Codex `agent_type` to a bounded prompt naming the relevant skill. Use `subagent_type: "general-purpose"`, or `"Explore"` for read-only search. `Explore` keeps `Bash`, so also write "do not edit files" in the brief and check `git status` afterward. Use a registered Claude agent type only when the current `Agent` tool lists it.
 - Route every `Agent` call, including independent reviewers requested by other skills. A code-quality review gate is Luna Max, so `sonnet`; when that matches the author's model, use the nearest different listed model and report the substitution.
+- Map Cursor `file_attachments` to a list of paths in the brief, and `cloud_base_branch` to an instruction to check out that branch first. Name the branch or commit a worktree child checks out.
 - Children run in the background by default and notify the parent on completion. Continue a child with `SendMessage`; do not poll.
 - Give parallel writers disjoint files, or pass `isolation: "worktree"` when overlapping writers are justified.
 - Use the `Workflow` tool only when the user explicitly opts into multi-agent orchestration.
@@ -20,7 +21,7 @@ On Claude Code, apply the [Codex compatibility contract](codex-compatibility.md)
 ## Claude Code tools
 
 - Use `TodoWrite` directly where Cursor used it; Codex `update_plan` maps to the same tool.
-- Replace `request_user_input` with `AskUserQuestion` for a material choice or authorization only.
+- Replace `request_user_input` with `AskUserQuestion` for a material choice or authorization only. The tool is absent in `-p` mode, so ask in plain text there.
 - Replace recurring automation with `/loop`, `ScheduleWakeup`, or `CronCreate` only when the user requested monitoring or a recurring run.
 
 ## Review authorization

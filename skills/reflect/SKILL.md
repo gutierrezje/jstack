@@ -15,6 +15,7 @@ Read [the global routing table](../jesus-mode/references/routes.md) before dispa
 3. Ask each reviewer for evidence-backed Keep, Change, and Backlog findings with exact destinations.
 4. Have the parent synthesize duplicates and reject findings unsupported by task evidence. Use the Reflect synthesizer route for one advisor only when the parent needs stronger judgment.
 5. Present Accepted, Rejected, and Backlog items. Obtain approval before editing global skills or instructions.
+   Never edit a plugin-cache copy of a skill (for example under `~/.claude/plugins/` or `~/.codex/plugins/`). Show the destination first, such as a project or user skill folder, edit a copy there only after approval, and never open a PR or push.
 6. Route approved edits through `$skill-creator` and `$writing-for-agents`; route recurring tooling gaps into checks, scripts, or tracked backlog.
 7. Validate every edited skill and report applied, rejected, and deferred lessons.
 

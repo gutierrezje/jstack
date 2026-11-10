@@ -1,17 +1,16 @@
 # Test behavior, not implementation
 
-Test observable behavior with an independent expected result and a concrete failure case.
+Apply when you write, change, or keep a test. Assert what the code's users can observe, so the test fails when that behavior breaks and keeps passing when only the internals change.
 
-Call the subject through the interface its consumers use. Assert the observable result against an independent expectation, such as a literal output or persisted state.
+A test is a claim about what the code does for its users: a caller, an end user, or another service. Behavior is what those users can observe through the interface they use: return values, errors, state they can read back, and effects on systems outside the code, such as a request sent, a row written, or a message emitted. Implementation is what they cannot observe: private helpers, internal call order, intermediate data, and which internal collaborator did the work.
 
-Check whether the test fails for the defect it claims to catch. A disposable broken implementation or the pre-fix version can establish this. If the subject never runs, or the test still passes for that defect, repair the assertion or remove the test.
+Judge each test against two imagined edits:
 
-Watch for these gaps:
+- **Break the behavior.** Make the code return a wrong value, skip an effect, or do the effect twice. If the test still passes, it proves nothing. Usual causes: an assertion looser than the contract, an expected value computed by the code under test, a restated constant or prompt string that never runs the code that reads it, and an assertion on data the test built itself. A disposable broken implementation or the pre-fix version can establish this.
+- **Change the internals.** Keep every observable result the same and restructure the code underneath. If the test now fails, it is pinned to the implementation: it needs a rewrite on every refactor and still catches no bug.
 
-- No assertion, or an existence or truthiness assertion where the claim needs an exact result.
-- A mock call count without the required payload or resulting state.
-- An expected value produced by the same function under test.
-- A pinned constant or prompt string without exercising the behavior it controls.
-- An assertion about fixture data that never exercises the subject.
+Keep a test that catches the first edit and survives the second. Rewrite or delete the rest. To write one that does both, drive the code through its users' interface with a concrete input, derive the expected value from the requirement rather than from a run of the code, and assert what the contract promises, no less and no more.
 
-Negative outcomes are behavior too. Test rejection, absence, or empty output when that is the contract, and include a contrasting valid case when it proves the distinction. Keep relational schema checks and compile-time type tests. An `undefined` stub is one useful probe; it does not invalidate every absence assertion, mock test, or constant check.
+The contract decides, not the shape of the assertion. When "an empty cart never charges" is the promise, an assertion that the payment client got no call is behavior; pair it with a case where the charge happens, so the test shows it can see a call. The payload a mocked external service receives is behavior, because that service observes it. A call to an internal helper is implementation. An empty list is the exact answer when no record matches, and a hollow check when the test only needs some result. An exact error message pins wording no caller reads; the error type callers branch on is the contract.
+
+A test can pin an invariant instead of a call, such as a key that must exist in two tables or a compile-time type check. The invariant is the behavior.
