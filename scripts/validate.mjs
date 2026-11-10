@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { existsSync, lstatSync, readFileSync, readdirSync } from "node:fs";
-import { dirname, join, relative, resolve } from "node:path";
+import { dirname, join, relative, resolve, sep } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
 const skillsRoot = join(root, "skills");
@@ -65,6 +65,17 @@ for (const directory of skillDirectories) {
   if (existsSync(metadataFile)) {
     const parity = checkInvocationParity(expectedName, readFileSync(metadataFile, "utf8"), source);
     if (parity) failures.push(parity);
+  }
+}
+
+// Every file under skills/ ships in each plugin install; keep tests, fixtures, and eval corpora upstream.
+// Statechart keeps only the trimmed Jstack regression suite its CI runs.
+const testArtifactPattern = /(^|\/)(tests?|__tests__|fixtures|evals?)\/|\.(test|spec)\.[cm]?[jt]sx?$/;
+const allowedTestRoot = "statechart/scripts/test/";
+for (const file of walk(skillsRoot)) {
+  const path = relative(skillsRoot, file).split(sep).join("/");
+  if (testArtifactPattern.test(path) && !path.startsWith(allowedTestRoot)) {
+    failures.push(`${relative(root, file)} is a test or eval artifact; skills/ ships runtime files only`);
   }
 }
 

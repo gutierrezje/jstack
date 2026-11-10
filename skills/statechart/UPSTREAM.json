@@ -2,7 +2,7 @@
   "repository": "https://github.com/cursor/plugins",
   "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
   "pstackVersion": "0.15.36",
-  "scope": "Targeted statechart/formal-guidance port; the global Jstack sync baseline is unchanged.",
+  "scope": "Statechart/formal-guidance port; upstream paths are unchanged through the global Jstack sync baseline in NOTICE.md.",
   "license": "MIT; see repository LICENSE and NOTICE.md",
   "originalSha256": {
     "skills/statechart/scripts/backends/cfg.ts": "aea4d8766d214e7fa08f4881f1037319655e75eb56652e1b6d5d4f13a162e3e1",
@@ -48,7 +48,7 @@
     "Local dependency setup with pinned SHA verification; no automatic mise/Java installation.",
     "Bounded command, JSON receipts, nonpass for incomplete or vacuous checks, JVM heap cap.",
     "Process-exit observation independent of pipe closure; inherited pipes released on worker exit.",
-    "Optional renderer tests use preinstalled dependencies; no network installation during tests.",
+    "Shipped tests trimmed to Jstack regression coverage: adapter, cancellation, CLI, corpus, and plain-TLC suites with the 14 corpus models they name; upstream renderer, differential, fuzz, message, pipeline, and TLC-output suites stay upstream.",
     "Tests adapted for receipts, stricter outcomes, real jar verification, macOS symlink paths, and TypeScript checks.",
     "Jstack cancellation and adapter regression tests, locked dev dependencies, and deterministic CI."
   ]
