@@ -95,21 +95,56 @@ review-thread triage, and waiting for checks to converge belong to
 
 ## PR body contract
 
-Use these sections:
+Lead with the problem. Write for a reviewer who has the diff open: the body
+carries what the diff cannot show. Aim for 250–400 words, and count them before
+publishing. Spend words past 400 only on evidence tables, eval results, or
+before-and-after captures; trim What and How first.
 
 ```markdown
+## Why
+<Two or three sentences: the problem, constraint, or decision behind the change,
+and the result this PR delivers.>
+
 ## What
-<The behavior or result that changed.>
+<Optional. One line per separable change that Why does not already name.>
 
 ## How
-<The implementation approach and important design choices.>
-
-## Why
-<The problem, constraint, or decision that motivated the change.>
+<Decisions, constraints, and surprises the diff cannot show.>
 
 ## Evidence
-<Direct proof for the claims above.>
+<Checks run with their results, then the gaps.>
 
+<Closing model line. See Model contributions.>
+```
+
+- Why states the result as well as the problem, so most PRs need only a short
+  What or none. Add What when the change has several separable parts.
+- How records the reasoning a reviewer cannot recover from the diff: rejected
+  alternatives, constraints that shaped the code, and surprises found along the
+  way. The file list already shows which files and folders changed. Omit How
+  when the diff explains itself.
+- Write Evidence by the [evidence rules](#evidence-rules).
+- Add `## Reviewer notes` after Evidence for risks, rollout steps, or recovery
+  instructions that change how someone reviews or merges the PR.
+
+For a stack, each child PR targets its parent's branch and rebases onto the parent's exact tip. As a parent merges, move the child onto trunk per [$ship](../ship/SKILL.md). Prefer several narrow PRs to one large PR.
+
+## Model contributions
+
+End the body with one line that names each contributing model, the work it
+did, and the harness that ran it. Give each model one clause, even when
+several contributed:
+
+```markdown
+Claude Opus 5.5 (`claude-opus-5-5`) in Claude Code wrote and verified this change; <review model> in DiffOwl reviewed it.
+```
+
+Results such as review findings, coverage limits, and check outcomes belong in
+Evidence, so the line stays one sentence. Replace it with this table only when
+several models did materially different work whose scope a clause cannot state,
+for example reviews or QA runs that each covered a different revision:
+
+```markdown
 ## Model contributions
 
 | Role | Model | Scope and result |
@@ -121,30 +156,28 @@ Use these sections:
 | PR preparation | <model> | <PR creation or description update.> |
 ```
 
-For a stack, each child PR targets its parent's branch and rebases onto the parent's exact tip. As a parent merges, move the child onto trunk per [$ship](../ship/SKILL.md). Prefer several narrow PRs to one large PR.
-
-Add risks, rollout notes, or reviewer guidance when they help. Keep the five
-core sections even when the PR is small.
-
-## Model contributions
-
 Record contributions as work happens and retain them through handoffs and
 compaction. Include the parent and contributing children. Ask delegated workers
-to return their model identity, role, scope, and result with their evidence.
-Collect those records before creating or updating the PR body.
+to return their model identity, harness, role, scope, and result with their
+evidence. Collect those records before creating or updating the PR body.
 
 - Use the model identifier exposed by the runtime or execution receipt. Preserve
   the version when available. If only a family or alias is exposed, label it as
   such; use `Unknown (not exposed)` when no identity is available. Routing
   defaults, tool names, and the model opening the PR do not establish who did
   earlier work. Record actual fallbacks when known.
-- Keep the five roles above visible. Use one row per contributor and role;
-  split further by scope when needed. Add roles such as design when useful.
-  A model may fill several roles;
-  credit each only for work it performed. Label an author's review as self-review.
-- For an unperformed role, use `None` as the model and state `Not run`, `Pending`,
-  or `Not applicable` with a reason. Record failed and blocked attempts accurately.
-  Attribution does not require running optional work or change acceptance gates.
+- Name the harness that ran each model, such as Claude Code, Codex CLI, or Codex
+  Desktop, when the runtime exposes it.
+- Credit each model only for work it performed; a model may fill several roles.
+  Label an author's review as self-review.
+- When you use the table, keep the five roles above visible. Use one row per
+  contributor and role, split further by scope when needed, and add roles such
+  as research or design when useful. For an unperformed role, use `None` as the
+  model and state `Not run`, `Pending`, or `Not applicable` with a reason.
+- With the closing line, report a role the change needed but did not get, such
+  as review of the head or QA for a UI change, as an Evidence gap.
+- Record failed and blocked attempts accurately. Attribution does not require
+  running optional work or change acceptance gates.
 - Identify human and automated contributions as `Human` or the named CI or tool
   when applicable. Credit a model that ran or assessed checks for that action;
   identify the underlying checks in Evidence. Use a review report's model identity
@@ -152,20 +185,24 @@ Collect those records before creating or updating the PR body.
 - Preserve earlier contributors when another model takes over or repairs the PR.
   Update outcomes and covered revisions as work progresses. Mark stale evidence
   explicitly; prior participation does not establish current-head coverage.
-- Keep the table concise and consistent with Evidence. Before completing an
-  authorized PR body edit, read the remote body back and confirm the record
-  survived. For read-only work, return proposed attribution in the handoff.
+- Keep the record consistent with Evidence. Before completing an authorized PR
+  body edit, read the remote body back and confirm the record survived. For
+  read-only work, return proposed attribution in the handoff.
 
 ## Evidence rules
 
-- List the exact tests, checks, or manual flows run and their results. Link
-  durable logs or artifacts when a summary is not enough. State what each kind
+- Write Evidence as the checks run with their results, then the gaps. Name the
+  exact tests, checks, or manual flows. Link durable logs or artifacts when a
+  summary is not enough. State what each kind
   of evidence proves: focused tests can establish recovery logic, while native
   layout or screen-reader behavior needs observation on that surface.
 - When a native failure path cannot be reproduced safely and reliably, report
   the device gap and use focused tests for the behavior they cover. Do not add
   artificial failure hooks solely to obtain screenshots. Apply the acceptance
   requirements above when deciding whether alternative evidence is sufficient.
+- Explain an environment failure only when it affects the head commit, for
+  example a check that could not run there. A failure confined to an earlier
+  revision or local setup, with passing runs on the head, needs no mention.
 - Include current model-review results when they already provide useful evidence.
   Keep local report paths out of the body. Open PR does not require new model
   review coverage.

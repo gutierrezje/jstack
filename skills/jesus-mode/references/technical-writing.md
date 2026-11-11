@@ -95,7 +95,7 @@ Source: Kohl, The Global English Style Guide (SAS Press). Guideline text fetched
 ## Voice and repo specifics
 
 - Apply the **unslop** skill to every doc this skill touches. That skill owns the slop-pattern catalog: AI vocabulary, filler, hedging, formatting tells.
-- PR descriptions and commit messages are writing too. Every layer except Diátaxis applies to them. Keep the PR body readable in under a minute; link detailed logs and metric tables.
+- PR descriptions and commit messages are writing too. Every layer except Diátaxis applies to them. Keep the PR body within the [open-pr length target](../../open-pr/SKILL.md#pr-body-contract); link detailed logs and metric tables.
 - Product UI strings are not documentation. Use your product's copy guidelines for those.
 - Indent code snippets with tabs. Write real paths. Make every count or tree claim true at the commit that lands it, and include the command that regenerates it.
 
