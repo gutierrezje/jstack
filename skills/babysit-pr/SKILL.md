@@ -39,8 +39,8 @@ optional demonstration clips separate from required acceptance evidence.
 
 Track repairs, reviews, QA, and verification using the
 [model contributions contract](../open-pr/SKILL.md#model-contributions).
-Before issuing a verdict, refresh the PR's table when body edits are authorized;
-otherwise include the proposed update in the handoff.
+Before issuing a verdict, refresh the PR's model contributions record when body
+edits are authorized; otherwise include the proposed update in the handoff.
 
 ## Workflow
 
