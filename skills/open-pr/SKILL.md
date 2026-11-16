@@ -126,6 +126,12 @@ and the result this PR delivers.>
 - Write Evidence by the [evidence rules](#evidence-rules).
 - Add `## Reviewer notes` after Evidence for risks, rollout steps, or recovery
   instructions that change how someone reviews or merges the PR.
+- Add `## Release impact` before Reviewer notes when merging changes what a
+  release must do: backend contracts, schema or indexes, migrations or data
+  writes, native dependencies or configuration, or release tooling. Name each
+  affected surface and whether the repository's automation ships it or it needs
+  a manual deploy, migration approval, or new binary, using the repository's
+  release instructions for those terms.
 
 For a stack, each child PR targets its parent's branch and rebases onto the parent's exact tip. As a parent merges, move the child onto trunk per [$ship](../ship/SKILL.md). Prefer several narrow PRs to one large PR.
 
