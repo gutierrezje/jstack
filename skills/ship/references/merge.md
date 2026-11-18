@@ -62,5 +62,15 @@ Confirm the resulting merge revision is present on the intended base and record
 its relationship to the reviewed PR. Preserve the PR head and actual landed
 diff for release and cleanup; squash and rebase merges can change commit identity.
 
+## Post-merge obligations
+
+Read the repository's release instructions and each PR's release impact for
+work the merge starts or requires, such as backend deploys, sync workflows, or
+migrations. Observe automatic runs for the landed revision to completion and
+read their result. Prepare a manual obligation's exact operation and ask for
+its authority, unless the user's request already covers it. Report a PR as
+merged but not deployed while any obligation is pending, failed, or handed off.
+
 Completion: each landed PR had valid acceptance at merge time, the forge
-confirms it merged, and the intended base contains its resulting revision.
+confirms it merged, the intended base contains its resulting revision, and each
+post-merge obligation finished or is reported with its owner.
